@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<aop-reference-model>
-<aop-project name="citic-server-base"/>
-<aop-project name="citic-server-netcscplus"/>
-<aop-project name="citic-server-cbrc"/>
-<aop-project name="citic-server-cgb"/>
-</aop-reference-model>

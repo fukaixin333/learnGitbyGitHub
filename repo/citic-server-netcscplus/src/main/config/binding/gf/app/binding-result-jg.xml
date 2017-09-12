@@ -1,7 +1,0 @@
-<binding name="binding_result" package="com.citic.server.gf.domain">
-    <mapping name="jg" class="com.citic.server.gf.domain.Result_Jg">
-        <value style="attribute" name="BDHM" get-method="getBdhm" set-method="setBdhm" usage="optional" />
-        <value style="attribute" name="RESULT" get-method="getResult" set-method="setResult" usage="optional" />
-        <value style="attribute" name="MSG" get-method="getMsg" set-method="setMsg" usage="optional" />
-    </mapping>
-</binding>
