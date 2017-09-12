@@ -1,0 +1,58 @@
+<binding name="binding_gdjc_ckdj" package="com.citic.server.gdjc.domain.request">
+    <include path="../../custom/base-binding-project.xml" />
+    <mapping class="com.citic.server.gdjc.domain.request.Gdjc_RequestCkdj" name="RESULT">
+        <structure name="COMMAND">
+            <value style="attribute" name="TYPE" get-method="getCmdtype" set-method="setCmdtype" usage="optional" />
+            <value style="element" name="USERNAME" get-method="getUsername" set-method="setUsername" usage="optional" />
+            <value style="element" name="PASSWORD" get-method="getPassword" set-method="setPassword" usage="optional" />
+        </structure>
+        <structure name="DATA">
+            <value style="attribute" name="CONTENT" get-method="getContent" set-method="setContent" usage="optional" />
+            <value style="element" name="DOCNO" get-method="getDocno" set-method="setDocno" usage="optional" />
+            <collection get-method="getCases" set-method="setCases" usage="optional" create-type="java.util.ArrayList">
+                <structure type="com.citic.server.gdjc.domain.request.Gdjc_RequestCkdj_Case" name="CASE">
+                    <value style="element" name="CASENO" get-method="getCaseno" set-method="setCaseno" usage="optional" />
+                    <collection get-method="getRespondents" set-method="setRespondents" usage="optional" create-type="java.util.ArrayList">
+                        <structure type="com.citic.server.gdjc.domain.request.Gdjc_RequestCkdj_Respondent" name="RESPONDENT">
+                            <value style="element" name="UNIQUEID" get-method="getUniqueid" set-method="setUniqueid" usage="optional" />
+                            <collection get-method="getBanks" set-method="setBanks" usage="optional" create-type="java.util.ArrayList">
+                                <structure type="com.citic.server.gdjc.domain.request.Gdjc_RequestCkdj_Bank" name="BANK">
+                                    <value style="element" name="BANKCODE" get-method="getBankcode" set-method="setBankcode" usage="optional" />
+                                    <value style="element" name="BANKNAME" get-method="getBankname" set-method="setBankname" usage="optional" />
+                                    <collection get-method="getAccs" set-method="setAccs" usage="optional" create-type="java.util.ArrayList">
+                                        <structure type="com.citic.server.gdjc.domain.request.Gdjc_RequestCkdj_Acc" name="ACC">
+                                            <value style="element" name="ACCNAME" get-method="getAccname" set-method="setAccname" usage="optional" />
+                                            <value style="element" name="ACCTYPE" get-method="getAcctype" set-method="setAcctype" usage="optional" />
+                                            <value style="element" name="CARDNO" get-method="getCardno" set-method="setCardno" usage="optional" />
+                                            <value style="element" name="CARDSTATUS" get-method="getCardstatus" set-method="setCardstatus" usage="optional" />
+                                            <value style="element" name="ACCOUNT" get-method="getAccount" set-method="setAccount" usage="optional" />
+                                            <value style="element" name="SUBACCOUNT" get-method="getSubaccount" set-method="setSubaccount" usage="optional" />
+                                            <value style="element" name="DATATYPE" get-method="getDatatype" set-method="setDatatype" usage="optional" />
+                                            <value style="element" name="BANLANCE" get-method="getBanlance" set-method="setBanlance" usage="optional" format="noCurrency" />
+                                            <value style="element" name="CURRENCY" get-method="getCurrency" set-method="setCurrency" usage="optional" />
+                                            <value style="element" name="EXCHANGETYPE" get-method="getExchangetype" set-method="setExchangetype" usage="optional" />
+                                            <value style="element" name="OPENDATE" get-method="getOpendate" set-method="setOpendate" usage="optional" format="toDate10" />
+                                            <value style="element" name="TRADEDATE" get-method="getTradedate" set-method="setTradedate" usage="optional" format="toDate10" />
+                                            <value style="element" name="OPENBRANCHNO" get-method="getOpenbranchno" set-method="setOpenbranchno" usage="optional" />
+                                            <value style="element" name="OPENBRANCHNAME" get-method="getOpenbranchname" set-method="setOpenbranchname" usage="optional" />
+                                            <value style="element" name="OPENBRANCHTEL" get-method="getOpenbranchtel" set-method="setOpenbranchtel" usage="optional" />
+                                            <value style="element" name="OPENBRANCHADDR" get-method="getOpenbranchaddr" set-method="setOpenbranchaddr" usage="optional" />
+                                            <value style="element" name="ADDR" get-method="getAddr" set-method="setAddr" usage="optional" />
+                                            <value style="element" name="TEL" get-method="getTel" set-method="setTel" usage="optional" />
+                                            <value style="element" name="STATUSFLAG" get-method="getStatusflag" set-method="setStatusflag" usage="optional" />
+                                            <value style="element" name="STATUS" get-method="getStatus" set-method="setStatus" usage="optional" />
+                                            <value style="element" name="CLOSEDATE" get-method="getClosedate" set-method="setClosedate" usage="optional" format="toDate10" />
+                                            <value style="element" name="CLOSEBRANCHNO" get-method="getClosebranchno" set-method="setClosebranchno" usage="optional" />
+                                            <value style="element" name="CLOSEBRANCHNAME" get-method="getClosebranchname" set-method="setClosebranchname" usage="optional" />
+                                            <value style="element" name="QUERYTIME" get-method="getQuerytime" set-method="setQuerytime" usage="optional" />
+                                        </structure>
+                                    </collection>
+                                </structure>
+                            </collection>
+                        </structure>
+                    </collection>
+                </structure>
+            </collection>
+        </structure>
+    </mapping>
+</binding>

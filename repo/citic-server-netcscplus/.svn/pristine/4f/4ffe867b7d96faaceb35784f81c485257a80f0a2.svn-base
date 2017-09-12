@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.net.mapper.MM12_event_logMapper">
+
+	<insert id="insertMM12_event_log" parameterType="com.citic.server.service.domain.MM12_event_log">
+		insert into MM12_event_log(
+			eventkey,datatime,eventseq,sqlseq,sqlstr  
+		)
+		values(
+			#{eventkey},#{datatime},#{eventseq},#{salseq},#{sqlstr}
+		)
+	</insert>
+	
+	<delete id="deleteMM12_event_log" parameterType="string">
+		<![CDATA[ delete from mm12_event_log where eventkey=#{eventkey} ]]>
+	</delete>
+	
+</mapper>
+
+

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.net.mapper.MM12_eventMapper">
+
+	<select id="getMM12_eventList" parameterType="com.citic.server.service.domain.MM12_event" resultType="com.citic.server.service.domain.MM12_event">
+		
+     select distinct t1.eventkey,t1.event_des,t1.event_type,t1.interfactkey,t1.stcrkey,t1.curr_cd,t1.freq,t1.flag,t1.create_dt,t1.creator,t1.create_org,t1.modifier,t1.modify_dt
+     from mm12_event t1,MM14_LINK_EVENT t2, mm14_model t3
+     where t1.eventkey=t2.eventkey and t2.modelkey=t3.modelkey and t3.flag='5'
+     and t1.event_type = #{event_type} and t1.freq =#{freq} and t1.flag = '1'
+    
+	</select>
+	
+	<select id="getMM12_eventListForLab" parameterType="com.citic.server.service.domain.MM12_event" resultType="com.citic.server.service.domain.MM12_event">
+		
+     select distinct t1.eventkey,t1.event_des,t1.event_type,t1.interfactkey,t1.stcrkey,t1.curr_cd,t1.freq,t1.flag,t1.create_dt,t1.creator,t1.create_org,t1.modifier,t1.modify_dt
+     
+     from mm12_event t1,MM14_LINK_EVENT t2, mm14_model t3
+     
+     where t1.eventkey=t2.eventkey and t2.modelkey=t3.modelkey and t3.modelkey=#{modelkey}
+     
+     	and t1.event_type = #{event_type} and t1.freq =#{freq} and t1.flag = '1'
+     <!-- 
+     	and t1.eventkey not in  
+     
+		     (
+		     select distinct t1.eventkey
+		     
+		     from mm12_event t1,MM14_LINK_EVENT t2, mm14_model t3
+		     
+		     where t1.eventkey=t2.eventkey and t2.modelkey=t3.modelkey and t3.flag='5'
+		     
+		     	and t1.event_type = #{event_type} and t1.freq =#{freq} and t1.flag = '1'
+		     )
+       -->
+	</select>
+
+	<select id="getMM12_eventDisp" parameterType="String" resultType="com.citic.server.service.domain.MM12_event">
+		
+		select eventkey,event_des,event_type,interfactkey,stcrkey,curr_cd,freq,flag,deployflag,create_dt,creator,create_org,modifier,modify_dt
+		 from mm12_event 
+		 where eventkey = #{eventkey}
+		 
+	</select>
+
+</mapper>
+
+

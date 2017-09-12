@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.mapper.MC00_ds_tablesMapper">
+
+	<select id="getMC00_ds_tablesList" parameterType="String" resultType="MC00_ds_tables">
+		<![CDATA[
+		select taskid,subtaskid,freq,dsid,tablename,tabledes,etlcmd,zip,zipfilter,sencode,tencode,filter
+		from mc00_ds_tables 
+		]]>
+	</select>
+	
+	<select id="get_Flagfile_Count" parameterType="String" resultType="java.lang.Integer">
+		SELECT COUNT(TASKID) FROM MC00_Ds_TABLES WHERE TASKID='TK_ETL101'
+	</select>
+</mapper>
+  
+

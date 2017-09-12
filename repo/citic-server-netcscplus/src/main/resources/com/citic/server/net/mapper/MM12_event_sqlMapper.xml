@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.net.mapper.MM12_event_sqlMapper">
+
+	<select id="getMM12_event_sqlList" parameterType="string" resultType="com.citic.server.service.domain.MM12_event_sql">
+		select eventkey,eventseq,sqlseq,sqlstr 
+		from mm12_event_sql where eventkey= #{eventkey}
+		order by eventseq,sqlseq asc
+	</select>
+	
+</mapper>
+
+

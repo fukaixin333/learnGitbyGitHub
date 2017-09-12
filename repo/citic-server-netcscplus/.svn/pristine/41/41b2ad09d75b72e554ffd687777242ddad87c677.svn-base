@@ -1,0 +1,9 @@
+<binding name="binding_rollback_htxx" package="com.citic.server.gf.domain.request">
+    <mapping name="htxx" class="com.citic.server.gf.domain.request.RollbackRequest_Htxx">
+        <value style="attribute" name="BDHM" get-method="getBdhm" set-method="setBdhm" usage="optional" />
+        <value style="attribute" name="XCHTYY" get-method="getXchtyy" set-method="setXchtyy" usage="optional" />
+        <value style="attribute" name="XCHTBZ" get-method="getXchtbz" set-method="setXchtbz" usage="optional" />
+        <value style="attribute" name="XCHTR" get-method="getXchtr" set-method="setXchtr" usage="optional" />
+        <value style="attribute" name="XCHTDH" get-method="getXchtdh" set-method="setXchtdh" usage="optional" />
+    </mapping>
+</binding>

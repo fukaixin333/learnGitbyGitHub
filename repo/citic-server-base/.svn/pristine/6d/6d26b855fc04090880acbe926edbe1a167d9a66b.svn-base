@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.mapper.MC00_task_factMapper">
+
+	<select id="getTrigeridListByDatatime" parameterType="String" resultType="String">
+		select distinct trigerid 
+		  from mc00_task_fact
+		  where datatime = #{datatime}
+	</select>
+	
+	<select id="getMC00_task_factList" resultType="MC00_task_fact">
+	  select t1.taskid,t1.subtaskid,t1.datatime,t1.serverid,t1.trigerid,t1.dsid,t1.taskname,t1.tgroupid,t1.freq,t1.taskcmd 
+      from mc00_task_fact t1 left join mc00_task_status t2 
+      on t1.taskid=t2.taskid and t1.subtaskid=t2.subtaskid and t1.datatime=t2.datatime and t1.freq=t2.freq
+      and t1.dsid=t2.dsid and t1.trigerid=t2.trigerid  and  t2.calstatus='1' 
+      where t2.taskid is null  
+      order by t1.taskid, t1.datatime, t1.freq, t1.tgroupid
+	</select>
+	<select id="getMC00_retask_factList" resultType="MC00_task_fact">
+		select taskid,subtaskid,datatime,serverid,trigerid,dsid,taskname,tgroupid,freq,taskcmd ,begintime
+		  from mc00_retask_fact t1 order by datatime, begintime ,tgroupid
+	</select>
+	<select id="getMC00_task_factListByDt" parameterType="String" resultType="MC00_task_fact">
+		select taskid,subtaskid,datatime,serverid,trigerid,dsid,taskname,tgroupid,freq,taskcmd 
+		  from mc00_task_fact
+		  where datatime = #{datatime}
+		  and (taskid,subtaskid,datatime,freq,dsid,trigerid) not in 
+		  (select taskid,subtaskid,datatime,freq,dsid,trigerid from mc00_task_status where datatime=#{datatime})
+	</select>
+	
+	<insert id="insertMC00_task_log" parameterType="MC00_task_status">
+		insert into mc00_task_log(
+			taskid,subtaskid,datatime,caltime,trigerid ,freq,taskname,tgroupid,calstatus,errormsg 
+		)
+		values(
+			#{taskid},#{subtaskid},#{datatime},#{begintime},#{trigerid},#{freq},#{taskname},#{tgroupid},#{calstatus},#{errormsg}
+		)
+	</insert>
+	<insert id="insertMC00_task_fact" parameterType="MC00_task_fact">
+		insert into MC00_task_fact(
+			taskid,subtaskid,datatime,serverid,trigerid,dsid,taskname,tgroupid,freq,taskcmd 
+		)
+		values(
+			#{taskid},#{subtaskid},#{datatime},#{serverid},#{trigerid},#{dsid},#{taskname},#{tgroupid},#{freq},#{taskcmd}
+		)
+	</insert>
+	<update id="updateMC00_task_fact" parameterType="MC00_task_fact">
+	<![CDATA[
+		update MC00_task_fact f set f.serverid='' where taskid='${taskid}' and subtaskid='${subtaskid}' and datatime ='${datatime}'
+	]]>	
+	</update>
+	
+<insert id="insertMC00_task_fact_his" parameterType="String">
+		insert into MC00_task_fact_his(
+			taskid,subtaskid,datatime,serverid,trigerid,dsid,taskname,tgroupid,freq,taskcmd 
+		)
+		select taskid,subtaskid,datatime,serverid,trigerid,dsid,taskname,tgroupid,freq,taskcmd  from MC00_task_fact where datatime=#{datatime} 
+	</insert>
+	<update id="lockTask" parameterType="MC00_task_fact">
+		update MC00_task_fact set
+		serverid=#{serverid}
+		where taskid=#{taskid} and subtaskid=#{subtaskid} and datatime=#{datatime} and (serverid is null or serverid='') and freq=#{freq}
+	</update>
+	
+	<update id="unLockTask" parameterType="String">
+	<![CDATA[
+		update MC00_task_fact f set f.serverid='' where f.serverid=#{serverid} 
+			and f.taskid not in (select s.taskid from mc00_task_status s 
+			where s.subtaskid=f.subtaskid and s.datatime=f.datatime and s.freq=f.freq  and s.calstatus='1')
+	]]>	
+	</update>
+	
+	<update id="unLockAllTask" parameterType="String">
+	<![CDATA[
+		update MC00_task_fact f set f.serverid='' where f.taskid not in (select s.taskid from mc00_task_status s 
+			where s.subtaskid=f.subtaskid and s.datatime=f.datatime and s.freq=f.freq and s.calstatus='1')
+	]]>	
+	</update>
+	
+	<update id="unLockCurrTask" parameterType="MC00_task_fact">
+	<![CDATA[
+		update MC00_task_fact f set f.serverid='' where f.taskid=#{taskid} 
+			and f.subtaskid = #{subtaskid} and f.datatime = #{datatime} and serverid=#{serverid} and  freq=#{freq}
+	]]>	
+	</update>
+
+	<!-- 当某日的任务任务全部完成后，清理当日的数据（临时数据，不保存历史） -->
+	<delete id="deleteMC00_task_factByDatatime" parameterType="string">
+		<![CDATA[ delete from mc00_task_fact where datatime=#{datatime} ]]>
+	</delete>
+<delete id="deleteMC00_task_fact_hisByDatatime" parameterType="string">
+		<![CDATA[ delete from mc00_task_fact_his where datatime=#{datatime} ]]>
+	</delete>
+	<select id="getMC00_task_factCount" parameterType="string" resultType="java.lang.Integer">
+		select count(1) from MC00_task_fact t1 where t1.datatime=#{datatime}
+	</select>
+
+<delete id="deleteMC00_retask_fact" parameterType="MC00_task_fact">
+		<![CDATA[ delete from mc00_retask_fact 	
+	  	      where taskid=#{taskid}  and subtaskid=#{subtaskid} and datatime=#{datatime}
+		 ]]>
+	</delete>
+	
+</mapper>

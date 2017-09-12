@@ -1,0 +1,13 @@
+<binding name="cbrc_returnreceipt_req15" package="com.citic.server.cbrc.domain">
+    <include path="../../../custom/base-binding-cbrc.xml" />
+    <mapping class="com.citic.server.cbrc.domain.CBRC_ReturnReceipt" name="RETURNRECEIPTS">
+        <structure name="RETURNRECEIPT">
+            <value style="attribute" name="QQDBS" get-method="getQqdbs" set-method="setQqdbs" usage="optional" format="base64UTF8" />
+            <value style="attribute" name="SQJGDM" get-method="getSqjgdm" set-method="setSqjgdm" usage="optional" format="base64UTF8" />
+            <value style="attribute" name="MBJGDM" get-method="getMbjgdm" set-method="setMbjgdm" usage="optional" format="base64UTF8" />
+            <value style="attribute" name="HZDM" get-method="getHzdm" set-method="setHzdm" usage="optional" format="base64UTF8" />
+            <value style="attribute" name="JSSJ" get-method="getJssj" set-method="setJssj" usage="optional" format="toDateTime14Base64" />
+            <value style="attribute" name="HZSM" get-method="getHzsm" set-method="setHzsm" usage="required" format="base64UTF8" />
+        </structure>
+    </mapping>
+</binding>

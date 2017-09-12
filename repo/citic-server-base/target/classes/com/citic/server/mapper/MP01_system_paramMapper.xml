@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.mapper.MP01_system_paramMapper">
+
+	<select id="getMP01_system_paramList" resultType="MP01_system_param">
+		select paramtype,paramkey,paramvalue,des
+ 		from mp01_system_param
+	</select>
+	
+</mapper>

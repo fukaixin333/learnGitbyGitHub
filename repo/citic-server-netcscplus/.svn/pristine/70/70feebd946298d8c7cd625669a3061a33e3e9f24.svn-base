@@ -1,0 +1,26 @@
+<binding name="binding_query_res" package="com.citic.server.gf.domain.response">
+    <mapping name="cxqqList" class="com.citic.server.gf.domain.response.QueryResponse">
+        <value style="attribute" name="errorMsg" get-method="getErrorMsg" set-method="setErrorMsg" usage="optional" />
+        <collection get-method="getCxqqList" set-method="setCxqqList" usage="optional" create-type="java.util.ArrayList">
+            <structure type="com.citic.server.gf.domain.response.QueryResponse_Cxqq" name="cxqq">
+                <value style="attribute" name="BDHM" get-method="getBdhm" set-method="setBdhm" usage="optional" />
+                <value style="attribute" name="LB" get-method="getLb" set-method="setLb" usage="optional" />
+                <value style="attribute" name="XZ" get-method="getXz" set-method="setXz" usage="optional" />
+                <value style="attribute" name="XM" get-method="getXm" set-method="setXm" usage="optional" />
+                <value style="attribute" name="ZJLX" get-method="getZjlx" set-method="setZjlx" usage="optional" />
+                <value style="attribute" name="DSRZJHM" get-method="getDsrzjhm" set-method="setDsrzjhm" usage="optional" />
+                <value style="attribute" name="FYMC" get-method="getFymc" set-method="setFymc" usage="optional" />
+                <value style="attribute" name="FYDM" get-method="getFydm" set-method="setFydm" usage="optional" />
+                <value style="attribute" name="CBR" get-method="getCbr" set-method="setCbr" usage="optional" />
+                <value style="attribute" name="YHDH" get-method="getYhdh" set-method="setYhdh" usage="optional" />
+                <value style="attribute" name="AH" get-method="getAh" set-method="setAh" usage="optional" />
+                <value style="attribute" name="GZZBH" get-method="getGzzbh" set-method="setGzzbh" usage="optional" />
+                <value style="attribute" name="GWZBH" get-method="getGwzbh" set-method="setGwzbh" usage="optional" />
+                <value style="attribute" name="CKH" get-method="getCkh" set-method="setCkh" usage="optional" />
+                <value style="attribute" name="CKKSSJ" get-method="getCkkssj" set-method="setCkkssj" usage="optional" />
+                <value style="attribute" name="CKJSSJ" get-method="getCkjssj" set-method="setCkjssj" usage="optional" />
+                <value style="attribute" name="WSBH" get-method="getWsbh" set-method="setWsbh" usage="optional" />
+            </structure>
+        </collection>
+    </mapping>
+</binding>

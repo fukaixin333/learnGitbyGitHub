@@ -1,0 +1,124 @@
+<binding name="cbrc_queryaccount_req4" package="com.citic.server.cbrc.domain.request">
+    <include path="../../../custom/base-binding-cbrc.xml" />
+    <mapping class="com.citic.server.cbrc.domain.request.CBRC_QueryRequest" name="FEEDBACKFORM">
+        <value style="attribute" name="QQDBS" get-method="getQqdbs" set-method="setQqdbs" usage="optional" />
+        <value style="attribute" name="CKZTLB" get-method="getZtlb" set-method="setZtlb" usage="optional" />
+        <value style="attribute" name="SQJGDM" get-method="getSqjgdm" set-method="setSqjgdm" usage="optional" />
+        <value style="attribute" name="MBJGDM" get-method="getMbjgdm" set-method="setMbjgdm" usage="optional" />
+        <value style="attribute" name="CXJSSJ" get-method="getCxjssj" set-method="setCxjssj" usage="required" format="toDateTime14" />
+        <value style="attribute" name="CZSBYY" get-method="getCzsbyy" set-method="setCzsbyy" usage="required" format="required" />
+        <collection get-method="getCustomerList" set-method="setCustomerList" usage="optional" create-type="java.util.ArrayList">
+            <structure type="com.citic.server.cbrc.domain.request.CBRC_QueryRequest_Customer" name="CUSTOMER">
+                <value style="attribute" name="RWLSH" get-method="getRwlsh" set-method="setRwlsh" usage="optional" />
+                <value style="attribute" name="CXFKJG" get-method="getCxfkjg" set-method="setCxfkjg" usage="required" format="required" />
+                <value style="attribute" name="CXFKJGYY" get-method="getCxfkjgyy" set-method="setCxfkjgyy" usage="required" format="required" />
+                <value style="attribute" name="ZZLXDM" get-method="getZzlx" set-method="setZzlx" usage="required" format="required" />
+                <value style="attribute" name="ZZHM" get-method="getZzhm" set-method="setZzhm" usage="required" format="required" />
+                <value style="attribute" name="KHMC" get-method="getKhmc" set-method="setKhmc" usage="required" format="required" />
+                <value style="attribute" name="LXDH" get-method="getLxdh" set-method="setLxdh" usage="required" format="required" />
+                <value style="attribute" name="LXSJ" get-method="getLxsj" set-method="setLxsj" usage="required" format="required" />
+                <value style="attribute" name="DBRXM" get-method="getDbrxm" set-method="setDbrxm" usage="required" format="required" />
+                <value style="attribute" name="DBRZJLX" get-method="getDbrzjlx" set-method="setDbrzjlx" usage="required" format="required" />
+                <value style="attribute" name="DBRZJHM" get-method="getDbrzjhm" set-method="setDbrzjhm" usage="required" format="required" />
+                <value style="attribute" name="ZZDZ" get-method="getZzdz" set-method="setZzdz" usage="required" format="required" />
+                <value style="attribute" name="ZZDH" get-method="getZzdh" set-method="setZzdh" usage="required" format="required" />
+                <value style="attribute" name="GZDW" get-method="getGzdw" set-method="setGzdw" usage="required" format="required" />
+                <value style="attribute" name="DWDZ" get-method="getDwdz" set-method="setDwdz" usage="required" format="required" />
+                <value style="attribute" name="DWDH" get-method="getDwdh" set-method="setDwdh" usage="required" format="required" />
+                <value style="attribute" name="YXDZ" get-method="getYxdz" set-method="setYxdz" usage="required" format="required" />
+                <value style="attribute" name="FRDB" get-method="getFrdb" set-method="setFrdb" usage="required" format="required" />
+                <value style="attribute" name="FRDBZJLX" get-method="getFrdbzjlx" set-method="setFrdbzjlx" usage="required" format="required" />
+                <value style="attribute" name="FRDBZJHM" get-method="getFrdbzjhm" set-method="setFrdbzjhm" usage="required" format="required" />
+                <value style="attribute" name="KHGSZZHM" get-method="getKhgszzhm" set-method="setKhgszzhm" usage="required" format="required" />
+                <value style="attribute" name="GSNSH" get-method="getGsnsh" set-method="setGsnsh" usage="required" format="required" />
+                <value style="attribute" name="DSNSH" get-method="getDsnsh" set-method="setDsnsh" usage="required" format="required" />
+                <value style="attribute" name="DBRLXDH" get-method="getDbrlxdh" set-method="setDbrlxdh" usage="required" format="required" />
+                <value style="attribute" name="WYZHM" get-method="getWyzhm" set-method="setWyzhm" usage="required" format="required" />
+                <value style="attribute" name="WYBLRQ" get-method="getWyblrq" set-method="setWyblrq" usage="required" format="required" />
+                <value style="attribute" name="WYKHWD" get-method="getWykhwd" set-method="setWykhwd" usage="required" format="required" />
+                <value style="attribute" name="WYKHWDDM" get-method="getWykhwddm" set-method="setWykhwddm" usage="required" format="required" />
+                <value style="attribute" name="WYKHWDSZD" get-method="getWykhwdszd" set-method="setWykhwdszd" usage="required" format="required" />
+                <value style="attribute" name="SJYHZHM" get-method="getSjyhzhm" set-method="setSjyhzhm" usage="required" format="required" />
+                <value style="attribute" name="SJYHBLRQ" get-method="getSjyhblrq" set-method="setSjyhblrq" usage="required" format="required" />
+                <value style="attribute" name="SJYHKHWD" get-method="getSjyhkhwd" set-method="setSjyhkhwd" usage="required" format="required" />
+                <value style="attribute" name="SJYHKHWDDM" get-method="getSjyhkhwddm" set-method="setSjyhkhwddm" usage="required" format="required" />
+                <value style="attribute" name="SJYHKHWDSZD" get-method="getSjyhkhwdszd" set-method="setSjyhkhwdszd" usage="required" format="required" />
+                <collection get-method="getAccountList" set-method="setAccountList" usage="optional" create-type="java.util.ArrayList" name="ACCOUNTS">
+                    <structure type="com.citic.server.cbrc.domain.request.CBRC_QueryRequest_Account" name="ACCOUNT">
+                        <value style="attribute" name="KH" get-method="getKh" set-method="setKh" usage="required" format="required" />
+                        <value style="attribute" name="ZH" get-method="getZh" set-method="setZh" usage="required" format="required" />
+                        <value style="attribute" name="ZHLB" get-method="getZhlb" set-method="setZhlb" usage="required" format="required" />
+                        <value style="attribute" name="ZHZT" get-method="getZhzt" set-method="setZhzt" usage="required" format="required" />
+                        <value style="attribute" name="KHWD" get-method="getKhwd" set-method="setKhwd" usage="required" format="required" />
+                        <value style="attribute" name="KHWDDM" get-method="getKhwddm" set-method="setKhwddm" usage="required" format="required" />
+                        <value style="attribute" name="KHRQ" get-method="getKhrq" set-method="setKhrq" usage="required" format="toDate8" />
+                        <value style="attribute" name="XHRQ" get-method="getXhrq" set-method="setXhrq" usage="required" format="toDate8" />
+                        <value style="attribute" name="XHWD" get-method="getXhwd" set-method="setXhwd" usage="required" format="required" />
+                        <value style="attribute" name="BZ" get-method="getBz" set-method="setBz" usage="required" format="required" />
+                        <value style="attribute" name="CHBZ" get-method="getChbz" set-method="setChbz" usage="required" format="required" />
+                        <value style="attribute" name="ZHYE" get-method="getZhye" set-method="setZhye" usage="required" format="required" />
+                        <value style="attribute" name="KYYE" get-method="getKyye" set-method="setKyye" usage="required" format="required" />
+                        <value style="attribute" name="ZHJYSJ" get-method="getZhjysj" set-method="setZhjysj" usage="required" format="toDateTime14Required" />
+                        <value style="attribute" name="BEIZ" get-method="getBeiz" set-method="setBeiz" usage="required" format="required" />
+                        <value style="attribute" name="KHWDSZD" get-method="getKhwdszd" set-method="setKhwdszd" usage="required" format="required" />
+                        <value style="attribute" name="XHWDDM" get-method="getXhwddm" set-method="setXhwddm" usage="required" format="required" />
+                        <value style="attribute" name="XHWDSZD" get-method="getXhwdszd" set-method="setXhwdszd" usage="required" format="required" />
+                        <value style="attribute" name="YXQ" get-method="getYxq" set-method="setYxq" usage="required" format="required" />
+                        <value style="attribute" name="DWDH" get-method="getDwdh" set-method="setDwdh" usage="required" format="required" />
+                        <value style="attribute" name="SYBLRQ" get-method="getSyblrq" set-method="setSyblrq" usage="required" format="required" />
+                        <value style="attribute" name="QYWD" get-method="getQywd" set-method="setQywd" usage="required" format="required" />
+                        <value style="attribute" name="SYZZRQ" get-method="getSyzzrq" set-method="setSyzzrq" usage="required" format="required" />
+                        <value style="attribute" name="ZHDJ" get-method="getZhdj" set-method="setZhdj" usage="required" format="required" />
+                        <value style="attribute" name="ZHLX" get-method="getZhlx" set-method="setZhlx" usage="required" format="required" />
+                        <value style="attribute" name="ZCWBLX" get-method="getZcwblx" set-method="setZcwblx" usage="required" format="required" />
+                        <value style="attribute" name="BKSJ" get-method="getBksj" set-method="setBksj" usage="required" format="required" />
+                        <value style="attribute" name="BKWD" get-method="getBkwd" set-method="setBkwd" usage="required" format="required" />
+                        <value style="attribute" name="BKWDDM" get-method="getBkwddm" set-method="setBkwddm" usage="required" format="required" />
+                        <value style="attribute" name="BKWDSZD" get-method="getBkwdszd" set-method="setBkwdszd" usage="required" format="required" />
+                        <value style="attribute" name="BYBLRQ" get-method="getByblrq" set-method="setByblrq" usage="required" format="required" />
+                    </structure>
+                </collection>
+                <!-- 
+                <collection get-method="getMeasureList" set-method="setMeasureList" usage="optional" create-type="java.util.ArrayList" name="MEASURES">
+                    <structure type="com.citic.server.cbrc.domain.request.CBRC_QueryRequest_Measure" name="MEASURE">
+                        <value style="attribute" name="ZH" get-method="getZh" set-method="setZh" usage="required" format="required" />
+                        <value style="attribute" name="CSXH" get-method="getCsxh" set-method="setCsxh" usage="required" format="required" />
+                        <value style="attribute" name="DJKSRQ" get-method="getDjksrq" set-method="setDjksrq" usage="required" format="toDate8" />
+                        <value style="attribute" name="DJJZRQ" get-method="getDjjzrq" set-method="setDjjzrq" usage="required" format="toDate8" />
+                        <value style="attribute" name="DJJGMC" get-method="getDjjgmc" set-method="setDjjgmc" usage="required" format="required" />
+                        <value style="attribute" name="DJJE" get-method="getDjje" set-method="setDjje" usage="required" format="required" />
+                        <value style="attribute" name="BEIZ" get-method="getBeiz" set-method="setBeiz" usage="required" format="required" />
+                        <value style="attribute" name="DJCSLX" get-method="getDjcslx" set-method="setDjcslx" usage="required" format="required" />
+                    </structure>
+                </collection>
+                <collection get-method="getPrioritiesList" set-method="setPrioritiesList" usage="optional" create-type="java.util.ArrayList" name="PRIORITIES">
+                    <structure type="com.citic.server.cbrc.domain.request.CBRC_QueryRequest_Priority" name="PRIORITY">
+                        <value style="attribute" name="ZH" get-method="getZh" set-method="setZh" usage="required" format="required" />
+                        <value style="attribute" name="XH" get-method="getXh" set-method="setXh" usage="required" format="required" />
+                        <value style="attribute" name="QLLX" get-method="getQllx" set-method="setQllx" usage="required" format="required" />
+                        <value style="attribute" name="ZZLXDM" get-method="getZzlxdm" set-method="setZzlxdm" usage="required" format="required" />
+                        <value style="attribute" name="ZZHM" get-method="getZzhm" set-method="setZzhm" usage="required" format="required" />
+                        <value style="attribute" name="QLRXM" get-method="getQlrxm" set-method="setQlrxm" usage="required" format="required" />
+                        <value style="attribute" name="QLJE" get-method="getQlje" set-method="setQlje" usage="required" format="required" />
+                        <value style="attribute" name="QLRDZ" get-method="getQlrdz" set-method="setQlrdz" usage="required" format="required" />
+                        <value style="attribute" name="QLRLXFS" get-method="getQlrlxfs" set-method="setQlrlxfs" usage="required" format="required" />
+                    </structure>
+                </collection>
+                <collection get-method="getSubAccountList" set-method="setSubAccountList" usage="optional" create-type="java.util.ArrayList" name="SUBACCOUNTS">
+                    <structure type="com.citic.server.cbrc.domain.request.CBRC_QueryRequest_SubAccount" name="SUBACCOUNT">
+                        <value style="attribute" name="ZH" get-method="getZh" set-method="setZh" usage="required" format="required" />
+                        <value style="attribute" name="ZZHXH" get-method="getZzhxh" set-method="setZzhxh" usage="required" format="required" />
+                        <value style="attribute" name="ZZHLB" get-method="getZzhlb" set-method="setZzhlb" usage="required" format="required" />
+                        <value style="attribute" name="ZZHZH" get-method="getZzhzh" set-method="setZzhzh" usage="required" format="required" />
+                        <value style="attribute" name="BZ" get-method="getBz" set-method="setBz" usage="required" format="required" />
+                        <value style="attribute" name="CHBZ" get-method="getChbz" set-method="setChbz" usage="required" format="required" />
+                        <value style="attribute" name="ZHYE" get-method="getZhye" set-method="setZhye" usage="required" format="required" />
+                        <value style="attribute" name="ZHZT" get-method="getZhzt" set-method="setZhzt" usage="required" format="required" />
+                        <value style="attribute" name="KYYE" get-method="getKyye" set-method="setKyye" usage="required" format="required" />
+                    </structure>
+                </collection>
+                 -->
+            </structure>
+        </collection>
+    </mapping>
+</binding>

@@ -1,0 +1,35 @@
+<binding name="binding_result_PSB120" package="com.citic.server.inner.domain.response">
+    <include path="../../../custom/base-binding-project.xml" />
+    <mapping name="Document" class="com.citic.server.inner.domain.response.CargoRecord">
+        <structure name="Head">
+            <value style="element" name="To" get-method="getTo" set-method="setTo" usage="optional" />
+            <value style="element" name="Code" get-method="getCode" set-method="setCode" usage="optional" />
+            <value style="element" name="Description" get-method="getDescription" set-method="setDescription" usage="optional" />
+        </structure>
+        <structure name="Body">
+            <value style="element" name="SystemId" get-method="getSystemId" set-method="setSystemId" usage="optional" />
+            <value style="element" name="QueryDate" get-method="getQueryDate" set-method="setQueryDate" usage="optional" />
+            <value style="element" name="QuerySerialNum" get-method="getQuerySerialNum" set-method="setQuerySerialNum" usage="optional" />
+            <value style="element" name="QueryType" get-method="getQueryType" set-method="setQueryType" usage="optional" />
+            <value style="element" name="OriEntrustDate" get-method="getOriEntrustDate" set-method="setOriEntrustDate" usage="optional" />
+            <value style="element" name="OriSerialNum" get-method="getOriSerialNum" set-method="setOriSerialNum" usage="optional" />
+            <value style="element" name="OriBankCode" get-method="getOriBankCode" set-method="setOriBankCode" usage="optional" />
+            <value style="element" name="OverType" get-method="getOverType" set-method="setOverType" usage="optional" />
+            <value style="element" name="TransType" get-method="getTransType" set-method="setTransType" usage="optional" />
+            <value style="element" name="SendType" get-method="getSendType" set-method="setSendType" usage="optional" />
+            <value style="element" name="DealResult" get-method="getDealResult" set-method="setDealResult" usage="optional" />
+            <value style="element" name="FeeAmount" get-method="getFeeAmount" set-method="setFeeAmount" usage="optional" />
+            <value style="element" name="Remark" get-method="getRemark" set-method="setRemark" usage="optional" />
+            <value style="element" name="Remark2" get-method="getRemark2" set-method="setRemark2" usage="optional" />
+        </structure>
+        <structure name="Foot">
+            <value style="element" name="TotalPage" get-method="getTotalPage" set-method="setTotalPage" usage="optional" format="toInt" />
+            <value style="element" name="TotalNum" get-method="getTotalNum" set-method="setTotalNum" usage="optional" format="toInt" />
+            <value style="element" name="CurrPage" get-method="getCurrPage" set-method="setCurrPage" usage="optional" format="toInt" />
+            <value style="element" name="CurrPageRow" get-method="getCurrPageRow" set-method="setCurrPageRow" usage="optional" format="toInt" />
+            <value style="element" name="TodRecNum" get-method="getTodRecNum" set-method="setTodRecNum" usage="optional" format="toInt" />
+            <value style="element" name="LastPage" get-method="getLastPage" set-method="setLastPage" usage="optional" />
+            <value style="element" name="ResFlag" get-method="getResFlag" set-method="setResFlag" usage="optional" />
+        </structure>
+    </mapping>
+</binding>

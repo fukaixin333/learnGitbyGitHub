@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.net.mapper.BR32_packetMapper">
+    <select id="getBr32_packet" parameterType="String" resultType="com.citic.server.gf.domain.Br32_packet">
+        select *
+        from br32_packet
+        where packetkey=#{_parameter}
+    </select>
+
+    <select id="getBr32_msg" parameterType="String" resultType="com.citic.server.gf.domain.Br32_msg">
+        select *
+        from br32_msg
+        where packetkey=#{_parameter}
+    </select>
+
+    <select id="getBr30_Htxx" parameterType="String" resultType="com.citic.server.gf.domain.request.RollbackRequest_Htxx">
+        select a.*
+        from br30_htyy a,br30_xzcs b
+        where a.bdhm=b.bdhm and b.status='7' and b.packetkey=#{_parameter}
+    </select>
+
+    <select id="getBr31_Htxx" parameterType="String" resultType="com.citic.server.gf.domain.request.RollbackRequest_Htxx">
+        select a.*
+        from br30_htyy a,br31_kzqq b
+        where a.bdhm=b.bdhm and b.status='7' and (b.packetkey=#{_parameter} or a.bdhm=#{_parameter})
+    </select>
+</mapper>
+
+

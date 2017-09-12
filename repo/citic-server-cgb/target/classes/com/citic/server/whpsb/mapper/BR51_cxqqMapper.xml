@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.whpsb.mapper.BR51_cxqqMapper">
+
+    <delete id="delBr51_cxqq" parameterType="String" >  
+  		<![CDATA[ delete from br51_cxqq where msgseq = #{_parameter} ]]>
+    </delete>
+    
+        
+     <delete id="delBr51_cxqq_mx" parameterType="String" >  
+  		<![CDATA[ delete from br51_cxqq_mx where msgseq=#{_parameter} ]]>
+     </delete> 
+     
+     	<delete id="delBr51_cxqq_back" parameterType="String" >  
+  		<![CDATA[ delete from br51_cxqq_back where msgseq=#{_parameter} ]]>
+    </delete>
+
+    <insert id="insertBr51_cxqq" parameterType="com.citic.server.whpsb.domain.Br51_cxqq">
+        insert into br51_cxqq(msgseq,yhdm,czsj,count,status,orgkey,qrydt,recipient_p,recipient_time,feedback_p,feedback_time,last_up_dt,packetkey) 
+    	values(
+    	#{msgseq},#{yhdm},#{czsj},#{count},#{status},#{orgkey},#{qrydt},#{recipient_p},#{recipient_time},#{feedback_p},#{feedback_time},#{last_up_dt},#{packetkey}
+   		 ) 
+    </insert>
+
+     
+      <insert id="insertBr51_cxqq_mx" parameterType="com.citic.server.whpsb.domain.Br51_cxqq_mx"> 
+    	insert into br51_cxqq_mx(bdhm,ah,msgseq,cbdw,cbr1,cbr2,zzlx,zzhm,mc,party_class_cd,zh,cxkssj,cxjssj,qrydt,orgkey,qrymode) 
+    	values(
+    	#{bdhm},#{ah},#{msgseq},#{cbdw},#{cbr1},#{cbr2},#{zzlx},#{zzhm},#{mc},#{party_class_cd},#{zh},#{cxkssj},#{cxjssj},#{qrydt},#{orgkey},#{qrymode}
+    	) 
+    </insert> 
+
+
+    <insert id="insertBr51_cxqq_back" parameterType="com.citic.server.whpsb.domain.Br51_cxqq_back">
+        insert into br51_cxqq_back(bdhm,ah,msgseq,cljg,czsbyy,qrydt,orgkey,dealing_p,dealing_time,last_up_dt,msgcheckresult,status ) 
+    	values(
+    	#{bdhm},#{ah},#{msgseq},#{cljg},#{czsbyy},#{qrydt},#{orgkey},#{dealing_p},#{dealing_time},#{last_up_dt},#{msgcheckresult},#{status}
+    	) 
+    </insert> 
+    
+        <update id="updateBr51_cxqq" parameterType="com.citic.server.whpsb.domain.Br51_cxqq">
+          update br51_cxqq  set status=#{status},last_up_dt=#{last_up_dt}
+          where msgseq=#{msgseq}
+    </update> 
+    
+    
+        <update id="updateBr51_cxqq_back" parameterType="com.citic.server.whpsb.domain.Br51_cxqq_back">
+          update br51_cxqq_back set status=#{status},
+          cljg=#{cljg},
+         <if test="czsbyy != null"> 
+	         czsbyy = #{czsbyy} ,
+	      </if> 
+          last_up_dt=#{last_up_dt}
+          where bdhm=#{bdhm}
+    </update> 
+    
+     <insert id="insertBr51_attach" parameterType="com.citic.server.whpsb.domain.Br51_cxqq">
+        insert into br51_attach(packetkey,xh,wjmc,wjlx,wspath,qrydt ) 
+        select  #{packetname},xh,wjmc,wjlx,wspath,#{qrydt}
+        from  mc20_ws
+        where bdhm=#{packetkey} 
+    </insert> 
+        <delete id="delBr51_cxqq_back_acct" parameterType="String" >  
+  		<![CDATA[ delete from br51_cxqq_back_acct where bdhm=#{_parameter} ]]>
+    </delete>
+        <delete id="delBr51_cxqq_back_party" parameterType="String" >  
+  		<![CDATA[ delete from Br51_cxqq_back_party where bdhm=#{_parameter} ]]>
+    </delete>
+        <delete id="delBr51_cxqq_back_card" parameterType="String" >  
+  		<![CDATA[ delete from Br51_cxqq_back_card where bdhm=#{_parameter} ]]>
+    </delete>
+        <delete id="delBr51_cxqq_back_trans" parameterType="String" >  
+  		<![CDATA[ delete from Br51_cxqq_back_trans where bdhm=#{_parameter} ]]>
+    </delete>
+        <delete id="delBr51_cxqq_back_msg" parameterType="String" >  
+  		<![CDATA[ delete from Br51_cxqq_back_msg where msgseq=#{_parameter} ]]>
+    </delete>
+    
+        <insert id="insertBr51_cxqq_back_acct" parameterType="com.citic.server.whpsb.domain.request.Whpsb_RequestZhxx_Detail">
+        insert into br51_cxqq_back_acct(bdhm,msgseq,zhxh,zh,ctac,zhlb,zhzt,yhmc,khwddm,khrq,xhrq,cxsj,hbzl,zhye,kyye,qrydt ) 
+    	values(
+    	#{bdhm},#{msgseq},#{zhxh},#{zh},#{ctac},#{zhlb},#{zhzt},#{yhmc},#{khwddm},#{khrq},#{xhrq},#{cxsj},#{hbzl},#{zhye},#{kyye},#{qrydt}
+    	) 
+    </insert> 
+      <insert id="insertBr51_cxqq_back_card" parameterType="com.citic.server.whpsb.domain.request.Whpsb_RequestCkrzl_Detail">
+        insert into br51_cxqq_back_card(bdhm,msgseq,ckrxm,zzlx,zzhm,qrydt ) 
+    	values(
+    	#{bdhm},#{msgseq},#{ckrxm},#{zzlx},#{zzhm},#{qrydt}
+    	) 
+    </insert> 
+       <insert id="insertBr51_cxqq_back_party" parameterType="com.citic.server.whpsb.domain.request.Whpsb_RequestKhzl_Detail">
+        insert into br51_cxqq_back_party(bdhm,msgseq,zzdz,zzdh,gzdw,dwdz,dwdh,lxdz,lxdh,lxsj,email,khwd,khwddm,yzbm,txdz,dbrxm,dbrzzlx,dbrzzh,lxr,frdb,frdbzjlx,frdbzjhm,gsyyzzh,gsnsh,dsnsh,qrydt ) 
+    	values(
+    	#{bdhm},#{msgseq},#{dz},#{dh},#{gzdw},#{dwdz},#{dwdh},#{lxdz},#{lxdh},#{lxsj},#{email},#{khwd},#{khwddm},#{yzbm},#{txdz},#{dbrxm},#{dbrzzlx},#{dbrzzh},#{lxr},#{frdb},#{frdbzjlx},#{frdbzjhm},#{gsyyzzh},#{gsnsh},#{dsnsh},#{qrydt}
+    	) 
+    </insert> 
+      <insert id="insertBr51_cxqq_back_trans" parameterType="com.citic.server.whpsb.domain.Whpsb_RequestJymx_Detail">
+        insert into br51_cxqq_back_trans(bdhm,msgseq,transseq,zh,transdata,transtime,matchaccou,matchaccna,matchbankname,oppkm,currency,amt,transtype,organname,banlance,voucher_no,transnum,debit_credit,ctac,mac,ip,transremark,qrydt ) 
+    	values(
+    	#{bdhm},#{msgseq},#{transseq},#{zh},#{transdata},#{transtime},#{matchaccou},#{matchaccna},#{matchbankname},#{oppkm},#{currency},#{amt},#{transtype},#{organname},#{banlance},#{voucher_no},#{transnum},#{debit_credit},#{ctac},#{mac},#{ip},#{transremark},#{qrydt}
+    	) 
+    </insert> 
+    
+     <insert id="insertBr51_cxqq_back_msg" parameterType="com.citic.server.whpsb.domain.Br51_cxqq_back_msg">
+        insert into br51_cxqq_back_msg( xh,msgseq,msg_filename,msg_filepath,create_dt,status ) 
+    	values(
+    	#{xh},#{msgseq},#{msg_filename},#{msg_filepath},#{create_dt},#{status}
+    	) 
+    </insert> 
+    
+    
+     <select id="selBr51_cxqq" parameterType="String"  resultType="com.citic.server.whpsb.domain.Br51_cxqq">
+        select *   from br51_cxqq where msgseq=#{_parameter} 
+    </select>
+    
+      <select id="selBr51_cxqq_mx" parameterType="String"  resultType="com.citic.server.whpsb.domain.Br51_cxqq_mx">
+        select *   from br51_cxqq_mx where bdhm=#{_parameter} 
+      </select>
+      
+       <select id="selBr51_cxqq_back" parameterType="String"  resultType="com.citic.server.whpsb.domain.Br51_cxqq_back">
+        select *   from br51_cxqq_back where bdhm=#{_parameter} 
+      </select>
+      
+      	<select id="isMakeMsg" parameterType="String"  resultType="java.lang.Integer">
+    	 select count(0) from br51_cxqq_back where msgseq =#{_parameter}  and status='0'
+	    </select>
+	    
+	     <select id="selBr51_cxqq_backList" parameterType="String"  resultType="com.citic.server.whpsb.domain.Br51_cxqq_mx">
+        select   a.*,b.cljg,b.czsbyy   from br51_cxqq_back  a,br51_cxqq_mx b
+        where  a.msgseq=b.msgseq and a.bdhm=b.bdhm 
+        and b.msgseq=#{_parameter} 
+      </select>
+      
+        <select id="selBr51_cxqq_back_acctList" parameterType="String"  resultType="com.citic.server.whpsb.domain.request.Whpsb_RequestZhxx_Detail">
+        select *   from br51_cxqq_back_acct where msgseq=#{_parameter} 
+      </select>
+      
+        <select id="selBr51_cxqq_back_cardList" parameterType="String"  resultType="com.citic.server.whpsb.domain.request.Whpsb_RequestCkrzl_Detail">
+        select *   from br51_cxqq_back_card where msgseq=#{_parameter} 
+      </select>
+        <select id="selBr51_cxqq_back_partyList" parameterType="String"  resultType="com.citic.server.whpsb.domain.request.Whpsb_RequestKhzl_Detail">
+        select *   from br51_cxqq_back_party where msgseq=#{_parameter} 
+      </select>
+        <select id="selBr51_cxqq_back_transList" parameterType="String"  resultType="com.citic.server.whpsb.domain.Whpsb_RequestJymx_Detail">
+        select *   from br51_cxqq_back_trans where msgseq=#{_parameter} 
+      </select>
+
+     <select id="selBr51_cxqq_mxList" parameterType="String"  resultType="com.citic.server.whpsb.domain.Br51_cxqq_mx"> 
+		  select * from br51_cxqq_mx  where msgseq = #{_parameter} 
+  	  </select>
+</mapper> 

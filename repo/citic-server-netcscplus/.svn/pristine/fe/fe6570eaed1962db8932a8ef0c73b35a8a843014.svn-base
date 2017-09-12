@@ -1,0 +1,20 @@
+<binding name="binding_100402" package="com.citic.server.dx.domain.response">
+    <include path="../../custom/base-binding.xml" />
+    <mapping name="Response" class="com.citic.server.dx.domain.response.CaseResponse100402">
+        <structure name="Head">
+            <value style="element" name="MessageFrom" get-method="getMessageFrom" set-method="setMessageFrom" usage="optional" />
+            <value style="element" name="TxCode" get-method="getTxCode" set-method="setTxCode" usage="optional" />
+            <value style="element" name="TransSerialNumber" get-method="getTransSerialNumber" set-method="setTransSerialNumber" usage="optional" />
+        </structure>
+        <structure name="Body">
+            <value style="element" name="ApplicationID" get-method="getApplicationID" set-method="setApplicationID" usage="optional" />
+            <value style="element" name="ApplicationType" get-method="getApplicationType" set-method="setApplicationType" usage="optional" />
+            <value style="element" name="ReportEndTime" get-method="getReportEndTime" set-method="setReportEndTime" usage="optional" format="toDateTime14" />
+            <value style="element" name="Result" get-method="getResult" set-method="setResult" usage="optional" format="noBlank" />
+            <value style="element" name="OperatorName" get-method="getOperatorName" set-method="setOperatorName" usage="optional" />
+            <value style="element" name="OperatorPhoneNumber" get-method="getOperatorPhoneNumber" set-method="setOperatorPhoneNumber" usage="optional" />
+            <value style="element" name="FeedbackOrgName" get-method="getFeedbackOrgName" set-method="setFeedbackOrgName" usage="optional" />
+            <value style="element" name="FeedbackRemark" get-method="getFeedbackRemark" set-method="setFeedbackRemark" usage="optional" />
+        </structure>
+    </mapping>
+</binding>

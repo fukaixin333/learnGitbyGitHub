@@ -1,0 +1,81 @@
+<binding name="binding_result_025317" package="com.citic.server.inner.domain">
+	<include path="../../../custom/base-binding-project.xml" />
+	<mapping name="Document" class="com.citic.server.inner.domain.response.IndividualCustomer">
+		<structure name="Head">
+			<value style="element" name="To" get-method="getTo" set-method="setTo" usage="optional" />
+			<value style="element" name="Code" get-method="getCode" set-method="setCode" usage="optional" />
+			<value style="element" name="Description" get-method="getDescription" set-method="setDescription" usage="optional" />
+		</structure>
+		<structure name="Body">
+			<value style="element" name="CustomerNumber" get-method="getCustomerNumber" set-method="setCustomerNumber" usage="optional" />
+			<value style="element" name="CustomerType" get-method="getCustomerType" set-method="setCustomerType" usage="optional" />
+			<value style="element" name="CustomerAttr" get-method="getCustomerAttr" set-method="setCustomerAttr" usage="optional" />
+			<value style="element" name="OpenBank" get-method="getOpenBank" set-method="setOpenBank" usage="optional" />
+			<value style="element" name="NameTypeCN" get-method="getNameTypeCN" set-method="setNameTypeCN" usage="optional" />
+			<value style="element" name="ChineseName" get-method="getChineseName" set-method="setChineseName" usage="optional" />
+			<value style="element" name="NameTypeEN" get-method="getNameTypeEN" set-method="setNameTypeEN" usage="optional" />
+			<value style="element" name="EnglishName" get-method="getEnglishName" set-method="setEnglishName" usage="optional" />
+			<structure map-as="customerIDInfo" get-method="getOpenIDInfo" set-method="setOpenIDInfo" usage="optional" name="OpenIDInfo" />
+			<structure map-as="customerIDInfo" get-method="getAuxiliaryIDInfo1" set-method="setAuxiliaryIDInfo1" usage="optional" name="AuxiliaryIDInfo1" />
+			<structure map-as="customerIDInfo" get-method="getAuxiliaryIDInfo2" set-method="setAuxiliaryIDInfo2" usage="optional" name="AuxiliaryIDInfo2" />
+			<value style="element" name="CustomerStatus" get-method="getCustomerStatus" set-method="setCustomerStatus" usage="optional" />
+			<value style="element" name="CustomerSubType" get-method="getCustomerSubType" set-method="setCustomerSubType" usage="optional" />
+			<value style="element" name="ResidentFlag" get-method="getResidentFlag" set-method="setResidentFlag" usage="optional" />
+			<value style="element" name="Sex" get-method="getSex" set-method="setSex" usage="optional" />
+			<value style="element" name="MaritalStatus" get-method="getMaritalStatus" set-method="setMaritalStatus" usage="optional" />
+			<value style="element" name="Birthday" get-method="getBirthday" set-method="setBirthday" usage="optional" format="toDate10" />
+			<value style="element" name="Citizenship" get-method="getCitizenship" set-method="setCitizenship" usage="optional" />
+			<value style="element" name="Nationality" get-method="getNationality" set-method="setNationality" usage="optional" />
+			<value style="element" name="Occupation" get-method="getOccupation" set-method="setOccupation" usage="optional" />
+			<value style="element" name="StaffFlag" get-method="getStaffFlag" set-method="setStaffFlag" usage="optional" />
+			<value style="element" name="PayFlag" get-method="getPayFlag" set-method="setPayFlag" usage="optional" />
+			<value style="element" name="PayCustomerName" get-method="getPayCustomerName" set-method="setPayCustomerName" usage="optional" />
+			<value style="element" name="CustomerLevel" get-method="getCustomerLevel" set-method="setCustomerLevel" usage="optional" />
+			<value style="element" name="FatcaType" get-method="getFatcaType" set-method="setFatcaType" usage="optional" />
+			<collection name="ContactInfoList" get-method="getContactInfoList" set-method="setContactInfoList" usage="optional" create-type="java.util.ArrayList">
+				<structure name="ContactInfo" type="com.citic.server.inner.domain.CustomerContactInfo">
+					<value style="element" name="ContactType" get-method="getContactType" set-method="setContactType" usage="optional" />
+					<value style="element" name="SrcSysNo" get-method="getSrcSysNo" set-method="setSrcSysNo" usage="optional" />
+					<value style="element" name="ContactCountry" get-method="getContactCountry" set-method="setContactCountry" usage="optional" />
+					<value style="element" name="ContactZone" get-method="getContactZone" set-method="setContactZone" usage="optional" />
+					<value style="element" name="ContactNumber" get-method="getContactNumber" set-method="setContactNumber" usage="optional" />
+					<value style="element" name="ContactExtNumber" get-method="getContactExtNumber" set-method="setContactExtNumber" usage="optional" />
+					<value style="element" name="ContactInfo" get-method="getContactInfo" set-method="setContactInfo" usage="optional" />
+					<value style="element" name="ContactRemark" get-method="getContactRemark" set-method="setContactRemark" usage="optional" />
+				</structure>
+			</collection>
+			<collection name="AddressInfoList" get-method="getAddressInfoList" set-method="setAddressInfoList" usage="optional" create-type="java.util.ArrayList">
+				<structure name="AddressInfo" type="com.citic.server.inner.domain.CustomerAddressInfo">
+					<value style="element" name="AddressType" get-method="getAddressType" set-method="setAddressType" usage="optional" />
+					<value style="element" name="SrcSysNo" get-method="getSrcSysNo" set-method="setSrcSysNo" usage="optional" />
+					<value style="element" name="StandardFlag" get-method="getStandardFlag" set-method="setStandardFlag" usage="optional" />
+					<value style="element" name="StandardType" get-method="getStandardType" set-method="setStandardType" usage="optional" />
+					<value style="element" name="AddressCountry" get-method="getAddressCountry" set-method="setAddressCountry" usage="optional" />
+					<value style="element" name="AddressProvince" get-method="getAddressProvince" set-method="setAddressProvince" usage="optional" />
+					<value style="element" name="AddressCity" get-method="getAddressCity" set-method="setAddressCity" usage="optional" />
+					<value style="element" name="AddressTown" get-method="getAddressTown" set-method="setAddressTown" usage="optional" />
+					<value style="element" name="AddressDetail" get-method="getAddressDetail" set-method="setAddressDetail" usage="optional" />
+					<value style="element" name="PostalCode" get-method="getPostalCode" set-method="setPostalCode" usage="optional" />
+				</structure>
+			</collection>
+		</structure>
+		<structure name="Foot">
+			<value style="element" name="TotalPage" get-method="getTotalPage" set-method="setTotalPage" usage="optional" format="toInt" />
+			<value style="element" name="TotalNum" get-method="getTotalNum" set-method="setTotalNum" usage="optional" format="toInt" />
+			<value style="element" name="CurrPage" get-method="getCurrPage" set-method="setCurrPage" usage="optional" format="toInt" />
+			<value style="element" name="CurrPageRow" get-method="getCurrPageRow" set-method="setCurrPageRow" usage="optional" format="toInt" />
+			<value style="element" name="TodRecNum" get-method="getTodRecNum" set-method="setTodRecNum" usage="optional" format="toInt" />
+			<value style="element" name="LastPage" get-method="getLastPage" set-method="setLastPage" usage="optional" />
+			<value style="element" name="ResFlag" get-method="getResFlag" set-method="setResFlag" usage="optional" />
+		</structure>
+	</mapping>
+	<mapping abstract="true" type-name="customerIDInfo" class="com.citic.server.inner.domain.CustomerIDInfo">
+		<value style="element" name="IDType" get-method="getIdType" set-method="setIdType" usage="optional" />
+		<value style="element" name="IDNumber" get-method="getIdNumber" set-method="setIdNumber" usage="optional" />
+		<value style="element" name="LssueCount" get-method="getLssueCount" set-method="setLssueCount" usage="optional" />
+		<value style="element" name="IDExpiringDate" get-method="getIdExpiringDate" set-method="setIdExpiringDate" usage="optional" />
+		<value style="element" name="IDRemark" get-method="getIdRemark" set-method="setIdRemark" usage="optional" />
+		<value style="element" name="IDZone" get-method="getIdZone" set-method="setIdZone" usage="optional" />
+		<value style="element" name="OpenFlag" get-method="getOpenFlag" set-method="setOpenFlag" usage="optional" />
+	</mapping>
+</binding>

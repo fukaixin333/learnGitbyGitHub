@@ -1,0 +1,17 @@
+<binding name="cbrc_execresult_req15" package="com.citic.server.cbrc.domain">
+    <include path="../../../custom/base-binding-cbrc.xml" />
+    <mapping class="com.citic.server.cbrc.domain.request.CBRC_ExecResult" name="EXECRESULTS">
+        <structure name="EXECRESULT">
+            <value style="attribute" name="QQDBS" get-method="getQqdbs" set-method="setQqdbs" usage="optional" format="base64UTF8" />
+            <value style="attribute" name="QQCSLX" get-method="getQqcslx" set-method="setQqcslx" usage="optional" format="base64UTF8" />
+            <value style="attribute" name="SQJGDM" get-method="getSqjgdm" set-method="setSqjgdm" usage="optional" format="base64UTF8" />
+            <value style="attribute" name="MBJGDM" get-method="getMbjgdm" set-method="setMbjgdm" usage="optional" format="base64UTF8" />
+            <value style="attribute" name="HZSJ" get-method="getHzsj" set-method="setHzsj" usage="required" format="toDateTime14Base64" />
+            <value style="attribute" name="JSRWS" get-method="getJsrws" set-method="setJsrws" usage="required" format="base64UTF8" />
+            <value style="attribute" name="FKRWS" get-method="getFkrws" set-method="setFkrws" usage="required" format="base64UTF8" />
+            <value style="attribute" name="FKKHS" get-method="getFkkhs" set-method="setFkkhs" usage="required" format="base64UTF8" />
+            <value style="attribute" name="FKZHS" get-method="getFkzhs" set-method="setFkzhs" usage="required" format="base64UTF8" />
+            <value style="attribute" name="FKJYMXS" get-method="getFkjymxs" set-method="setFkjymxs" usage="required" format="base64UTF8" />
+        </structure>
+    </mapping>
+</binding>

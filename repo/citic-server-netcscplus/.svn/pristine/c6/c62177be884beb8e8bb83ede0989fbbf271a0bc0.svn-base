@@ -1,0 +1,14 @@
+<binding name="binding_rollback_req1A" package="com.citic.server.gf.domain.request">
+    <include path="../../../custom/base-binding.xml" />
+    <mapping name="htxxList" class="com.citic.server.gf.domain.request.RollbackRequest">
+        <collection get-method="getHtxxList" set-method="setHtxxList" usage="optional" create-type="java.util.ArrayList">
+            <structure type="com.citic.server.gf.domain.request.RollbackRequest_Htxx" name="htxx">
+                <value style="attribute" name="BDHM" get-method="getBdhm" set-method="setBdhm" usage="optional" format="base64GBK" />
+                <value style="attribute" name="XCHTYY" get-method="getXchtyy" set-method="setXchtyy" usage="optional" format="base64GBK"/>
+                <value style="attribute" name="XCHTBZ" get-method="getXchtbz" set-method="setXchtbz" usage="optional" format="base64GBK"/>
+                <value style="attribute" name="XCHTR" get-method="getXchtr" set-method="setXchtr" usage="optional" format="base64GBK"/>
+                <value style="attribute" name="XCHTDH" get-method="getXchtdh" set-method="setXchtdh" usage="optional" format="base64GBK"/>
+            </structure>
+        </collection>
+    </mapping>
+</binding>

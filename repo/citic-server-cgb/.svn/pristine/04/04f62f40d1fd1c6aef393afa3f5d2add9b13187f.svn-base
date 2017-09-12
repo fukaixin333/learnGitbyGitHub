@@ -1,0 +1,49 @@
+<!-- 银行提供单位交易关联号查询反馈 -->
+<binding name="binding_shpsb_dwjyglhfk" package="com.citic.server.shpsb.domain.request">
+    <include path="../../custom/base-binding-project.xml" />
+    <mapping class="com.citic.server.shpsb.domain.request.ShpsbRequestJyglh" name="dwjyglhfk">
+        <!-- 首记录 -->
+        <structure get-method="getSjl" set-method="setSjl" usage="optional" name="sjl">
+            <!-- 公安查询请求总记录数 -->
+            <value style="element" name="count" get-method="getCount" set-method="setCount" usage="optional" />
+            <!-- 银行代码（见银行代码表） -->
+            <value style="element" name="yhdm" get-method="getYhdm" set-method="setYhdm" usage="optional" />
+            <!-- 操作时间（银行生成xml文件时间） -->
+            <value style="element" name="czsj" get-method="getCzsj" set-method="setCzsj" usage="optional" format="toDate8" />
+        </structure>
+        <!-- 明细记录 -->
+        <collection get-method="getMxjlList" set-method="setMxjlList" usage="optional" create-type="java.util.ArrayList" name="mxjl">
+            <!-- 涉案对象（多个） -->
+            <structure type="com.citic.server.shpsb.domain.request.ShpsbRequestJyglhMxjl" name="sadx">
+                <structure get-method="getSadx" set-method="setSadx" usage="optional">
+                    <!-- 案号 -->
+                    <value style="element" name="ah" get-method="getAh" set-method="setAh" usage="optional" />
+                    <!-- 承办单位名称 -->
+                    <value style="element" name="cbdw" get-method="getCbdw" set-method="setCbdw" usage="optional" />
+                    <!-- 承办人1 -->
+                    <value style="element" name="cbr1" get-method="getCbr1" set-method="setCbr1" usage="optional" />
+                    <!-- 承办人2 -->
+                    <value style="element" name="cbr2" get-method="getCbr2" set-method="setCbr2" usage="optional" />
+                    <!-- 账(卡)号 -->
+                    <value style="element" name="zh" get-method="getZh" set-method="setZh" usage="optional" />
+                    <!-- 查询时间（起） -->
+                    <value style="element" name="cxkssj" get-method="getCxkssj" set-method="setCxkssj" usage="optional" format="toDate8" />
+                    <!-- 查询时间（止） -->
+                    <value style="element" name="cxjssj" get-method="getCxjssj" set-method="setCxjssj" usage="optional" format="toDate8" />
+                    <!-- 下面内容为银行填写 -->
+                    <!-- 处理结果，必须填写 -->
+                    <value style="element" name="cljg" get-method="getCljg" set-method="setCljg" usage="optional" />
+                    <!-- 失败原因 -->
+                    <value style="element" name="sbyy" get-method="getSbyy" set-method="setSbyy" usage="optional" />
+                </structure>
+                <!-- 若处理结果为失败，下面内容不填写，若为成功，则无论各项目是否为空均需要按照样例格式完整填写 -->
+                <!-- 关联号信息 -->
+                <collection get-method="getJyglhList" set-method="setJyglhList" usage="optional" create-type="java.util.ArrayList">
+                    <structure type="com.citic.server.shpsb.domain.request.ShpsbRequestJyglhMx" name="glhxx">
+                        <value style="element" name="jyglh" get-method="getJyglh" set-method="setJyglh" usage="optional" />
+                    </structure>
+                </collection>
+            </structure>
+        </collection>
+    </mapping>
+</binding>

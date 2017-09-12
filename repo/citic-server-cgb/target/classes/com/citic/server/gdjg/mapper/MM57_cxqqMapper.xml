@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.gdjg.mapper.MM57_cxqqMapper">
+	<delete id="delBr57_cxqq" parameterType="com.citic.server.gdjg.domain.Br57_cxqq">  
+  		<![CDATA[ delete from br57_cxqq where docno=#{docno} ]]>
+	</delete>
+
+	<delete id="delBr57_cxqq_mx" parameterType="com.citic.server.gdjg.domain.Br57_cxqq">  
+  		<![CDATA[ delete from br57_cxqq_mx where docno=#{docno} ]]>
+	</delete>
+
+	<delete id="delBr57_cxqq_mx_policeman" parameterType="com.citic.server.gdjg.domain.Br57_cxqq">  
+  		<![CDATA[ delete from br57_cxqq_mx_policeman where docno=#{docno} ]]>
+	</delete>
+
+	<delete id="delBr57_cxqq_back" parameterType="com.citic.server.gdjg.domain.Br57_cxqq">  
+  		<![CDATA[ delete from br57_cxqq_back where docno=#{docno} ]]>
+	</delete>
+
+
+	<insert id="insertBr57_cxqq" parameterType="com.citic.server.gdjg.domain.Br57_cxqq">
+		<![CDATA[insert into br57_cxqq(docno,caseno,casetype,casename,exeunit,applyorg,targetorg,remark,
+		sendtime,datasource,status,orgkey,qrydt,recipient_p,recipient_time,last_up_dt)
+		values(
+		#{docno},#{caseno},#{casetype},#{casename},#{exeunit},#{applyorg},#{targetorg},#{remark},
+		#{sendtime},#{datasource},#{status},#{orgkey},#{qrydt},#{recipient_p},#{recipient_time},#{last_up_dt}
+		)]]>
+	</insert>
+
+	<insert id="insertBr57_cxqq_mx" parameterType="com.citic.server.gdjg.domain.Br57_cxqq_mx">
+		<![CDATA[insert into
+		br57_cxqq_mx(docno,caseno,uniqueid,type,name,idtype,id,oldseq,urgency,account,acctype,accname,
+		intervals,startdate,enddate,notifydoc,docnum,querymode,orgcode,buslicense,querycontent,qrydt,orgkey)
+		values(
+		#{docno},#{caseno},#{uniqueid},#{type},#{name},#{idtype},#{id},#{oldseq},#{urgency},#{account},
+		#{acctype},#{accname},#{intervals},#{startdate},#{enddate},#{notifydoc},#{docnum},#{querymode},
+		#{orgcode},#{buslicense},#{querycontent},#{qrydt},#{orgkey}
+		)]]>
+	</insert>
+
+	<insert id="insertBr57_cxqq_mx_policeman" parameterType="com.citic.server.gdjg.domain.Br57_cxqq_mx_policeman">
+		<![CDATA[insert into
+		br57_cxqq_mx_policeman(docno,caseno,exename,policecert,policetel,qrydt)
+		values(#{docno},#{caseno},#{exename},#{policecert},#{policetel},#{qrydt})]]>
+	</insert>
+
+	<insert id="insertBr57_cxqq_back" parameterType="com.citic.server.gdjg.domain.Br57_cxqq_back">
+		<![CDATA[insert into
+		br57_cxqq_back(docno,caseno,uniqueid,qrydt,status,last_up_dt,cxfkjg,feedback_time,feedback_p,czsbyy,
+		dealing_time,dealing_p,msgcheckresult,orgkey)
+		values(
+		#{docno},#{caseno},#{uniqueid},#{qrydt},#{status},#{last_up_dt},#{cxfkjg},#{feedback_time},#{feedback_p},
+		#{czsbyy},#{dealing_time},#{dealing_p},#{msgcheckresult},#{orgkey}
+		)]]>
+	</insert>
+
+
+	<delete id="delBr57_cxqq_back_acct" parameterType="com.citic.server.service.domain.MC21_task_fact">  
+  		<![CDATA[ delete from Br57_cxqq_back_acct where uniqueid=#{bdhm} ]]>
+	</delete>
+	<delete id="delBr57_cxqq_back_froInfo" parameterType="com.citic.server.service.domain.MC21_task_fact">  
+  		<![CDATA[ delete from Br57_cxqq_back_froInfo where uniqueid=#{bdhm} ]]>
+	</delete>
+	<delete id="delBr57_cxqq_back_trans" parameterType="com.citic.server.service.domain.MC21_task_fact">  
+  		<![CDATA[ delete from Br57_cxqq_back_trans where uniqueid=#{bdhm} ]]>
+	</delete>
+	<delete id="delBr57_cxqq_back_financePro" parameterType="com.citic.server.service.domain.MC21_task_fact">  
+  		<![CDATA[ delete from Br57_cxqq_back_financePro where uniqueid=#{bdhm} ]]>
+	</delete>
+
+	<select id="selectBr57_cxqq_backByVo" parameterType="com.citic.server.gdjg.domain.Br57_cxqq" resultType="com.citic.server.gdjg.domain.Br57_cxqq_back">
+		select * from br57_cxqq_back where uniqueid = #{uniqueid}
+		<if test="caseno != null  and caseno != '' ">
+			and caseno = #{caseno}
+		</if>
+		<if test="docno != null  and docno != '' ">
+			and docno = #{docno}
+		</if>
+	</select>
+
+	<select id="selectBr57_cxqq_mxByVo" parameterType="com.citic.server.gdjg.domain.Br57_cxqq" resultType="com.citic.server.gdjg.domain.Br57_cxqq_mx">
+		select * from br57_cxqq_mx where uniqueid = #{uniqueid}
+		<if test="caseno != null  and caseno != ''">
+			and caseno = #{caseno}
+		</if>
+		<if test="docno != null  and docno != ''">
+			and docno = #{docno}
+		</if>
+	</select>
+
+	<insert id="batchInsertBr57_cxqq_back_acct" parameterType="java.util.ArrayList">
+		insert into
+		br57_cxqq_back_acct(
+		uniqueid,docno,caseno,accname,type,acctype,account,cardno,banlance,
+		avabanlance,currency,exchangetype,opendate,tradedate,
+		openbranchno,openbranchname,openbranchtel,openbranchaddr,idtype,id,addr,tel,iphone,
+		homeaddr,hometel,agentname,agentidtype,agentid,work,workaddr,
+		worktel,email,legal,legalidtype,legalid,buslicense,nationaltax,landtax,statusflag,
+		exeresult,status,closedate,closebranchno,closebranchname,isfro,
+		memo,phone,startdate,enddate,qrydt
+		) values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.uniqueid},#{item.docno},#{item.caseno},#{item.accname},#{item.type},#{item.acctype},
+			#{item.account},#{item.cardno},#{item.banlance},#{item.avabanlance},
+			#{item.currency},#{item.exchangetype},#{item.opendate},#{item.tradedate},#{item.openbranchno},
+			#{item.openbranchname},#{item.openbranchtel},#{item.openbranchaddr},#{item.idtype},#{item.id},
+			#{item.addr},#{item.tel},#{item.iphone},#{item.homeaddr},#{item.hometel},
+			#{item.agentname},#{item.agentidtype},#{item.agentid},#{item.work},#{item.workaddr},
+			#{item.worktel},#{item.email},#{item.legal},#{item.legalidtype},#{item.legalid},
+			#{item.buslicense},#{item.nationaltax},#{item.landtax},#{item.statusflag},#{item.exeresult},
+			#{item.status},#{item.closedate},#{item.closebranchno},#{item.closebranchname},#{item.isfro},
+			#{item.memo},#{item.phone},#{item.startdate},#{item.enddate},
+            #{item.qrydt}
+			)
+		</foreach>
+	</insert>
+
+	<insert id="batchInsertBr57_cxqq_back_froInfo" parameterType="java.util.ArrayList">
+		insert into
+		br57_cxqq_back_froInfo(uniqueid,docno,caseno,frono,frotype,frounit,frobanlance,frostartdate,froenddate,
+		frozenaccount,frozeninstype,frozenstatus,waitingseq,qrydt) values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.uniqueid},#{item.docno},#{item.caseno},#{item.frono},#{item.frotype},#{item.frounit},
+			#{item.frobanlance},#{item.frostartdate},#{item.froenddate},#{item.frozenaccount},#{item.frozeninstype},
+			#{item.frozenstatus},#{item.waitingseq},#{item.qrydt}
+			)
+		</foreach>
+	</insert>
+
+    <insert id="batchInsertBr57_cxqq_back_financePro" parameterType="java.util.ArrayList">
+		insert into Br57_cxqq_back_financePro(uniqueid,docno,caseno,qrydt,producttype,orgname,
+		productcode,productname,currency,banlance,salestype,productsum,productremark) values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.uniqueid},#{item.docno},#{item.caseno},#{item.qrydt},#{item.producttype},
+			#{item.orgname},#{item.productcode},#{item.productname},#{item.currency},#{item.banlance},
+			#{item.salestype},#{item.productsum},#{item.productremark})
+		</foreach>
+	</insert>
+
+
+	<update id="updateBr57_cxqq_back" parameterType="com.citic.server.gdjg.domain.Br57_cxqq_back">
+		update br57_cxqq_back
+		<set>
+			<if test="cxfkjg != null  and cxfkjg != ''">
+				cxfkjg=#{cxfkjg},
+			</if>
+			<if test="czsbyy != null  and czsbyy != ''">
+				czsbyy=#{czsbyy},
+			</if>
+			<if test="status != null  and status != ''">
+				status=#{status}
+			</if>
+		</set>
+		<where>
+			<if test="uniqueid != null  and uniqueid != ''">
+				uniqueid=#{uniqueid}
+			</if>
+			<if test="docno != null  and docno != ''">
+				and docno=#{docno}
+			</if>
+			<if test="caseno != null  and caseno != ''">
+				and caseno=#{caseno}
+			</if>
+		</where>
+	</update>
+
+
+	<select id="getBr57_cxqq_backCount" parameterType="String" resultType="java.lang.Integer">
+		<![CDATA[select count(1) from br57_cxqq_back where docno = #{_parameter} and status ='0']]>
+	</select>
+
+	<update id="updateBr57_cxqq" parameterType="com.citic.server.gdjg.domain.Br57_cxqq">
+         <![CDATA[update br57_cxqq  set status=#{status},last_up_dt=#{last_up_dt}
+          where docno=#{docno}]]>
+	</update>
+
+
+	<insert id="batchInsertBr57_cxqq_back_trans" parameterType="java.util.ArrayList">
+		insert into
+		br57_cxqq_back_trans(uniqueid,docno,caseno,transnum,accname,acctype,account,
+		cardid,idtype,id,exchangetype,transtime,expense,income,banlance,currency,
+		transtype,transaddr,transaddrno,transcountry,transremark,transtel,
+		transchannel,transteller,transtermip,matchaccount,matchaccname,matchbankno,
+		matchbankname,matchidtype,matchid,loanflag,transoutlets,matchcard,matchbanlance,
+		matchaddr,matchzipcode,matchtel,logno,citationno,vouchertype,voucher,cashflag,term,
+		tandf,businessesname,businessesno,macaddr,qrydt
+		) values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.uniqueid},#{item.docno},#{item.caseno},#{item.transnum},#{item.accname},
+			#{item.acctype},#{item.account},#{item.cardid},#{item.idtype},#{item.id},
+			#{item.exchangetype},#{item.transtime},#{item.expense},#{item.income},
+			#{item.banlance},#{item.currency},#{item.transtype},#{item.transaddr},
+			#{item.transaddrno},#{item.transcountry},#{item.transremark},#{item.transtel},
+			#{item.transchannel},#{item.transteller},#{item.transtermip},#{item.matchaccount},
+			#{item.matchaccname},#{item.matchbankno},#{item.matchbankname},#{item.matchidtype},
+			#{item.matchid},#{item.loanflag},#{item.transoutlets},#{item.matchcard},
+			#{item.matchbanlance},#{item.matchaddr},#{item.matchzipcode},#{item.matchtel},
+			#{item.logno},#{item.citationno},#{item.vouchertype},#{item.voucher},
+			#{item.cashflag},#{item.term},#{item.tandf},#{item.businessesname},
+			#{item.businessesno},#{item.macaddr},#{item.qrydt}
+			)
+		</foreach>
+	</insert>
+	
+	<insert id="InsertBr57_cxqq_back_trans" parameterType="com.citic.server.gdjg.domain.request.Gdjg_Request_TransCx">
+		insert into
+		br57_cxqq_back_trans(uniqueid,docno,caseno,transnum,accname,acctype,account,
+		cardid,idtype,id,exchangetype,transtime,expense,income,banlance,currency,
+		transtype,transaddr,transaddrno,transcountry,transremark,transtel,
+		transchannel,transteller,transtermip,matchaccount,matchaccname,matchbankno,
+		matchbankname,matchidtype,matchid,loanflag,transoutlets,matchcard,matchbanlance,
+		matchaddr,matchzipcode,matchtel,logno,citationno,vouchertype,voucher,cashflag,term,
+		tandf,businessesname,businessesno,macaddr
+		) values(
+			#{uniqueid},#{docno},#{caseno},#{transnum},#{accname},
+			#{acctype},#{account},#{cardid},#{idtype},#{id},
+			#{exchangetype},#{transtime},#{expense},#{income},
+			#{banlance},#{currency},#{transtype},#{transaddr},
+			#{transaddrno},#{transcountry},#{transremark},#{transtel},
+			#{transchannel},#{transteller},#{transtermip},#{matchaccount},
+			#{matchaccname},#{matchbankno},#{matchbankname},#{matchidtype},
+			#{matchid},#{loanflag},#{transoutlets},#{matchcard},
+			#{matchbanlance},#{matchaddr},#{matchzipcode},#{matchtel},
+			#{logno},#{citationno},#{vouchertype},#{voucher},
+			#{cashflag},#{term},#{tandf},#{businessesname},
+			#{businessesno},#{macaddr}
+			)
+	</insert>
+	
+
+	<select id="getBr57_cxqqList" parameterType="String" resultType="com.citic.server.gdjg.domain.Br57_cxqq">
+		<![CDATA[select * from br57_cxqq where docno=#{docno}]]>
+	</select>
+
+	<select id="getBr57_cxqq_mxList" parameterType="com.citic.server.gdjg.domain.Br57_cxqq" resultType="com.citic.server.gdjg.domain.Br57_cxqq_mx">
+		select * from br57_cxqq_mx where docno = #{docno}
+		<if test="caseno != null  and caseno != '' ">
+			and caseno = #{caseno}
+		</if>
+	</select>
+	<select id="getBr57_cxqq_back" parameterType="com.citic.server.gdjg.domain.Br57_cxqq_mx" resultType="com.citic.server.gdjg.domain.Br57_cxqq_back">
+		select * from Br57_cxqq_back where
+		uniqueid = #{uniqueid}
+		<if test="caseno != null  and caseno != '' ">
+			and caseno = #{caseno}
+		</if>
+		<if test="docno != null  and docno != '' ">
+			and docno = #{docno}
+		</if>
+	</select>
+
+
+	<select id="getBr57_cxqq_back_acctList1" parameterType="com.citic.server.gdjg.domain.Br57_cxqq" resultType="com.citic.server.gdjg.domain.request.Gdjg_Request_AccCx">
+		select * from br57_cxqq_back_acct
+		<where>
+			<if test="caseno != null  and caseno != '' ">
+				caseno = #{caseno}
+			</if>
+			<if test="docno != null  and docno != '' ">
+				and docno = #{docno}
+			</if>
+		</where>
+		order by cardno
+	</select>
+
+    <select id="getBr57_cxqq_froList" parameterType="com.citic.server.gdjg.domain.Br57_cxqq_mx" resultType="com.citic.server.gdjg.domain.request.Gdjg_Request_FroInfoCx">
+		select * from br57_cxqq_back_froInfo where uniqueid = #{uniqueid}
+			<if test="caseno != null  and caseno != '' ">
+				and caseno = #{caseno}
+			</if>
+			<if test="docno != null  and docno != '' ">
+				and docno = #{docno}
+			</if>
+	</select>
+
+    <select id="getBr57_cxqq_back_financePro" parameterType="com.citic.server.gdjg.domain.Br57_cxqq_mx" resultType="com.citic.server.gdjg.domain.request.Gdjg_Request_FinancialProductsCx">
+		select * from Br57_cxqq_back_financePro  where uniqueid = #{uniqueid}
+			<if test="caseno != null  and caseno != '' ">
+				and caseno = #{caseno}
+			</if>
+			<if test="docno != null  and docno != '' ">
+				and docno = #{docno}
+			</if>
+	</select>
+	
+	<insert id="insertBr57_receipt" parameterType="com.citic.server.gdjg.domain.Br57_receipt">
+		<![CDATA[insert into Br57_receipt(receiptkey,docno,packetkey,receipt_status_cd,resultinfo,qrydt)
+		values(
+		#{receiptkey},#{docno},#{packetkey},#{receipt_status_cd},#{resultinfo},#{qrydt}
+		)]]>
+	</insert>
+
+	<select id="getBr57_cxqq_back_transListByDocno" parameterType="String" resultType="com.citic.server.gdjg.domain.request.Gdjg_Request_TransCx">
+		<![CDATA[select * from br57_cxqq_back_trans where docno = #{docno} order by caseno]]>
+	</select>
+
+	<select id="getLastsendts" parameterType="com.citic.server.service.domain.MC21_task_fact" resultType="String">
+		<![CDATA[select lastsendts from br40_basedata_send where tasktype=#{tasktype} and basename=#{bdhm}]]>
+	</select>
+
+	<select id="getBr40_city_noList" parameterType="com.citic.server.service.domain.MC21_task_fact" resultType="com.citic.server.gdjg.domain.request.Gdjg_RequestDhdj_City">
+		<![CDATA[select * from br40_city_no where lastts &gt; #{usetime}]]>
+	</select>
+
+	<select id="getBr40_acct_ruleList" parameterType="com.citic.server.service.domain.MC21_task_fact" resultType="com.citic.server.gdjg.domain.request.Gdjg_RequestGzdj_AccountRule">
+		<![CDATA[select * from br40_acct_rule where lastts &gt; #{usetime}]]>
+	</select>
+
+	<select id="getBr40_branch_regList" parameterType="com.citic.server.service.domain.MC21_task_fact" resultType="com.citic.server.gdjg.domain.request.Gdjg_RequestWddj_Branch">
+		<![CDATA[select * from br40_branch_reg where lastts &gt; #{usetime}]]>
+	</select>
+
+	<insert id="insertBr40_datasend_log" parameterType="com.citic.server.gdjg.domain.Datasend_log">
+		<![CDATA[insert into br40_datasend_log(tasktype,basename,sendts,sendnum,senddata
+		) values(
+		#{tasktype},#{basename},#{sendts},#{sendnum},#{senddata}
+		)]]>
+	</insert>
+
+	<update id="updateBr40_basedata_send" parameterType="com.citic.server.service.domain.MC21_task_fact">
+		update br40_basedata_send
+		<set>
+			<if test="usetime != null">
+				lastsendts=#{usetime}
+			</if>
+		</set>
+		where tasktype=#{tasktype} and basename=#{bdhm}
+	</update>
+	
+	
+	
+	
+	
+	<!-- 广东省检察院动态查询 -->
+	<delete id="delBr57_cxqq_acct_dynamic_main" parameterType="com.citic.server.gdjg.domain.Br57_cxqq_mx">  
+	 	delete from Br57_cxqq_acct_dynamic_main where uniqueid=#{uniqueid} and tasktype = #{tasktype} 
+	 	<if test="caseno != null  and caseno != '' ">
+				and caseno = #{caseno}
+		</if>
+		<if test="docno != null  and docno != '' ">
+				and docno = #{docno}
+		</if>
+     </delete>
+	
+	
+	<insert id="insertBr57_cxqq_acct_dynamic_main" parameterType="com.citic.server.gdjg.domain.Br57_cxqq_mx">
+		insert into br57_cxqq_acct_dynamic_main(tasktype, docno, caseno, uniqueid,oldseq, urgency, account, intervals, startdate, enddate, 
+		status_cd, lastpollingtime, pollinglock, qrydt)
+		values (#{tasktype},  #{docno}, #{caseno},#{uniqueid},#{oldseq}, #{urgency}, #{account}, #{intervals}, #{startdate}, #{enddate},
+		#{status_cd},#{lastpollingtime},#{pollinglock},#{qrydt})
+    </insert>
+	
+	
+	<select id="updateBr57_cxqq_acct_dynamic_jc" parameterType="com.citic.server.gdjg.domain.Br57_cxqq_mx">
+		update Br57_cxqq_acct_dynamic_main set status_cd = '0'
+		where uniqueid=#{oldseq}
+		<if test="tasktype != null  and tasktype != '' ">
+			and tasktype = #{tasktype}
+		</if>
+	</select>
+	
+	<select id="getBr57_cxqq_mxpolicemanList" parameterType="com.citic.server.gdjg.domain.Br57_cxqq" resultType="com.citic.server.gdjg.domain.Br57_cxqq_mx_policeman">
+		select * from Br57_cxqq_mx_policeman where docno = #{docno}
+		<if test="caseno != null  and caseno != '' ">
+			and caseno = #{caseno}
+		</if>
+	</select>
+	
+	<update id="closeBr57_cxqq_acct_dynamic_main" parameterType="String">
+		update Br57_cxqq_acct_dynamic_main set STATUS_CD = '0' where <![CDATA[enddate <=#{datatime} ]]>
+	</update>
+	
+	<select id="queryBr57_cxqq_acct_dynamic_main" parameterType="String" resultType="com.citic.server.gdjg.domain.Br57_cxqq_mx">
+		select * from Br57_cxqq_acct_dynamic_main
+		where STATUS_CD = '1' and TASKTYPE = #{tasktype} and (LASTPOLLINGTIME is null or <![CDATA[ #{datatime} >=
+        LASTPOLLINGTIME ]]>)
+	</select>
+	
+	<select id="selBr57_trans_infoList" parameterType="String" resultType="String">
+		select distinct transnum from br57_cxqq_back_dynamic_trans
+		where tasktype = #{tasktype} and uniqueid like #{uniqueid}|| '_%' 
+		and (<![CDATA[transtime >= #{starttime} and transtime <= #{endtime}]]>)
+	</select>
+	
+	<insert id="batchInsertBr57_cxqq_back_dyntrans" parameterType="com.citic.server.gdjg.domain.request.Gdjg_Request_TransCx">
+		insert into
+		br57_cxqq_back_dynamic_trans(tasktype,docno,caseno,uniqueid,rwlsh,transnum,accname,acctype,account,
+		cardno,idtype,id,exchangetype,transtime,loanflag,expense,income,transcurrency,banlance,
+		currency,credit,transaddr,transaddrno,transcountry,transremark,transtel,transchannel,
+		transteller,authorizeteller,transoutlets,matchaccount,matchcard,matchaccname,matchbankno,
+		matchbankname,matchidtype,matchid,matchaddr,matchtel,voucher,cashflag,term,tandf,businessname,
+		businessno,validityperiod,transtype,transno,antitransflag,involvingflag,qrydt
+		) values
+		<foreach collection="list" item="item" index="index" separator=",">
+		(
+			#{item.tasktype},#{item.docno},#{item.caseno},#{item.uniqueid},#{item.rwlsh},#{item.transnum},
+			#{item.accname},#{item.acctype},#{item.account},#{item.cardid},#{item.idtype},#{item.id},
+			#{item.exchangetype},#{item.transtime},#{item.loanflag},#{item.expense},#{item.income},
+			#{item.currency},#{item.banlance},#{item.currency},#{item.credit},#{item.transaddr},
+			#{item.transaddrno},#{item.transcountry},#{item.transremark},#{item.transtel},
+			#{item.transchannel},#{item.transteller},#{item.authorizeteller},#{item.transoutlets},#{item.matchaccount},
+			#{item.matchcard},#{item.matchaccname},#{item.matchbankno},#{item.matchbankname},#{item.matchidtype},
+			#{item.matchid},#{item.matchaddr},#{item.matchtel},#{item.voucher},
+			#{item.cashflag},#{item.term},#{item.tandf},#{item.businessesname},
+			#{item.businessesno},#{item.validityperiod},#{item.transtype},#{item.transno},'-','-',#{item.qrydt})
+		</foreach>
+	</insert>
+	
+	
+	<update id="updateBr57_cxqq_acct_dynamic_main" parameterType="String">
+		update Br57_cxqq_acct_dynamic_main set lastpollingtime = #{datatime}, pollinglock = #{pollinglock}
+		where uniqueid = #{uniqueid} and tasktype = #{tasktype}
+	</update>
+	
+	
+	<select id="getBr57_cxqq_back_dynamic_transList" parameterType="com.citic.server.gdjg.domain.Br57_cxqq_mx" resultType="com.citic.server.gdjg.domain.request.Gdjg_Request_TransCx">
+		select * from br57_cxqq_back_dynamic_trans where uniqueid = #{uniqueid}
+			<if test="caseno != null  and caseno != '' ">
+				and caseno = #{caseno}
+			</if>
+			<if test="docno != null  and docno != '' ">
+				and docno = #{docno}
+			</if>
+	</select>
+	
+</mapper> 
+

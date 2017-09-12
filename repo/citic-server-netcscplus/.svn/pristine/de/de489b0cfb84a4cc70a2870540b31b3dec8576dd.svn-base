@@ -1,0 +1,12 @@
+<binding name="binding_query_djxx" package="com.citic.server.gf.domain.request">
+    <mapping name="djxx" class="com.citic.server.gf.domain.request.QueryRequest_Djxx">
+        <value style="attribute" name="BDHM" get-method="getBdhm" set-method="setBdhm" usage="optional" />
+        <value style="attribute" name="CCXH" get-method="getCcxh" set-method="setCcxh" usage="optional" />
+        <value style="attribute" name="CSXH" get-method="getCsxh" set-method="setCsxh" usage="optional" />
+        <value style="attribute" name="DJJZRQ" get-method="getDjjzrq" set-method="setDjjzrq" usage="optional" />
+        <value style="attribute" name="DJJG" get-method="getDjjg" set-method="setDjjg" usage="optional" />
+        <value style="attribute" name="DJWH" get-method="getDjwh" set-method="setDjwh" usage="optional" />
+        <value style="attribute" name="DJJE" get-method="getDjje" set-method="setDjje" usage="optional" />
+        <value style="attribute" name="BEIZ" get-method="getBeiz" set-method="setBeiz" usage="optional" />
+    </mapping>
+</binding>

@@ -1,0 +1,34 @@
+<binding name="binding_100202" package="com.citic.server.dx.domain.request">
+    <include path="../../custom/base-binding.xml" />
+    <mapping name="Request" class="com.citic.server.dx.domain.request.FreezeRequest100202">
+        <structure name="Head">
+            <value style="element" name="Mode" get-method="getMode" set-method="setMode" usage="optional" />
+            <value style="element" name="To" get-method="getTo" set-method="setTo" usage="optional" />
+            <value style="element" name="TxCode" get-method="getTxCode" set-method="setTxCode" usage="optional" />
+            <value style="element" name="TransSerialNumber" get-method="getTransSerialNumber" set-method="setTransSerialNumber" usage="optional" />
+        </structure>
+        <structure name="Body">
+            <value style="element" name="ApplicationID" get-method="getApplicationID" set-method="setApplicationID" usage="optional" />
+            <value style="element" name="Result" get-method="getResult" set-method="setResult" usage="optional" />
+            <value style="element" name="AccountType" get-method="getAccountType" set-method="setAccountType" usage="optional" />
+            <value style="element" name="AccountNumber" get-method="getAccountNumber" set-method="setAccountNumber" usage="optional" />
+            <value style="element" name="CardNumber" get-method="getCardNumber" set-method="setCardNumber" usage="optional" />
+            <value style="element" name="AppliedBalance" get-method="getAppliedBalance" set-method="setAppliedBalance" usage="optional" format="noCurrency" />
+            <value style="element" name="FrozedBalance" get-method="getFrozedBalance" set-method="setFrozedBalance" usage="optional" format="noCurrency" />
+            <value style="element" name="Currency" get-method="getCurrency" set-method="setCurrency" usage="optional" />
+            <value style="element" name="AccountBalance" get-method="getAccountBalance" set-method="setAccountBalance" usage="optional" format="noCurrency" />
+            <value style="element" name="StartTime" get-method="getStartTime" set-method="setStartTime" usage="optional" format="toDateTime14" />
+            <value style="element" name="ExpireTime" get-method="getExpireTime" set-method="setExpireTime" usage="optional" format="toDateTime14" />
+            <value style="element" name="FailureCause" get-method="getFailureCause" set-method="setFailureCause" usage="optional" />
+            <value style="element" name="FormerApplicationDepartment" get-method="getFormerApplicationDepartment" set-method="setFormerApplicationDepartment" usage="optional" />
+            <value style="element" name="FormerFrozenCurrency" get-method="getFormerFrozenCurrency" set-method="setFormerFrozenCurrency" usage="optional" />
+            <value style="element" name="FormerFrozenBalance" get-method="getFormerFrozenBalance" set-method="setFormerFrozenBalance" usage="optional" format="noCurrency" />
+            <value style="element" name="FormerFrozenExpireTime" get-method="getFormerFrozenExpireTime" set-method="setFormerFrozenExpireTime" usage="optional" format="toDateTime14" />
+            <value style="element" name="AccountAvaiableBalance" get-method="getAccountAvaiableBalance" set-method="setAccountAvaiableBalance" usage="optional" format="noCurrency" />
+            <value style="element" name="FeedbackRemark" get-method="getFeedbackRemark" set-method="setFeedbackRemark" usage="optional" />
+            <value style="element" name="FeedbackOrgName" get-method="getFeedbackOrgName" set-method="setFeedbackOrgName" usage="optional" />
+            <value style="element" name="OperatorName" get-method="getOperatorName" set-method="setOperatorName" usage="optional" />
+            <value style="element" name="OperatorPhoneNumber" get-method="getOperatorPhoneNumber" set-method="setOperatorPhoneNumber" usage="optional" />
+        </structure>
+    </mapping>
+</binding>

@@ -1,0 +1,362 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>HTML 2 PDF</title>
+<style type="text/css">
+@page {
+	size: a4;
+	margin-top: 10mm;
+	margin-left: 15mm;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+}
+
+body {
+	margin: 0px auto;
+	font-family: "Times New Roman", "serif";
+	font-size: 10.5pt;
+	color: black;
+}
+
+span {
+    padding: 0pt 0pt;
+	/* word-wrap:break-word; */
+}
+
+p {
+	line-height: 30pt;
+}
+
+p.title {
+	margin: 0pt auto;
+	text-align: center;
+	font-family: FZXiaoBiaoSong-B05S;
+	font-size: 22pt;
+}
+
+p.title.little {
+	font-size: 16pt;
+}
+
+p.title.letter {
+	letter-spacing: -.4pt;
+}
+
+p.normal {
+	margin: 0pt auto;
+	font-family: FangSong;
+	font-size: 18pt;
+}
+
+p.normal.center {
+	text-align: center;
+}
+
+p.normal.indent {
+	text-indent: 32pt;
+}
+
+pre {
+	word-wrap: normal;
+}
+
+div.content {
+	font-size:0;
+	margin: 0 auto;
+	padding: 0pt 8pt;
+	overflow-y: hidden;
+}
+
+div.footer {
+	position: relative;
+	text-align: right;
+	page-break-after: avoid; /* 避免在元素后插入分页符 */
+}
+
+img {
+	position: absolute;
+	top: 0;
+	right: 48pt;
+	width: 175px;
+	height: 110px;
+}
+
+#footer_date {
+	padding-right: 48pt;
+}
+</style>
+</head>
+<!-- 最高法回执文书模板 -->
+<body>
+	<div class="content">
+		<p class="title little"><span>&nbsp;</span></p>
+		<p class="title ">$kzqq.fymc</p>
+		<p class="title">协助执行通知书</p>
+		<p class="title little">（回执）</p>
+		<p class="title little"><span>&nbsp;</span></p>
+		<p class="normal"><span>$kzqq.fymc</span>：</p>
+		<p class="normal indent">
+			你院
+			<span>$kzqq.wjmc1</span>、
+			<span>$kzqq.wjmc2</span>收悉，我行处理结果如下： 
+		</p>
+		#foreach($kzxx in $kzxxList)
+			<!-- 以控制类型kzlx区分  1-存款   2-非存款类金融产品-->
+			#if($kzxx.kzlx == "1")
+				<!-- 先以控制措施 kzcs 区分 01-冻结  02-续冻  04-解冻  06-扣划-->
+				#if($kzxx.kzcs == "01")
+					<!-- 以控制状态kzzt区分  1-成功；2-失败-->
+					#if($kzxx.kzzt == "1")
+						<p class="normal indent">被执行人（或其他法律地位）<span>$kzqq.xm</span>在我行
+							<span>#if($kzxx.khzh == '') - #else $kzxx.khzh #end</span>账户内的存款余额人民币（或其他币种）
+							<span>#if($kzxx.ye == '') 0 #else $kzxx.ye #end</span>元，
+							#foreach($djxx in $kzxx.djxxList)
+								已被
+								<span>#if($djxx.djjg == '') - #else $djxx.djjg #end</span>机关冻结
+								<span>#if($djxx.djje == '') 0 #else $djxx.djje #end</span>元，
+							#end	
+							<span>本案已以</span>
+							<span>#if($kzxx.djxe == '') 0 #else $kzxx.djxe #end</span>元为限作冻结处理，实际冻结
+							<span>#if($kzxx.skje == '') 0 #else $kzxx.skje #end</span>元，
+								#if($kzxx.ceskje != '')
+									超额冻结金额<span>$kzxx.ceskje</span>元，
+								#end
+								冻结期限自
+							<span>#if($kzxx.csksrq_cn == '') - #else $kzxx.csksrq_cn #end</span>至
+							<span>#if($kzxx.csjsrq_cn == '') - #else $kzxx.csjsrq_cn #end</span>。
+						</p>
+						#foreach($qlxx in $kzxx.qlxxList)
+							<p class="normal indent">上述账户中，被执行人（或其他法律地位）
+								<span>#if($kzqq.xm == '') - #else $kzqq.xm #end</span>的
+								<span>#if($kzxx.khzh == '') - #else $kzxx.khzh #end</span>账户为
+								<span>#if($qlxx.qllx == '') - #else $qlxx.qllx #end</span>（共有权/优先受偿权类型）账户，权利人（/监管机关）
+								<span>#if($qlxx.qlr == '') - #else $qlxx.qlr #end</span>对该账户中的存款
+								<span>#if($qlxx.qlje == '') 0 #else $qlxx.qlje #end</span>元（/份）享有优先受偿权。
+							</p>
+						#end
+					<!-- 以控制状态kzzt区分  1-成功；2-失败-->		
+					#elseif($kzxx.kzzt == "2")
+						<p class="normal indent">
+							因<span>#if($kzxx.wnkzyy == '') - #else $kzxx.wnkzyy #end</span>的原因，被执行人（或其他法律地位）
+							<span>#if($kzqq.xm == '') - #else $kzqq.xm #end</span>在我行
+							<span>#if($kzxx.khzh == '') - #else $kzxx.khzh #end</span>账户内的存款未能冻结。
+						</p>
+					#end
+				<!-- 先以控制措施 kzcs 区分 01-冻结  02-续冻  04-解冻  06-扣划-->
+				#elseif($kzxx.kzcs == "02")
+					#if($kzxx.kzzt == "1")
+						<p class="normal indent">被执行人（或其他法律地位）
+							<span>#if($kzqq.xm  == '') - #else $kzqq.xm #end</span>在我行
+							<span>#if($kzxx.khzh == '') - #else $kzxx.khzh #end</span>账户内的存款余额人民币（或其他币种）
+							<span>#if($kzxx.ye == '') 0 #else $kzxx.ye #end</span>元，
+							#foreach($djxx in $kzxx.djxxList)
+								已被
+								<span>#if($djxx.djjg == '') - #else $djxx.djjg #end</span>机关冻结
+								<span>#if($djxx.djje == '') 0 #else $djxx.djje #end</span>元，
+							#end
+							本案以
+							<span>#if($kzxx.djxe == '') 0 #else $kzxx.djxe #end</span>元为限继续做冻结处理，实际冻结
+							<span>#if($kzxx.skje == '') 0 #else $kzxx.skje #end</span>元，<!-- 超额冻结金额
+							<span>#if($kzxx.ceskje == '') 0 #else $kzxx.ceskje #end</span>元， -->冻结期限自
+							<span>#if($kzxx.csksrq_cn == '') - #else $kzxx.csksrq_cn #end</span>至
+							<span>#if($kzxx.csjsrq_cn == '') - #else $kzxx.csjsrq_cn #end</span>。
+						</p>
+						#foreach($qlxx in $kzxx.qlxxList)
+							<p class="normal indent">上述账户中，被执行人（或其他法律地位）
+								<span>#if($kzqq.xm == '') - #else $kzqq.xm #end</span>的
+								<span>#if($kzxx.khzh == '') - #else $kzxx.khzh #end</span>账户为
+								<span>#if($qlxx.qllx == '') - #else $qlxx.qllx #end</span>（共有权/优先受偿权类型）账户，权利人（/监管机关）
+								<span>#if($qlxx.qlr == '') - #else $qlxx.qlr #end</span>对该账户中的存款
+								<span>#if($qlxx.qlje == '') 0 #else $qlxx.qlje #end</span>元（/份）享有优先受偿权。
+							</p>
+						#end			
+					#elseif($kzxx.kzzt == "2")
+						<p class="normal indent">由于
+							<span>#if($kzxx.wnkzyy == '') - #else $kzxx.wnkzyy #end</span>的原因，被执行人（或其他法律地位）
+							<span>#if($kzqq.xm == '') - #else $kzqq.xm #end</span>在我行
+							<span>#if($kzxx.khzh == '') - #else $kzxx.khzh #end</span>账户内的存款未能续冻。
+						</p>
+					#end
+				<!-- 先以控制措施 kzcs 区分 01-冻结  02-续冻  04-解冻  06-扣划-->
+				#elseif($kzxx.kzcs == "04")
+					#if($kzxx.kzzt == "1")
+						<p class="normal indent">本案对被执行人（或其他法律地位）
+							<span>#if($kzqq.xm == '') - #else $kzqq.xm #end</span>在我行
+							<span>#if($kzxx.khzh == '') - #else $kzxx.khzh #end</span>账户内的存款，已
+							<span>#if($kzxx.skje == '') 0 #else $kzxx.skje #end</span>元为限的冻结措施已经解除。
+						</p>
+					#elseif($kzxx.kzzt == "2")
+						<p class="normal indent">由于
+							<span>#if($kzxx.wnkzyy == '') - #else $kzxx.wnkzyy #end</span>的原因，本案对被执行人（或其他法律地位）
+							<span>#if($kzqq.xm == '') - #else $kzqq.xm #end</span>在我行
+							<span>#if($kzxx.khzh == '') - #else $kzxx.khzh #end</span>账户内存款的冻结措施未能解除。
+						</p>
+					#end
+				<!-- 先以控制措施 kzcs 区分 01-冻结  02-续冻  04-解冻  06-扣划-->
+				#elseif($kzxx.kzcs == "06")
+					#if($kzxx.kzzt == "1")
+						<p class="normal indent">被执行人（或其他法律地位）
+						<span>#if($kzqq.xm  == '') - #else $kzqq.xm #end</span>在我行
+						<span>$kzxx.khzh</span>账户内的存款余额人民币（或其他币种）
+						<span>#if($kzxx.ye == '') '' #else $kzxx.ye 元#end</span>，本案已扣划
+						<span>$kzxx.skje</span>元至你院执行款专户。
+						</p>
+					#elseif($kzxx.kzzt == "2")
+						<p class="normal indent">因
+							<span>#if($kzxx.wnkzyy == '') - #else $kzxx.wnkzyy #end</span>的原因，被执行人（或其他法律地位）
+							<span>#if($kzqq.xm == '') - #else $kzqq.xm #end</span>在我行
+							<span>#if($kzxx.khzh == '') - #else $kzxx.khzh #end</span>账户内的存款未能扣划。
+						</p>
+					#end
+				#end
+			<!-- 以控制类型kzlx区分  1-存款   2-非存款类金融产品-->
+			#elseif($kzxx.kzlx == "2")
+			<!-- 先以控制措施 kzcs 区分 01-冻结  02-续冻  04-解冻  06-扣划-->
+				#if($kzxx.kzcs == "01")
+					<!-- 以控制状态kzzt区分  1-成功；2-失败-->
+					#if($kzxx.kzzt == "1")
+						<p class="normal indent">被执行人（或其他法律地位）
+							<span>#if($kzqq.xm == '') - #else $kzqq.xm #end</span>在我行
+							<span>#if($kzxx.khzh == '') - #else $kzxx.khzh #end</span>账户内的
+							<span>#if($kzxx.jrcpbh == '') - #else $kzxx.jrcpbh #end</span>金融资产
+							<!-- <span>#if($kzxx.ye == '') 0 #else $kzxx.ye #end</span>份（计量单位） -->，
+							#foreach($djxx in $kzxx.djxxList)
+								<!--判断是账户在先冻结信息还是理财在先冻结（此处编号无值，待解决） -->
+								 #if($!djxx.jrcpbh=='') 
+									已被
+									<span>#if($djxx.djjg == '') - #else $djxx.djjg #end</span>机关冻结
+									<span>#if($djxx.djje == '') 0 #else $djxx.djje #end</span>份，
+								 #end 
+							#end
+							本案已
+							<span>#if($kzxx.se == '') 0 #else $kzxx.se #end</span>份为限作冻结处理，实际冻结
+							<span>#if($kzxx.skse == '') 0 #else $kzxx.skse #end</span>份，<!-- 超额冻结
+							<span>#if($kzxx.ceskje == '') 0 #else $kzxx.ceskje #end</span>份， --> 冻结期限自
+							<span>#if($kzxx.csksrq_cn == '') - #else $kzxx.csksrq_cn #end</span>至
+							<span>#if($kzxx.csjsrq_cn == '') - #else $kzxx.csjsrq_cn #end</span>。
+						</p>
+						
+						<p class="normal indent">被执行人（或其他法律地位）
+						<span>$kzqq.xm</span>在我行的金融资产回款账户
+							<span>#if($kzxx.khzh == '') - #else $kzxx.khzh #end</span>，
+							#foreach($djxx in $kzxx.djxxList)
+								 #if($djxx.jrcpbh=='') 
+									已被
+									<span>#if($djxx.djjg == '') - #else $djxx.djjg #end</span>机关冻结
+									<span>#if($djxx.djje == '') 0 #else $djxx.djje #end</span>元，
+								 #end 
+							#end	
+							本案已
+							<span>#if($kzxx.djxe == '') 0 #else $kzxx.djxe #end</span>元为限作冻结处理，实际冻结
+							<span>#if($kzxx.skje == '') 0 #else $kzxx.skje #end</span>元，<!-- 超额冻结金额
+							<span>#if($kzxx.ceskje == '') 0 #else $kzxx.ceskje #end</span>元， -->冻结期限自
+							<span>#if($kzxx.csksrq_cn == '') - #else $kzxx.csksrq_cn #end</span>至
+							<span>#if($kzxx.csjsrq_cn == '') - #else $kzxx.csjsrq_cn #end</span>。
+						</p>
+						#foreach($qlxx in $kzxx.qlxxList)
+							<p class="normal indent">上述账户中，被执行人（或其他法律地位）
+								<span>#if($kzqq.xm == '') - #else $kzqq.xm #end</span>的
+								<span>#if($kzxx.khzh == '') - #else $kzxx.khzh #end</span>账户为
+								<span>#if($qlxx.qllx == '') - #else $qlxx.qllx #end</span>（共有权/优先受偿权类型）账户，权利人（/监管机关）
+								<span>#if($qlxx.qlr == '') - #else $qlxx.qlr #end</span>对该账户中的
+								<span>#if($qlxx.jrcpbh == '') - #else $qlxx.jrcpbh #end</span>资产
+								<span>#if($qlxx.qlje  == '') 0 #else $qlxx.qlje #end</span>份享有优先受偿权。
+							</p>
+						#end			
+					<!-- 以控制状态kzzt区分  1-成功；2-失败-->		
+					#elseif($kzxx.kzzt == "2")
+						<p class="normal indent">因
+							<span>#if($kzxx.wnkzyy == '') - #else $kzxx.wnkzyy #end</span>的原因，被执行人（或其他法律地位）
+							<span>#if($kzqq.xm == '') - #else $kzqq.xm #end</span>在我行
+							<span>#if($kzxx.khzh == '') - #else $kzxx.khzh #end</span>账户内的
+							<span>#if($kzxx.jrcpbh == '') - #else $kzxx.jrcpbh #end</span>金融资产未能冻结。
+						</p>
+					#end
+				<!-- 先以控制措施 kzcs 区分 01-冻结  02-续冻  04-解冻  06-扣划-->
+				#elseif($kzxx.kzcs == "02")
+				<!-- 以控制状态kzzt区分  1-成功；2-失败-->
+					#if($kzxx.kzzt == "1")
+						<p class="normal indent">被执行人（或其他法律地位）
+							<span>#if($kzqq.xm == '') - #else $kzqq.xm #end</span>在我行
+							<span>#if($kzxx.khzh == '') - #else $kzxx.khzh #end</span>账户内的
+							<span>#if($kzxx.jrcpbh == '') - #else $kzxx.jrcpbh #end</span>金融资产
+							<!-- <span>#if($kzxx.ye == '') 0 #else $kzxx.ye #end</span>份（计量单位） -->，
+							#foreach($djxx in $kzxx.djxxList)
+								 #if($!djxx.jrcpbh=='') 
+									已被
+									<span>#if($djxx.djjg == '') - #else $djxx.djjg #end</span>机关冻结
+									<span>#if($djxx.djje == '') 0 #else $djxx.djje #end</span>份，
+								 #end 
+							#end
+							本案已
+							<span>#if($kzxx.se == '') 0 #else $kzxx.se #end</span>份为限继续作冻结处理，实际冻结
+							<span>#if($kzxx.skse == '') 0 #else $kzxx.skse #end</span>份，<!--  超额冻结
+							<span>#if($kzxx.ceskje == '') 0 #else $kzxx.ceskje #end</span>份， -->冻结期限自
+							<span>#if($kzxx.csksrq_cn  == '') - #else $kzxx.csksrq_cn #end</span>至
+							<span>#if($kzxx.csjsrq_cn == '') - #else $kzxx.csjsrq_cn #end</span>。
+						</p>
+						<p class="normal indent">被执行人（或其他法律地位）
+							<span>$kzqq.xm</span>在我行的金融资产回款账户
+							<span>#if($kzxx.khzh == '') - #else $kzxx.khzh #end</span>，
+							#foreach($djxx in $kzxx.djxxList)
+								 #if($djxx.jrcpbh=='') 
+									已被
+									<span>#if($djxx.djjg == '') - #else $djxx.djjg #end</span>机关冻结
+									<span>#if($djxx.djje == '') 0 #else $djxx.djje #end</span>元，
+								 #end 
+							#end
+							本案已
+							<span>#if($kzxx.djxe == '') 0 #else $kzxx.djxe #end</span>元为限作继续冻结处理，实际冻结
+							<span>#if($kzxx.skje == '') 0 #else $kzxx.skje #end</span>元，<!-- 超额冻结金额
+							<span>#if($kzxx.ceskje == '') 0 #else $kzxx.ceskje #end</span>元， -->冻结期限自
+							<span>#if($kzxx.csksrq_cn == '') - #else $kzxx.csksrq_cn #end</span>至
+							<span>#if($kzxx.csjsrq_cn == '') - #else $kzxx.csjsrq_cn #end</span>。
+						</p>
+					<!-- 以控制状态kzzt区分  1-成功；2-失败-->		
+					#elseif($kzxx.kzzt == "2")
+						<p class="normal indent">因
+							<span>#if($kzxx.wnkzyy == '') - #else $kzxx.wnkzyy #end</span>的原因，被执行人（或其他法律地位）
+							<span>#if($kzqq.xm == '') - #else $kzqq.xm #end</span>在我行
+							<span>#if($kzxx.khzh == '') - #else $kzxx.khzh #end</span>账户内的
+							<span>#if($kzxx.jrcpbh == '') - #else $kzxx.jrcpbh #end</span>金融资产未能冻结。
+						</p>
+					#end
+				<!-- 先以控制措施 kzcs 区分 01-冻结  02-续冻  04-解冻  06-扣划-->
+				#elseif($kzxx.kzcs == "04")
+					#if($kzxx.kzzt == "1")
+						<p class="normal indent">被执行人（或其他法律地位）
+							<span>#if($kzqq.xm == '') - #else $kzqq.xm #end</span>在我行
+							<span>#if($kzxx.khzh == '') - #else $kzxx.khzh #end</span>账户内的
+							<span>#if($kzxx.jrcpbh == '') - #else $kzxx.jrcpbh #end</span>金融资产
+							<span>#if($kzxx.skse == '') 0 #else $kzxx.skse #end</span>份（计量单位）的冻结措施已经解除。
+						</p>
+						<p class="normal indent">本案对被执行人（或其他法律地位）
+							<span>#if($kzqq.xm == '') - #else $kzqq.xm #end</span>在我行的金融资产回款款账户
+							<span>#if($kzxx.khzh == '') - #else $kzxx.khzh #end</span>，已
+							<span>#if($kzxx.skje == '') 0 #else $kzxx.skje #end</span>元为限的冻结措施已经解除。
+						</p>
+					#elseif($kzxx.kzzt == "2")
+						<p class="normal indent">因
+							<span>#if($kzxx.wnkzyy == '') - #else $kzxx.wnkzyy #end</span>的原因，被执行人（或其他法律地位）
+							<span>#if($kzqq.xm == '') - #else $kzqq.xm #end</span>在我行
+							<span>#if($kzxx.khzh == '') - #else $kzxx.khzh #end</span>账户内的
+							<span>#if($kzxx.jrcpbh == '') - #else $kzxx.jrcpbh #end</span>金融资产的冻结措施未能解除。
+						</p>
+					#end
+				#end
+			#end	
+		#end
+		<p class="normal indent"></p>
+	</div>
+	<div class="footer">
+		<img src="$sealpath" />
+		<p class="normal"><span>&nbsp;</span></p>
+		<p id="footer_date" class="normal">$sysdatetime</p>
+		<p class="normal"><span>&nbsp;</span></p>
+	</div>
+</body>
+</html>

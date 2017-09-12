@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.net.mapper.PollingTaskMapper">
+	<select id="queryReceivedTaskKeyForCaching01" resultType="String">  
+		SELECT TASKKEY FROM MC20_TASK_FACT1 
+		WHERE TASKTYPE = '1' AND SUBTASKID = 'CXQQ' AND BDHM NOT IN (SELECT BDHM FROM BR32_JG WHERE CODE = 'success')
+		UNION ALL
+		SELECT TASKKEY FROM MC20_TASK_FACT1 
+		WHERE TASKTYPE = '1' AND SUBTASKID = 'KZQQ' 
+	</select>
+
+	<insert id="insertMC20_Task_Msg" parameterType="com.citic.server.service.domain.MC20_task_msg">
+		insert into MC20_TASK_MSG(TASKKEY, CODE, BDHM, MSGPATH, ATTACHPATH, ATTACHNAME, CREATEDT,
+		PACKETKEY)
+		values(#{taskkey}, #{code}, #{bdhm},
+		#{msgpath}, #{attachpath}, #{attachname}, #{createdt}, #{packetkey})
+	</insert>
+
+	<select id="insertMC20_Task_Fact1" parameterType="com.citic.server.service.domain.MC20_Task_Fact1">
+		insert into MC20_TASK_FACT1(TASKKEY, TASKID, SUBTASKID, TASKTYPE, DATATIME, BDHM, TASKOBJ,
+		FREQ, TASKNAME, TASKCMD, TGROUPID, ISDYNA)
+		values(#{taskKey}, #{taskID}, #{subTaskID}, #{taskType}, #{datatime}, #{bdhm}, #{taskObj}, #{freq},
+		#{taskName}, #{taskCMD}, #{tGroupID}, #{isDYNA})
+	</select>
+
+	<select id="insertBR32_Packet" parameterType="com.citic.server.gf.domain.Br32_packet">
+		insert into br32_packet(packetkey, pack_type_cd, organkey_r, senddate_dt, filename, filepath,
+		status_cd, create_dt)
+		values(#{packetkey},
+		#{pack_type_cd}, #{organkey_r}, #{senddate_dt}, #{filename}, #{filepath}, #{status_cd},
+		#{create_dt})
+	</select>
+
+	<select id="queryMC20_Task_Fact1" resultType="com.citic.server.service.domain.MC20_Task_Fact1">
+		SELECT taskkey, taskid, subtaskid, tasktype, datatime, serverid, bdhm, taskobj, freq, taskname, taskcmd, tgroupid, isdyna
+		FROM mc20_task_fact1
+		WHERE tasktype = #{tasktype}
+	</select>
+
+	<select id="queryMC21_Task" parameterType="String" resultType="com.citic.server.service.domain.MC21_task">
+		select T.*, t1.TX_CODE TXCODE
+		from MC21_TASK T
+		left join MC21_TASK_RELA T1 on
+		T.TASKID = T1.TASKID and T.SERVERID = T1.SERVERID
+		and
+		T.TASKTYPE = T1.TASKTYPE
+		where T.SERVERID = '01' and T.TASKTYPE = #{tasktype}
+	</select>
+
+	<select id="queryBr24_Q_Acct_Dynamic_Main" parameterType="String" resultType="com.citic.server.dx.domain.Br24_q_Main">
+		select * from BR24_Q_ACCT_DYNAMIC_MAIN
+		where STATUS_CD = #{status} and (LASTPOLLINGTIME is null or <![CDATA[ #{datatime} >=
+        LASTPOLLINGTIME ]]>)
+	</select>
+
+	<select id="updateBr24_Q_Acct_Dynamic_Main" parameterType="String">
+		update BR24_Q_ACCT_DYNAMIC_MAIN set LASTPOLLINGTIME = #{datatime}
+		where
+		transSerialNumber = #{aid}
+	</select>
+
+	<insert id="insertMC21_Task_Fact3" parameterType="com.citic.server.service.domain.MC21_task_fact">
+		insert into MC21_TASK_FACT3 (TASKKEY, TASKID, SUBTASKID, TASKTYPE, DATATIME, SERVERID,
+		BDHM, TASKOBJ, FREQ, TASKNAME, TGROUPID, TASKCMD,
+		ISDYNA)
+		select ${taskkey}, T.TASKID, #{subtaskid}, T.TASKTYPE, #{datatime}, '', #{bdhm}, '',
+		'1',
+		T.TASKNAME, '', T.TASKCMD, T.ISDYNA
+		from MC21_TASK T, MC21_TASK_RELA T1
+		where T.TASKID =
+		T1.TASKID
+		and T.SERVERID
+		= T1.SERVERID and
+		T1.SERVERID = '03' and T1.TX_CODE = #{subtaskid}
+	</insert>
+
+	<update id="closeBr24_Q_Acct_Dynamic_Main" parameterType="String">
+		update BR24_Q_ACCT_DYNAMIC_MAIN set STATUS_CD = '0' where <![CDATA[  interceptionenddate <=#{datatime} ]]>
+	</update>
+
+	<!-- MC20_GZZ 证件信息表相关操作 -->
+	<delete id="deleteMC20_GZZ" parameterType="com.citic.server.gf.domain.MC20_GZZ">
+		delete from mc20_gzz
+		<where>
+			<if test="bdhm != null  and bdhm != '' ">
+				bdhm=#{bdhm} and xh=#{xh}
+			</if>
+			<if test="bdhm == null  or bdhm == '' ">
+				and gzzbm=#{gzzbm} and gwzbm=#{gwzbm} and xh=#{xh} and bdhm=#{bdhm}
+			</if>
+		</where>
+	</delete>
+	<insert id="insertMC20_GZZ" parameterType="com.citic.server.gf.domain.MC20_GZZ">
+		insert into MC20_GZZ(BDHM, XH, GZZBM, ZJMC, GZZWJGS, GZZPATH, GWZBM, GWZWJGS, GWZPATH, tasktype)
+		values(#{bdhm, jdbcType=VARCHAR}, #{xh, jdbcType=VARCHAR}, #{gzzbm, jdbcType=VARCHAR}, 
+		#{zjmc, jdbcType=VARCHAR}, #{gzzwjgs, jdbcType=VARCHAR},#{gzzpath, jdbcType=VARCHAR}, 
+		#{gwzbm, jdbcType=VARCHAR}, #{gwzwjgs, jdbcType=VARCHAR}, #{gwzpath, jdbcType=VARCHAR}, 
+		#{tasktype, jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertMC20_GZZList" parameterType="java.util.List">
+		insert into
+		MC20_GZZ(BDHM, XH, GZZBM, ZJMC, GZZWJGS, GZZPATH, GWZBM, GWZWJGS, GWZPATH, tasktype)
+		<choose>
+			<when test="_databaseId == 'oracle'">
+				<foreach collection="list" item="item" index="index" separator="UNION ALL">
+					select
+						#{item.bdhm, jdbcType=VARCHAR},
+						#{item.xh, jdbcType=VARCHAR},
+						#{item.gzzbm, jdbcType=VARCHAR},
+						#{item.zjmc, jdbcType=VARCHAR},
+						#{item.gzzwjgs, jdbcType=VARCHAR},
+						#{item.gzzpath, jdbcType=VARCHAR},
+						#{item.gwzbm, jdbcType=VARCHAR},
+						#{item.gwzwjgs, jdbcType=VARCHAR},
+						#{item.gwzpath, jdbcType=VARCHAR},
+						#{item.tasktype, jdbcType=VARCHAR}
+					from MP01_DUAL
+				</foreach>
+			</when>
+			<otherwise>
+				values
+				<foreach collection="list" item="item" index="index" separator=",">
+					(
+						#{item.bdhm, jdbcType=VARCHAR},
+						#{item.xh, jdbcType=VARCHAR},
+						#{item.gzzbm, jdbcType=VARCHAR},
+						#{item.zjmc, jdbcType=VARCHAR},
+						#{item.gzzwjgs, jdbcType=VARCHAR},
+						#{item.gzzpath, jdbcType=VARCHAR},
+						#{item.gwzbm, jdbcType=VARCHAR},
+						#{item.gwzwjgs, jdbcType=VARCHAR},
+						#{item.gwzpath, jdbcType=VARCHAR},
+						#{item.tasktype, jdbcType=VARCHAR}
+					)
+				</foreach>
+			</otherwise>
+		</choose>
+	</insert>
+
+	<!-- MC20_WS 文书信息表相关操作 -->
+	<delete id="deleteMC20_WS" parameterType="com.citic.server.gf.domain.MC20_WS">
+		delete from mc20_ws where xh=#{xh}
+		<if test="bdhm != null  and bdhm != '' ">
+			and bdhm=#{bdhm}
+		</if>
+		<if test="wsbh != null  and wsbh != '' ">
+			and wsbh=#{wsbh}
+		</if>
+	</delete>
+	<insert id="insertMC20_WS" parameterType="com.citic.server.gf.domain.MC20_WS">
+		INSERT INTO 
+            mc20_ws(bdhm, wsbh, xh, wjmc, wjlx, wslb, md5, wspath, tasktype)
+		VALUES (
+            #{bdhm, jdbcType=VARCHAR},
+			#{wsbh, jdbcType=VARCHAR},
+			#{xh, jdbcType=VARCHAR},
+			#{wjmc, jdbcType=VARCHAR},
+			#{wjlx, jdbcType=VARCHAR},
+			#{wslb, jdbcType=VARCHAR},
+			#{md5, jdbcType=VARCHAR},
+			#{wspath, jdbcType=VARCHAR},
+			#{tasktype, jdbcType=VARCHAR}
+        )
+	</insert>
+	<insert id="insertMC20_WSList" parameterType="java.util.List">
+		INSERT INTO
+		MC20_WS(BDHM, WSBH, XH, WJMC, WJLX, WSLB, MD5, WSPATH, tasktype)
+		<choose>
+			<when test="_databaseId == 'oracle'">
+				<foreach collection="list" item="item" index="index" separator="UNION ALL">
+					select
+					(
+						#{item.bdhm, jdbcType=VARCHAR},
+						#{item.wsbh, jdbcType=VARCHAR},
+						#{item.xh, jdbcType=VARCHAR},
+						#{item.wjmc, jdbcType=VARCHAR},
+						#{item.wjlx, jdbcType=VARCHAR},
+						#{item.wslb, jdbcType=VARCHAR},
+						#{item.md5, jdbcType=VARCHAR},
+						#{item.wspath, jdbcType=VARCHAR},
+						#{item.tasktype, jdbcType=VARCHAR}
+					) from MP01_DUAL
+				</foreach>
+			</when>
+			<otherwise>
+				VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+					(
+						#{item.bdhm, jdbcType=VARCHAR},
+						#{item.wsbh, jdbcType=VARCHAR},
+						#{item.xh, jdbcType=VARCHAR},
+						#{item.wjmc, jdbcType=VARCHAR},
+						#{item.wjlx, jdbcType=VARCHAR},
+						#{item.wslb, jdbcType=VARCHAR},
+						#{item.md5, jdbcType=VARCHAR},
+						#{item.wspath, jdbcType=VARCHAR},
+						#{item.tasktype, jdbcType=VARCHAR}
+					)
+				</foreach>
+			</otherwise>
+		</choose>
+	</insert>
+
+	<select id="selectUploadPacket" parameterType="string" resultType="com.citic.server.gf.domain.Br32_packet">
+		select * from br32_packet where status_cd='0'
+	</select>
+
+	<select id="selectMP02_REP_ORG" parameterType="string" resultType="string">
+		select t.report_organkey||'-'||t.horgankey from MP02_REP_ORG t where
+		t.reptype='1'
+	</select>
+
+	<select id="selectOrganByRepType" parameterType="string" resultType="string">
+		select T.report_organkey || '-' || T.horgankey from MP02_REP_ORG T
+		where T.reptype = #{reptype}
+	</select>
+
+	<update id="updatePacketStatus" parameterType="String">
+		update br32_packet set status_cd = '1'
+		where packetkey = #{_parameter}
+	</update>
+
+	<delete id="delelteMC20_WSList" parameterType="java.util.List">
+		DELETE FROM MC20_WS WHERE WSBH IN
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+			#{item.wsbh}
+		</foreach>
+	</delete>
+
+	<delete id="deleteMC20_GZZList" parameterType="java.util.List">
+		DELETE FROM MC20_GZZ WHERE BDHM IN
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+			#{item.bdhm}
+		</foreach>
+	</delete>
+
+	<delete id="deleteBr30_htxx" parameterType="java.util.List">
+		DELETE FROM BR30_HTYY WHERE BDHM IN
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+			#{item.bdhm}
+		</foreach>
+	</delete>
+
+	<insert id="insertBr30_htxx" parameterType="java.util.List">
+		insert into
+		BR30_HTYY(BDHM, XCHTYY, XCHTBZ, XCHTR, XCHTDH, QRYDT, ORGKEY)
+		<choose>
+			<when test="_databaseId == 'oracle'">
+				<foreach collection="list" item="item" index="index" separator="UNION ALL">
+					select
+					#{item.bdhm, jdbcType=VARCHAR},
+					#{item.xchtyy,
+					jdbcType=VARCHAR},
+					#{item.xchtbz, jdbcType=VARCHAR},
+					#{item.xchtr,
+					jdbcType=VARCHAR},
+					#{item.xchtdh, jdbcType=VARCHAR},
+					#{item.qrydt,
+					jdbcType=VARCHAR},
+					#{item.orgkey, jdbcType=VARCHAR}
+					from MP01_DUAL
+				</foreach>
+			</when>
+			<otherwise>
+				values
+				<foreach collection="list" item="item" index="index" separator=",">
+					(
+					#{item.bdhm, jdbcType=VARCHAR},
+					#{item.xchtyy,
+					jdbcType=VARCHAR},
+					#{item.xchtbz, jdbcType=VARCHAR},
+					#{item.xchtr,
+					jdbcType=VARCHAR},
+					#{item.xchtdh,
+					jdbcType=VARCHAR},
+					#{item.qrydt,
+					jdbcType=VARCHAR},
+					#{item.orgkey, jdbcType=VARCHAR}
+					)
+				</foreach>
+			</otherwise>
+		</choose>
+	</insert>
+</mapper>

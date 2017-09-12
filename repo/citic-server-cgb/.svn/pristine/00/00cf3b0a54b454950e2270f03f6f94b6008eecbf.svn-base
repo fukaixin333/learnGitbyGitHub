@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.shpsb.mapper.Shpsb_outerListenerMapper">
+	<insert id="insertMC20_Task_Msg" parameterType="java.util.List">
+		insert into 
+		MC20_TASK_MSG (TASKKEY, CODE, BDHM, MSGPATH,MSGNAME,ATTACHPATH, ATTACHNAME, CREATEDT, PACKETKEY)
+		values
+		<foreach collection="list" item="item" index="index" separator=","> 
+			(
+				#{item.taskkey}, #{item.code}, #{item.bdhm},
+				#{item.msgpath},#{item.msgname},#{item.attachpath}, 
+				#{item.attachname}, #{item.createdt}, #{item.packetkey}
+			)
+		</foreach>
+	</insert>
+
+	<insert id="insertMC20_Task_Fact1" parameterType="java.util.List">
+		insert into 
+		MC20_TASK_FACT1(TASKKEY, TASKID, SUBTASKID, TASKTYPE, DATATIME, BDHM, TASKOBJ, FREQ, TASKNAME, TASKCMD, TGROUPID, ISDYNA)
+		values 
+		<foreach collection="list" item="item" index="index" separator=","> 
+			(
+				#{item.taskKey}, #{item.taskID}, #{item.subTaskID}, 
+				#{item.taskType}, #{item.datatime}, #{item.bdhm}, 
+				#{item.taskObj}, #{item.freq}, #{item.taskName}, 
+				#{item.taskCMD}, #{item.tGroupID}, #{item.isDYNA}
+			)
+		</foreach>
+	</insert>
+
+	<insert id="insertMC20_WS" parameterType="com.citic.server.gf.domain.MC20_WS">
+		insert into MC20_WS(bdhm,wsbh,xh,wjmc,wjlx,wslb,md5,wspath)
+		values (
+			#{bdhm}, #{wsbh}, #{xh}, #{wjmc}, #{wjlx}, #{wslb}, #{md5}, #{wspath}
+		)
+	</insert>
+</mapper> 

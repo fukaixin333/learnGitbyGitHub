@@ -1,0 +1,28 @@
+<binding name="binding_cgb_req_amlList" package="com.citic.server.cgb.domain.request">
+    <namespace prefix="soapenv" uri="http://schemas.xmlsoap.org/soap/envelope/" default="elements" />
+    <namespace prefix="gateway" uri="http://www.agree.com.cn/GDBGateway" />
+    <mapping name="NoAS400" ns="http://www.agree.com.cn/GDBGateway" class="java.util.LinkedHashMap" marshaller="com.citic.server.cgb.jibx.HashMapper" unmarshaller="com.citic.server.cgb.jibx.HashMapper" />
+    <mapping name="HeadType" class="com.citic.server.cgb.domain.GatewayHeader">
+        <namespace uri="http://www.agree.com.cn/GDBGateway" default="elements" />
+        <value style="element" name="versionNo" get-method="getVersionNo" set-method="setVersionNo" usage="optional" />
+        <value style="element" name="toEncrypt" get-method="getToEncrypt" set-method="setToEncrypt" usage="optional" />
+        <value style="element" name="commCode" get-method="getCommCode" set-method="setCommCode" usage="optional" />
+        <value style="element" name="commType" get-method="getCommType" set-method="setCommType" usage="optional" />
+        <value style="element" name="receiverId" get-method="getReceiverId" set-method="setReceiverId" usage="optional" />
+        <value style="element" name="senderId" get-method="getSenderId" set-method="setSenderId" usage="optional" />
+        <value style="element" name="senderSN" get-method="getSenderSN" set-method="setSenderSN" usage="optional" />
+        <value style="element" name="senderDate" get-method="getSenderDate" set-method="setSenderDate" usage="optional" />
+        <value style="element" name="senderTime" get-method="getSenderTime" set-method="setSenderTime" usage="optional" />
+        <value style="element" name="tradeCode" get-method="getTradeCode" set-method="setTradeCode" usage="optional" />
+        <value style="element" name="gwErrorCode" get-method="getGwErrorCode" set-method="setGwErrorCode" usage="optional" />
+        <value style="element" name="gwErrorMessage" get-method="getGwErrorMessage" set-method="setGwErrorMessage" usage="optional" />
+    </mapping>
+    <mapping name="Envelope" class="com.citic.server.cgb.domain.request.AfpSuspicious">
+        <structure name="Header">
+            <structure get-method="getGatewayHeader" set-method="setGatewayHeader" />
+        </structure>
+        <structure name="Body">
+            <structure field="fieldMap" />
+        </structure>
+    </mapping>
+</binding>

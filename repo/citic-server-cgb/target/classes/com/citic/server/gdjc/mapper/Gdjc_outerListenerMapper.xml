@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.gdjc.mapper.Gdjc_outerListenerMapper">
+
+	<insert id="insertMC20_Task_Msg" parameterType="com.citic.server.service.domain.MC20_task_msg">
+		insert into MC20_TASK_MSG(TASKKEY, CODE, BDHM, MSGPATH,MSGNAME,ATTACHPATH,
+		ATTACHNAME, CREATEDT, PACKETKEY)
+		values(#{taskkey}, #{code}, #{bdhm},
+		#{msgpath},#{msgname},#{attachpath}, #{attachname}, #{createdt}, #{packetkey})
+	</insert>
+
+	<insert id="insertMC20_Task_Fact1" parameterType="com.citic.server.service.domain.MC20_Task_Fact1">
+		insert into MC20_TASK_FACT1(TASKKEY, TASKID, SUBTASKID, TASKTYPE, DATATIME,
+		BDHM, TASKOBJ, FREQ, TASKNAME, TASKCMD, TGROUPID, ISDYNA)
+		values(#{taskKey}, #{taskID}, #{subTaskID}, #{taskType}, #{datatime},
+		#{bdhm}, #{taskObj}, #{freq},
+		#{taskName}, #{taskCMD}, #{tGroupID}, #{isDYNA})
+	</insert>
+
+
+    <delete id="delBr52_packet" parameterType="com.citic.server.gdjc.domain.Br52_packet">
+		<![CDATA[ delete from br52_packet where docno=#{docno}]]>
+	</delete>
+	
+	<insert id="insertBr52_packet" parameterType="com.citic.server.gdjc.domain.Br52_packet"> 
+  	 insert into br52_packet(packetkey,docno,senddate_dt,filename,filepath,status_cd,create_dt,resultstatus,resultinfo,msg_type_cd)
+	 values (#{packetkey}, #{docno},#{senddate_dt}, #{filename}, #{filepath}, #{status_cd}, #{create_dt},#{resultstatus},#{resultinfo},#{msg_type_cd})
+    </insert>
+
+    <select id="selectReTransFlagByDocno" parameterType="String" resultType="java.lang.Integer">
+		select count(*) from br52_packet where docno = #{_parameter}
+	</select>
+	
+	 <select id="selectBr52_packet" parameterType="com.citic.server.gdjc.domain.Br52_packet" resultType="com.citic.server.gdjc.domain.Br52_packet">
+		select packetkey,docno,senddate_dt,filename,filepath,status_cd,create_dt,resultstatus,resultinfo,msg_type_cd
+		from br52_packet 
+		where status_cd = #{status_cd} and resultstatus=#{resultstatus}
+	</select>
+	
+	<update id="updateBr52_packet" parameterType="com.citic.server.gdjc.domain.Br52_packet">
+	   update br52_packet set msg_type_cd= #{msg_type_cd},resultstatus= #{resultstatus},resultinfo= #{resultinfo}
+	   where docno=#{docno} and resultstatus='0'
+	</update>
+	
+	<update id="updateMC21_Task_Fact3" parameterType="com.citic.server.service.domain.MC20_Task_Fact1">
+	   update mc21_task_fact3 set serverid= #{serverID}
+	   where bdhm=#{bdhm}
+	   <if test="subTaskID !=null and subTaskID !='' ">
+	        and subtaskid = #{subTaskID}
+	   </if>
+	   <if test="taskType !=null and taskType !='' ">
+	        and tasktype=#{taskType} 
+	   </if>
+	</update>
+	
+	<delete id="deleteMc21_Task3_Status" parameterType="com.citic.server.service.domain.MC20_Task_Fact1">
+		    delete from mc21_task3_status  a 
+		    where exists (select taskkey from mc21_task_fact3 b
+		        where b.taskkey =a.taskkey and  b.bdhm=#{bdhm}
+		        <if test="subTaskID !=null and subTaskID !='' ">
+	             and subtaskid = #{subTaskID}
+	            </if>
+	            <if test="taskType !=null and taskType !='' ">
+	             and tasktype=#{taskType} 
+	            </if>
+		    )
+	</delete>
+</mapper>

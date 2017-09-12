@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.cgb.mapper.Bb11_aml_warn_logMapper">
+
+	<select id="selectBb11_aml_warn_logListByNine" parameterType="String" resultType="com.citic.server.cgb.domain.AmlWarnDto">
+		select
+		tx_organkey,acct_organkey,tx_time,party_id,party_class_cd,party_name,cust_id_no,sys_ind,channel,tx_acctnum,curr_cd,amt,alert_reason,san_name,biz_type,tx_result,alert_type,opp_acct_organkey,opp_party_class_cd,opp_tx_acctnum,opp_party_name,opp_cust_id_no,rt_typ,create_time,send_time,send_flag
+		from Bb11_aml_warn_log
+		where send_flag = #{_parameter}
+	</select>
+
+	<update id="updateBb11_aml_warn_logSendFlagToNine" parameterType="String">
+		update Bb11_aml_warn_log set send_flag = '9' where send_flag= #{_parameter}
+	</update>
+
+	<update id="updateBb11_aml_warn_logSendFlagToOne" parameterType="com.citic.server.cgb.domain.AmlWarnDto">
+		update Bb11_aml_warn_log set send_flag = '1',send_time= #{send_time}
+		where send_flag= #{send_flag} and tx_time=#{tx_time} and sys_ind = #{sys_ind}
+		<if test="tx_organkey !=null and tx_organkey !=''">
+			and tx_organkey=#{tx_organkey}
+		</if>
+		<if test="cust_id_no !=null and cust_id_no !=''">
+			and cust_id_no=#{cust_id_no}
+		</if>
+	</update>
+
+	<insert id="batchInsertBb11_aml_warn_log" parameterType="java.util.List">
+		insert into Bb11_aml_warn_log(
+		tx_organkey,acct_organkey,tx_time,party_id,party_class_cd,party_name,cust_id_no,sys_ind,channel,tx_acctnum,curr_cd,amt,alert_reason,san_name,biz_type,tx_result,alert_type,opp_acct_organkey,opp_party_class_cd,opp_tx_acctnum,opp_party_name,opp_cust_id_no,rt_typ,create_time,send_flag
+		) values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.tx_organkey},#{item.acct_organkey},#{item.tx_time},#{item.party_id},#{item.party_class_cd},#{item.party_name},#{item.cust_id_no},#{item.sys_ind},#{item.channel},#{item.tx_acctnum},#{item.curr_cd},#{item.amt},#{item.alert_reason},#{item.san_name},#{item.biz_type},
+			#{item.tx_result},#{item.alert_type},#{item.opp_acct_organkey},#{item.opp_party_class_cd},#{item.opp_tx_acctnum},#{item.opp_party_name},#{item.opp_cust_id_no},#{item.rt_typ},#{item.create_time},#{item.send_flag})
+		</foreach>
+	</insert>
+
+	<update id="updateBb11_aml_listSendFlagToNine" parameterType="String" timeout="600">
+		update
+		(select * from bb11_aml_list where send_flag = '0' FETCH FIRST ${_parameter} ROWS ONLY)
+		set send_flag = '9'
+	</update>
+
+	<update id="updateBb11_aml_listSendFlagToOne" parameterType="String">
+		update bb11_aml_list set send_flag = '1',send_time=#{_parameter} where send_flag = '8'
+	</update>
+
+	<select id="selectBb11_aml_listListByNine" resultType="com.citic.server.cgb.domain.AmlWarnDto" parameterType="String" timeout="600">
+		select md_code,source_id,pname,idtype,idvalue,san_name_type,black_class_cd,black_action,data_date,act_status,remark,send_time,send_flag
+		from bb11_aml_list
+		where send_flag = '9'
+		order by idvalue
+		FETCH FIRST ${_parameter} ROWS ONLY
+	</select>
+
+	<insert id="batchInsertBb11_aml_list" parameterType="java.util.List">
+		insert into Bb11_aml_list(
+		md_code,source_id,pname,idtype,idvalue,san_name_type,black_class_cd,black_action,data_date,act_status,remark,send_flag
+		) values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.md_code},#{item.source_id},#{item.pname},#{item.idtype},#{item.idvalue},#{item.san_name_type},#{item.black_class_cd},#{item.black_action},#{item.data_date},#{item.act_status},#{item.remark},#{item.send_flag})
+		</foreach>
+	</insert>
+	
+	<select id="selectBb11_data_task" parameterType="com.citic.server.cgb.domain.Bb11_data_task" resultType="com.citic.server.cgb.domain.Bb11_data_task">
+		select task_id,task_date,task_date_time,task_status
+		from bb11_data_task
+		where task_id = #{task_id}
+		<if test="task_status !=null and task_status !=''">
+		   and task_status = #{task_status}
+		</if>
+	</select>
+	
+	<update id="updateBb11_data_taskByID" parameterType="com.citic.server.cgb.domain.Bb11_data_task">
+		update bb11_data_task set task_status=#{task_status} 
+		<if test="task_date != null and task_date != ''">
+		   ,task_date = #{task_date}
+		</if>
+		where task_id = #{task_id}
+	</update>
+	
+	<update id="updateBb11_data_taskTimeByID" parameterType="com.citic.server.cgb.domain.Bb11_data_task">
+		update bb11_data_task set task_date_time = #{task_date_time}
+		where task_id = #{task_id}
+	</update>
+	<select id="selectBb11_aml_listCountByFlag" resultType="java.lang.Integer">
+		select count(md_code)
+		from bb11_aml_list
+		where send_flag = '0'
+	</select>
+		<update id="updateBb11_aml_listSendFlagToEight" >
+		update bb11_aml_list set send_flag = '8' where send_flag = '9'
+	</update>
+	
+</mapper> 

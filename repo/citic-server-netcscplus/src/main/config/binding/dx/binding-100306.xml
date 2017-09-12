@@ -1,0 +1,54 @@
+<binding name="binding_100306" package="com.citic.server.dx.domain.request">
+    <include path="../../custom/base-binding.xml" />
+    <mapping name="Request" class="com.citic.server.dx.domain.request.QueryRequest100306">
+        <structure name="Head">
+            <value style="element" name="Mode" get-method="getMode" set-method="setMode" usage="optional" />
+            <value style="element" name="To" get-method="getTo" set-method="setTo" usage="optional" />
+            <value style="element" name="TxCode" get-method="getTxCode" set-method="setTxCode" usage="optional" />
+            <value style="element" name="TransSerialNumber" get-method="getTransSerialNumber" set-method="setTransSerialNumber" usage="optional" />
+        </structure>
+        <structure name="Body">
+            <value style="element" name="ApplicationID" get-method="getApplicationID" set-method="setApplicationID" usage="optional" />
+            <value style="element" name="Result" get-method="getResult" set-method="setResult" usage="optional" />
+            <value style="element" name="OperatorName" get-method="getOperatorName" set-method="setOperatorName" usage="optional" />
+            <value style="element" name="OperatorPhoneNumber" get-method="getOperatorPhoneNumber" set-method="setOperatorPhoneNumber" usage="optional" />
+            <value style="element" name="FeedbackOrgName" get-method="getFeedbackOrgName" set-method="setFeedbackOrgName" usage="optional" />
+            <value style="element" name="FeedbackRemark" get-method="getFeedbackRemark" set-method="setFeedbackRemark" usage="optional" />
+            <value style="element" name="AccountName" get-method="getAccountName" set-method="setAccountName" usage="optional" />
+            <value style="element" name="AccountNumber" get-method="getAccountNumber" set-method="setAccountNumber" usage="optional" />
+            <value style="element" name="CardNumber" get-method="getCardNumber" set-method="setCardNumber" usage="optional" />
+            <collection get-method="getTransactions" set-method="setTransactions" usage="optional" create-type="java.util.ArrayList" name="Transactions">
+                <structure type="com.citic.server.dx.domain.request.QueryRequest_Transaction" name="Transaction">
+                    <value style="element" name="TransactionType" get-method="getTransactionType" set-method="setTransactionType" usage="optional" />
+                    <value style="element" name="BorrowingSigns" get-method="getBorrowingSigns" set-method="setBorrowingSigns" usage="optional" format="noBlank" />
+                    <value style="element" name="Currency" get-method="getCurrency" set-method="setCurrency" usage="optional" />
+                    <value style="element" name="TransactionAmount" get-method="getTransactionAmount" set-method="setTransactionAmount" usage="optional" format="noCurrency" />
+                    <value style="element" name="AccountBalance" get-method="getAccountBalance" set-method="setAccountBalance" usage="optional" format="noCurrency" />
+                    <value style="element" name="TransactionTime" get-method="getTransactionTime" set-method="setTransactionTime" usage="optional" format="toDateTime14" />
+                    <value style="element" name="TransactionSerial" get-method="getTransactionSerial" set-method="setTransactionSerial" usage="optional" format="noBlank" />
+                    <value style="element" name="OpponentName" get-method="getOpponentName" set-method="setOpponentName" usage="optional" />
+                    <value style="element" name="OpponentAccountNumber" get-method="getOpponentAccountNumber" set-method="setOpponentAccountNumber" usage="optional" />
+                    <value style="element" name="OpponentCredentialNumber" get-method="getOpponentCredentialNumber" set-method="setOpponentCredentialNumber" usage="optional" />
+                    <value style="element" name="OpponentDepositBankID" get-method="getOpponentDepositBankID" set-method="setOpponentDepositBankID" usage="optional" />
+                    <value style="element" name="TransactionRemark" get-method="getTransactionRemark" set-method="setTransactionRemark" usage="optional" />
+                    <value style="element" name="TransactionBranchName" get-method="getTransactionBranchName" set-method="setTransactionBranchName" usage="optional" format="noBlank" />
+                    <value style="element" name="TransactionBranchCode" get-method="getTransactionBranchCode" set-method="setTransactionBranchCode" usage="optional" format="noBlank" />
+                    <value style="element" name="LogNumber" get-method="getLogNumber" set-method="setLogNumber" usage="optional" />
+                    <value style="element" name="SummonsNumber" get-method="getSummonsNumber" set-method="setSummonsNumber" usage="optional" />
+                    <value style="element" name="VoucherType" get-method="getVoucherType" set-method="setVoucherType" usage="optional" />
+                    <value style="element" name="VoucherCode" get-method="getVoucherCode" set-method="setVoucherCode" usage="optional" />
+                    <value style="element" name="CashMark" get-method="getCashMark" set-method="setCashMark" usage="optional" format="noBlank" />
+                    <value style="element" name="TerminalNumber" get-method="getTerminalNumber" set-method="setTerminalNumber" usage="optional" />
+                    <value style="element" name="TransactionStatus" get-method="getTransactionStatus" set-method="setTransactionStatus" usage="optional" format="noBlank" />
+                    <value style="element" name="TransactionAddress" get-method="getTransactionAddress" set-method="setTransactionAddress" usage="optional" />
+                    <value style="element" name="merchantName" get-method="getMerchantName" set-method="setMerchantName" usage="optional" />
+                    <value style="element" name="merchantCode" get-method="getMerchantCode" set-method="setMerchantCode" usage="optional" />
+                    <value style="element" name="IPAddress" get-method="getIPAddress" set-method="setIPAddress" usage="optional" />
+                    <value style="element" name="MAC" get-method="getMAC" set-method="setMAC" usage="optional" />
+                    <value style="element" name="TellerCode" get-method="getTellerCode" set-method="setTellerCode" usage="optional" />
+                    <value style="element" name="Remark" get-method="getRemark" set-method="setRemark" usage="optional" />
+                </structure>
+            </collection>
+        </structure>
+    </mapping>
+</binding>

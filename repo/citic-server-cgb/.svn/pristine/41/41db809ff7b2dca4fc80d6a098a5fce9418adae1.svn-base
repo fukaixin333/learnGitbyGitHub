@@ -1,0 +1,37 @@
+<binding name="binding_input_998070" package="com.citic.server.inner.domain.request">
+	<include path="../../../custom/base-binding-project.xml" />
+	<mapping name="Document" class="com.citic.server.inner.domain.request.Input998070">
+		<structure name="Head">
+			<value style="element" name="To" get-method="getTo" set-method="setTo" usage="optional" />
+			<value style="element" name="Code" get-method="getCode" set-method="setCode" usage="optional" />
+			<value style="element" name="Description" get-method="getDescription" set-method="setDescription" usage="optional" />
+			<value style="element" name="SenderSN" get-method="getSenderSN" set-method="setSenderSN" usage="optional" />
+			<value style="element" name="SenderDate" get-method="getSenderDate" set-method="setSenderDate" usage="optional" />
+			<value style="element" name="SenderTime" get-method="getSenderTime" set-method="setSenderTime" usage="optional" />
+			<value style="element" name="TransSerialNumber" get-method="getTransSerialNumber" set-method="setTransSerialNumber" usage="optional" />
+		</structure>
+		<structure name="Body">
+			<value style="element" name="LogNumer" get-method="getLogNumer" set-method="setLogNumer" usage="optional" />
+			<value style="element" name="AccountNumber" get-method="getAccountNumber" set-method="setAccountNumber" usage="optional" />
+			<value style="element" name="ServiceNumber" get-method="getServiceNumber" set-method="setServiceNumber" usage="optional" />
+			<value style="element" name="TradeTool" get-method="getTradeTool" set-method="setTradeTool" usage="optional" />
+			<value style="element" name="Currency" get-method="getCurrency" set-method="setCurrency" usage="optional" />
+			<value style="element" name="TradeCode" get-method="getTradeCode" set-method="setTradeCode" usage="optional" />
+			<value style="element" name="TradeTeller" get-method="getTradeTeller" set-method="setTradeTeller" usage="optional" />
+			<value style="element" name="StartDate" get-method="getStartDate" set-method="setStartDate" usage="optional" format="toDate8" />
+			<value style="element" name="EndDate" get-method="getEndDate" set-method="setEndDate" usage="optional" format="toDate8" />
+			<value style="element" name="CustomerCode" get-method="getCustomerCode" set-method="setCustomerCode" usage="optional" />
+			<value style="element" name="TradeTypeCode" get-method="getTradeTypeCode" set-method="setTradeTypeCode" usage="optional" />
+			<value style="element" name="FinancialFlag" get-method="getFinancialFlag" set-method="setFinancialFlag" usage="optional" />
+			<value style="element" name="DrcrFlag" get-method="getDrcrFlag" set-method="setDrcrFlag" usage="optional" />
+			<value style="element" name="Branch" get-method="getBranch" set-method="setBranch" usage="optional" />
+			<value style="element" name="SortFlag" get-method="getSortFlag" set-method="setSortFlag" usage="optional" />
+		</structure>
+		<structure name="Foot">
+			<value style="element" name="PageRow" get-method="getPageRow" set-method="setPageRow" usage="optional" />
+			<value style="element" name="PageNum" get-method="getPageNum" set-method="setPageNum" usage="optional" />
+			<value style="element" name="TotalNum" get-method="getTotalNum" set-method="setTotalNum" usage="optional" />
+			<value style="element" name="TodRecNum" get-method="getTodRecNum" set-method="setTodRecNum" usage="optional" />
+		</structure>
+	</mapping>
+</binding>

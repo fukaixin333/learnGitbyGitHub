@@ -1,0 +1,30 @@
+<binding name="binding_control_kzzh" package="com.citic.server.gf.domain.response">
+    <include path="../../../custom/base-binding.xml" />
+    <mapping name="kzzh" class="com.citic.server.gf.domain.response.ControlResponse_Kzzh">
+        <value style="attribute" name="CCXH" get-method="getCcxh" set-method="setCcxh" usage="optional" />
+        <value style="attribute" name="KZLX" get-method="getKzlx" set-method="setKzlx" usage="optional" />
+        <value style="attribute" name="KZCS" get-method="getKzcs" set-method="setKzcs" usage="optional" />
+        <value style="attribute" name="KHZH" get-method="getKhzh" set-method="setKhzh" usage="optional" />
+        <value style="attribute" name="GLZHHM" get-method="getGlzhhm" set-method="setGlzhhm" usage="optional" />
+        <value style="attribute" name="CCLB" get-method="getCclb" set-method="setCclb" usage="optional" />
+        <value style="attribute" name="KHWD" get-method="getKhwd" set-method="setKhwd" usage="optional" />
+        <value style="attribute" name="KHWDDM" get-method="getKhwddm" set-method="setKhwddm" usage="optional" />
+        <value style="attribute" name="ZCMC" get-method="getZcmc" set-method="setZcmc" usage="optional" />
+        <value style="attribute" name="ZCLX" get-method="getZclx" set-method="setZclx" usage="optional" />
+        <value style="attribute" name="JLDW " get-method="getJldw" set-method="setJldw" usage="optional" />
+        <value style="attribute" name="KZNR" get-method="getKznr" set-method="setKznr" usage="optional" />
+        <value style="attribute" name="BZ" get-method="getBz" set-method="setBz" usage="optional" />
+        <value style="attribute" name="JE" get-method="getJe" set-method="setJe" usage="optional" />
+        <value style="attribute" name="KSRQ" get-method="getKsrq" set-method="setKsrq" usage="optional"   format="toDate10" />
+        <value style="attribute" name="JSRQ" get-method="getJsrq" set-method="setJsrq" usage="optional"   format="toDate10" />
+        <value style="attribute" name="SFJH" get-method="getSfjh" set-method="setSfjh" usage="optional" />
+        <value style="attribute" name="CKWH" get-method="getCkwh" set-method="setCkwh" usage="optional" />
+        <value style="attribute" name="ZXKZHHM" get-method="getZxkzhhm" set-method="setZxkzhhm" usage="optional" />
+        <value style="attribute" name="ZXKZHKHH" get-method="getZxkzhkhh" set-method="setZxkzhkhh" usage="optional" />
+        <value style="attribute" name="ZXKZHKHHHH" get-method="getZxkzhkhhhh" set-method="setZxkzhkhhhh" usage="optional" />
+        <value style="attribute" name="ZXKZHZH" get-method="getZxkzhzh" set-method="setZxkzhzh" usage="optional" />
+        <value style="attribute" name="ZXKZHLX" get-method="getZxkzhlx" set-method="setZxkzhlx" usage="optional" />
+        <value style="attribute" name="YDJAH" get-method="getYdjah" set-method="setYdjah" usage="optional" />
+        <value style="attribute" name="YDJDH" get-method="getYdjdh" set-method="setYdjdh" usage="optional" />
+    </mapping>
+</binding>

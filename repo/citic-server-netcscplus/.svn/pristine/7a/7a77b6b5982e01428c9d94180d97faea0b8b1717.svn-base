@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.net.mapper.MC00_common_Mapper">
+    <insert id="insertMc21_task_fact2_org" parameterType="com.citic.server.service.domain.MC21_task_fact">
+        insert into mc21_task_fact2 (taskkey,taskid, subtaskid, tasktype, datatime, serverid, bdhm, taskobj, freq, taskname, tgroupid, taskcmd, isdyna)
+        select ${taskkey}, t.taskid, #{subtaskid},#{tasktype},#{datatime}, '',#{bdhm}, #{taskobj},#{freq}, t.taskname,#{tgroupid},t.taskcmd, #{isdyna}
+        from mc21_task t where t.taskid=#{taskid}
+    </insert>
+
+    <insert id="insertMc21_task_fact2" parameterType="com.citic.server.service.domain.MC21_task_fact">
+        insert into mc21_task_fact2 (taskkey,taskid, subtaskid, tasktype, datatime, serverid, bdhm, taskobj, freq, taskname, tgroupid, taskcmd, isdyna)
+        select ${taskkey}, t.taskid, #{subtaskid},t.tasktype,#{datatime}, '',#{bdhm}, #{taskobj}, '1', t.taskname, '',t.taskcmd, t.isdyna
+        from mc21_task t ,mc21_task_rela t1 where t.taskid= t1.taskid and t.serverid=t1.serverid and t1.serverid='02' and
+        t.tasktype = t1.tasktype and t1.tx_code=#{subtaskid}
+        <if test="tasktype != null  and tasktype != '' ">
+            and t1.tasktype=#{tasktype}
+        </if>
+    </insert>
+
+    <insert id="insertMc21_task_fact3" parameterType="com.citic.server.service.domain.MC21_task_fact">
+        insert into mc21_task_fact3 (taskkey,taskid, subtaskid, tasktype, datatime, serverid, bdhm, taskobj, freq, taskname, tgroupid, taskcmd, isdyna)
+        select ${taskkey}, t.taskid, #{subtaskid},t.tasktype,#{datatime}, '',#{bdhm}, #{taskobj}, '1', t.taskname, #{tgroupid},t.taskcmd, t.isdyna
+        from mc21_task t ,mc21_task_rela t1 where t.taskid= t1.taskid and t.serverid=t1.serverid and t1.serverid='03'
+        and t.tasktype = t1.tasktype and t1.tx_code=#{subtaskid}
+        <if test="tasktype != null  and tasktype != '' ">
+            and t1.tasktype=#{tasktype}
+        </if>
+    </insert>
+
+    <insert id="insertMc21_task_fact3_packet" parameterType="com.citic.server.service.domain.MC21_task_fact">
+        insert into mc21_task_fact3 (taskkey,taskid, subtaskid, tasktype, datatime, serverid, bdhm, taskobj, freq, taskname, tgroupid, taskcmd, isdyna)
+        select ${taskkey}, t.taskid, #{subtaskid},t.tasktype,#{datatime}, '',#{bdhm}, #{taskobj}, '1', t.taskname, #{tgroupid},t.taskcmd, t.isdyna
+        from mc21_task t where t.taskid= #{taskid}
+        <if test="tasktype != null  and tasktype != '' ">
+            and t.tasktype = #{tasktype}
+        </if>
+    </insert>
+
+    <select id="selMc21_task_fact3_packet" parameterType="string" resultType="int">
+        select count(0) from mc21_task_fact3 where bdhm=#{_parameter} and serverid is null
+    </select>
+    <select id="getMC20_task_msgList" parameterType="string" resultType="com.citic.server.service.domain.MC20_task_msg">
+        select *
+        from mc20_task_msg
+        where taskkey=#{_parameter}
+    </select>
+
+    <select id="getMc21_task_fact1" parameterType="string" resultType="com.citic.server.service.domain.MC21_task_fact">
+        select *
+        from mc20_task_fact1
+        where taskkey=#{_parameter}
+    </select>
+
+    <select id="getMp02_organByIdName" parameterType="com.citic.server.service.domain.Mp02_organ" resultType="com.citic.server.service.domain.Mp02_organ">
+        select *
+        from mp02_organ
+        <where>
+            <if test="organname != null  and organname != '' ">
+                organname=#{organname}
+            </if>
+            <if test="organkey != null  and organkey != '' ">
+                or organkey=#{organkey}
+            </if>
+        </where>
+    </select>
+    <select id="getMp02_organByIdName1" parameterType="string" resultType="com.citic.server.service.domain.Mp02_organ">
+        select *
+        from mp02_organ
+        where uporgankey=-1
+    </select>
+    <select id="getsysPara" resultType="com.citic.server.service.domain.BB13_sys_para">
+        select code,vals from bb13_sys_para where flag='1'
+    </select>
+
+    <select id="getBB13_pbc_crtp" resultType="com.citic.server.service.domain.BB13_sys_para">
+        select crtpdkey as code,crtpname as vals from bb13_pbc_crtp
+    </select>
+
+    <select id="getMp02_organ" resultType="com.citic.server.service.domain.Mp02_organ">
+        select organkey ,organname from MP02_ORGAN
+    </select>
+    <select id="getMp02_country" resultType="com.citic.server.service.domain.Mp02_organ">
+        select countryekey as organkey , countrycsname as organname from bb13_pbc_country
+    </select>
+    <select id="getMp02_catp" resultType="com.citic.server.service.domain.Mp02_organ">
+        select catpkey as organkey,catpdesc as organname from bb13_pbc_catp
+    </select>
+    <select id="getMp02_area" resultType="com.citic.server.service.domain.Mp02_organ">
+        select pbc_areakey as organkey,pbc_areaname as organname from bb13_pbc_area
+    </select>
+    <select id="getMP01_dict_std" resultType="com.citic.server.service.domain.Mp02_organ">
+        select cataid as uporgankey,codekey as organkey, codeval as organname from mp01_dict_std
+    </select>
+    <select id="getBB13_etl_code_map" resultType="com.citic.server.service.domain.Mp02_organ">
+        select code_type as uporgankey,code_sou as organkey, code_rh as organname from bb13_etl_code_map
+    </select>
+
+    <select id="getBB13_rb_tran_def" resultType="com.citic.server.service.domain.BB13_sys_para">
+        select tran_type as code ,tran_desc as codename,contra_gl_code as vals
+        from bb13_rb_tran_def
+    </select>
+
+    <select id="getBB13_union" resultType="com.citic.server.service.domain.BB13_sys_para">
+        select a.organkey as code,a.unionorgkey as vals,b.union_name as codename
+        From mp02_organ a left join bb13_union b
+        on a.unionorgkey=b.unionorgkey
+    </select>
+
+    <insert id="insertBr24_q_k_back_m_f" parameterType="com.citic.server.dx.domain.Response">
+        insert into br24_q_k_back_m_f (transserialnumber, code, description, feedback_dt)
+        values (#{transSerialNumber}, #{code}, #{description}, #{feedback_dt})
+    </insert>
+
+    <insert id="delBr24_q_k_back_m_f" parameterType="string">
+        delete from br24_q_k_back_m_f where transserialnumber=#{_parameter}
+    </insert>
+
+    <select id="getMp02_reporgmap_map" resultType="com.citic.server.service.domain.MP02_rep_org_map">
+        select *
+        from MP02_REP_ORG_MAP
+    </select>
+
+    <select id="getMp02_reporg" resultType="com.citic.server.service.domain.MP02_rep_org_map">
+        select *
+        from MP02_REP_ORG
+    </select>
+
+    <select id="getBr42_sequences" parameterType="com.citic.server.service.domain.BR42_sequences" resultType="com.citic.server.service.domain.BR42_sequences">
+        select organkey_r,packet_seq,msg_num,packet_num
+        from BR42_sequences
+        where organkey_r=#{organkey_r}
+        and packet_seq=#{packet_seq}
+    </select>
+
+    <update id="updateBr42_sequences" parameterType="com.citic.server.service.domain.BR42_sequences">
+        update BR42_sequences set msg_num=#{msg_num}
+        where organkey_r=#{organkey_r}
+        and packet_seq=#{packet_seq}
+    </update>
+    <insert id="insertBr42_sequences" parameterType="com.citic.server.service.domain.BR42_sequences">
+        insert into BR42_sequences (organkey_r, packet_seq, msg_num)
+        values (#{organkey_r}, #{packet_seq}, #{msg_num})
+    </insert>
+
+
+    <select id="geSequenceNumber" parameterType="string" resultType="string">
+        ${_parameter}
+    </select>
+
+    <select id="execSql" parameterType="string" resultType="string">
+        ${_parameter}
+    </select>
+
+    <select id="getBb11_card_organ" parameterType="String" resultType="com.citic.server.dx.domain.OrganKeyQuery">
+        select open_organkey as orgKey,accountname as acctName
+        from bb11_card
+        where cardnumber =#{_parameter}
+    </select>
+    <select id="getBb11_deposit_organ" parameterType="String" resultType="com.citic.server.dx.domain.OrganKeyQuery">
+        select organkey as orgKey,ctac_name as acctName
+        from bb11_deposit_c
+        where acct_num =#{_parameter}
+        union all
+        select organkey as orgKey,ctac_name as acctName
+        from bb11_id_deposit
+        where acct_num =#{_parameter}
+    </select>
+
+    <select id="getBb11_deposit_organ_bypartyid" parameterType="String" resultType="com.citic.server.dx.domain.OrganKeyQuery">
+        select organkey as orgKey,ctac_name as acctName
+        from bb11_deposit_c
+        where party_id =#{_parameter}
+        union all
+        select organkey as orgKey,ctac_name as acctName
+        from bb11_id_deposit
+        where party_id =#{_parameter}
+    </select>
+    <select id="getBb11_party_organ" parameterType="String" resultType="com.citic.server.dx.domain.OrganKeyQuery">
+        select organkey as orgKey,party_id
+        from bb11_party
+        where ctid =#{_parameter}
+    </select>
+
+    <select id="getBb13_organ_tel" parameterType="String" resultType="com.citic.server.service.domain.BB13_organ_telno">
+        select *
+        from BB13_organ_telno
+        where organkey =#{_parameter}
+    </select>
+
+    <select id="isTaskCount" parameterType="String" resultType="java.lang.Integer">
+        select case when sum(b.sum1)=sum(b.sum2) then 1 else 0 end as sum3
+        from(
+        select count(a.rwlsh) as sum1,sum(case when a.last_up_dt is not null then 1 else 0 end) as sum2
+        from br40_cxqq_back a
+        where a.qqdbs=#{qqdbs} and a.tasktype= #{tasktype} and a.seq='0'
+        union all
+        select count(a.rwlsh) as sum1,sum(case when a.last_up_dt is not null then 1 else 0 end) as sum2
+        from br40_cxqq_back_pz a
+        where a.qqdbs=#{qqdbs} and a.tasktype= #{tasktype}
+        union all
+        select count(a.rwlsh) as sum1,sum(case when a.last_up_dt is not null then 1 else 0 end) as sum2
+        from br41_kzqq_dj_back a
+        where a.qqdbs=#{qqdbs} and a.tasktype= #{tasktype}
+        union all
+        select count(a.rwlsh) as sum1,sum(case when a.last_up_dt is not null then 1 else 0 end) as sum2
+        from br41_kzqq_zf_back a
+        where a.qqdbs=#{qqdbs} and a.tasktype= #{tasktype}
+        ) b
+    </select>
+
+    <select id="getBr40_cxqq" parameterType="String" resultType="com.citic.server.cbrc.domain.Br40_cxqq">
+        select *
+        from br40_cxqq a
+        where a.qqdbs=#{qqdbs} and a.tasktype= #{tasktype}
+    </select>
+</mapper> 

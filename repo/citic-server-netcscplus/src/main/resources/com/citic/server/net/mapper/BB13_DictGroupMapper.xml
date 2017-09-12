@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.net.mapper.BB13_DictGroupMapper">
+    <select id="queryAllDictGroup" parameterType="String" resultType="com.citic.server.dict.DictGroup">
+        select T.GROUPID, T.FIELDNAME, T.ARTIFACTID from BB13_DICTGROUP T order by T.GROUPID
+    </select>
+
+    <select id="queryAllDictGroupItem" parameterType="String" resultType="com.citic.server.dict.DictGroupItem">
+        select T.ARTIFACTID, T.SRCCODE, T.DESTCODE, T.FLAG from BB13_DICTGROUPITEM T order by T.ARTIFACTID
+    </select>
+</mapper>
