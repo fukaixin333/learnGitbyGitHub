@@ -1,0 +1,39 @@
+# =====================================================================================
+# COMMON APPLICATION CONTEXT PROPERTIES
+# 
+# Copyright (c) 2017, CITIC Application Service Provider Co., Ltd. All Rights Reserved.
+# $Author: liuxuanfei, $Date: 2017/08/07 20:41:18$
+# =====================================================================================
+
+# -----------------------------------------------------
+# CORE PROPERTIES
+# -----------------------------------------------------
+
+# APPLICATION
+citic.server.scan.timespace=60
+
+# -----------------------------------------------------
+# THREAD POOL PROPERTIES
+# -----------------------------------------------------
+
+# NETCSC
+citic.threadpool.netcsc.core-pool-size=1
+citic.threadpool.netcsc.max-pool-size=5
+citic.threadpool.netcsc.queue-capacity=100
+citic.threadpool.netcsc.keep-alive-seconds=600
+
+# -----------------------------------------------------
+# DATASOURCE PROPERTIES
+# -----------------------------------------------------
+
+# BUSI DATASOURCE
+citic.datasource.busi.driver-class-name=com.ibm.db2.jcc.DB2Driver
+citic.datasource.busi.url=jdbc:db2://21.96.1.102:60000/afp
+citic.datasource.busi.username=afp
+citic.datasource.busi.password=Xgjnw242!
+
+# META DATASOURCE
+citic.datasource.meta.driver-class-name=com.ibm.db2.jcc.DB2Driver
+citic.datasource.meta.url=jdbc:db2://21.96.1.102:60000/afp
+citic.datasource.meta.username=afp
+citic.datasource.meta.password=Xgjnw242!

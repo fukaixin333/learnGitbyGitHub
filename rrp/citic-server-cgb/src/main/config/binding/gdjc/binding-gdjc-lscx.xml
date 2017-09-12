@@ -1,0 +1,36 @@
+<binding name="binding_gdjc_lscx" package="com.citic.server.gdjc.domain.response">
+    <include path="../../custom/base-binding-project.xml" />
+    <mapping class="com.citic.server.gdjc.domain.response.Gdjc_ResponseLscx" name="RESPONSE">
+        <structure name="COMMAND">
+            <value style="attribute" name="TYPE" get-method="getCmdtype" set-method="setCmdtype" usage="optional" />
+            <value style="element" name="STATUS" get-method="getCmdstatus" set-method="setCmdstatus" usage="optional" />
+            <value style="element" name="MESSAGE" get-method="getCmdmessage" set-method="setCmdmessage" usage="optional" />
+        </structure>
+        <structure name="DATA">
+            <value style="attribute" name="TYPE" get-method="getDatatype" set-method="setDatatype" usage="optional" />
+            <value style="attribute" name="CONTENT" get-method="getContent" set-method="setContent" usage="optional" />
+            <value style="element" name="MESSAGE" get-method="getErrmessage" set-method="setErrmessage" usage="optional" />
+            <value style="element" name="DOCNO" get-method="getDocno" set-method="setDocno" usage="optional" />
+            <collection get-method="getCases" set-method="setCases" usage="optional" create-type="java.util.ArrayList">
+                <structure type="com.citic.server.gdjc.domain.response.Gdjc_ResponseLscx_Case" name="CASE">
+                    <value style="element" name="CASENO" get-method="getCaseno" set-method="setCaseno" usage="optional" />
+                    <value style="element" name="CASENAME" get-method="getCasename" set-method="setCasename" usage="optional" />
+                    <value style="element" name="EXEUNIT" get-method="getExeunit" set-method="setExeunit" usage="optional" />
+                    <collection get-method="getAccs" set-method="setAccs" usage="optional" create-type="java.util.ArrayList">
+                        <structure type="com.citic.server.gdjc.domain.response.Gdjc_ResponseLscx_Acc" name="ACC">
+                            <value style="element" name="UNIQUEID" get-method="getUniqueid" set-method="setUniqueid" usage="optional" />
+                            <value style="element" name="ACCOUNT" get-method="getAccount" set-method="setAccount" usage="optional" />
+                            <value style="element" name="ACCTYPE" get-method="getAcctype" set-method="setAcctype" usage="optional" />
+                            <value style="element" name="ACCNAME" get-method="getAccname" set-method="setAccname" usage="optional" />
+                            <value style="element" name="TYPE" get-method="getType" set-method="setType" usage="optional" />
+                            <value style="element" name="IDTYPE" get-method="getIdtype" set-method="setIdtype" usage="optional" />
+                            <value style="element" name="ID" get-method="getId" set-method="setId" usage="optional" />
+                            <value style="element" name="STARTDATE" get-method="getStartdate" set-method="setStartdate" usage="optional" format="toDate10" />
+                            <value style="element" name="ENDDATE" get-method="getEnddate" set-method="setEnddate" usage="optional" format="toDate10" />
+                        </structure>
+                    </collection>
+                </structure>
+            </collection>
+        </structure>
+    </mapping>
+</binding>

@@ -1,0 +1,50 @@
+<!-- 银行提供单位账户持有人查询反馈 -->
+<binding name="binding_shpsb_dwzhcyrfk" package="com.citic.server.shpsb.domain.request">
+    <include path="../../custom/base-binding-project.xml" />
+    <mapping class="com.citic.server.shpsb.domain.request.ShpsbRequestZhcyr" name="dwzhcyrfk">
+        <!-- 首记录 -->
+        <structure get-method="getSjl" set-method="setSjl" usage="optional" name="sjl">
+            <!-- 银行查询请求总记录数 -->
+            <value style="element" name="count" get-method="getCount" set-method="setCount" usage="optional" />
+            <!-- 银行代码（见银行代码表），公安已提供，银行无需填写 -->
+            <value style="element" name="yhdm" get-method="getYhdm" set-method="setYhdm" usage="optional" />
+            <!-- 操作时间（银行生成xml文件时间） -->
+            <value style="element" name="czsj" get-method="getCzsj" set-method="setCzsj" usage="optional" format="toDate8" />
+        </structure>
+        <!-- 明细记录 -->
+        <collection get-method="getMxjlList" set-method="setMxjlList" usage="optional" create-type="java.util.ArrayList" name="mxjl">
+            <structure type="com.citic.server.shpsb.domain.request.ShpsbRequestZhcyrMxjl" name="sadx">
+                <!-- 涉案对象（多个） -->
+                <structure get-method="getSadx" set-method="setSadx" usage="optional">
+                    <!-- 下面内容为公安填写 -->
+                    <!-- 案号 -->
+                    <value style="element" name="ah" get-method="getAh" set-method="setAh" usage="optional" />
+                    <!-- 承办单位 -->
+                    <value style="element" name="cbdw" get-method="getCbdw" set-method="setCbdw" usage="optional" />
+                    <!-- 承办人1 -->
+                    <value style="element" name="cbr1" get-method="getCbr1" set-method="setCbr1" usage="optional" />
+                    <!-- 承办人2 -->
+                    <value style="element" name="cbr2" get-method="getCbr2" set-method="setCbr2" usage="optional" />
+                    <!-- 账(卡)号 -->
+                    <value style="element" name="zh" get-method="getZh" set-method="setZh" usage="optional" />
+                    <!-- 下面内容为银行填写 -->
+                    <!-- 处理结果 -->
+                    <value style="element" name="cljg" get-method="getCljg" set-method="setCljg" usage="optional" />
+                    <!-- 失败原因 -->
+                    <value style="element" name="sbyy" get-method="getSbyy" set-method="setSbyy" usage="optional" />
+                </structure>
+                <!-- 持有人资料 -->
+                <collection get-method="getCyrzlList" set-method="setCyrzlList" usage="optional" create-type="java.util.ArrayList">
+                    <structure type="com.citic.server.shpsb.domain.request.ShpsbRequestZhcyrMx" name="cyrzl">
+                        <!-- 企业名称 -->
+                        <value style="element" name="ckrxm" get-method="getCkrxm" set-method="setCkrxm" usage="optional" />
+                        <!-- 证照类型 -->
+                        <value style="element" name="zzlx" get-method="getZzlx" set-method="setZzlx" usage="optional" />
+                        <!-- 证件号码 -->
+                        <value style="element" name="zzhm" get-method="getZzhm" set-method="setZzhm" usage="optional" />
+                    </structure>
+                </collection>
+            </structure>
+        </collection>
+    </mapping>
+</binding>

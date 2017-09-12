@@ -1,0 +1,14 @@
+<binding name="binding_query_glxx" package="com.citic.server.gf.domain.request">
+    <mapping name="glxx" class="com.citic.server.gf.domain.request.QueryRequest_Glxx">
+        <value style="attribute" name="BDHM" get-method="getBdhm" set-method="setBdhm" usage="optional" />
+        <value style="attribute" name="CCXH" get-method="getCcxh" set-method="setCcxh" usage="optional" />
+        <value style="attribute" name="GLXH" get-method="getGlxh" set-method="setGlxh" usage="optional" />
+        <value style="attribute" name="ZKHZH" get-method="getZkhzh" set-method="setZkhzh" usage="optional" />
+        <value style="attribute" name="GLZHLB" get-method="getGlzhlb" set-method="setGlzhlb" usage="optional" />
+        <value style="attribute" name="GLZHHM" get-method="getGlzhhm" set-method="setGlzhhm" usage="optional" />
+        <value style="attribute" name="BZ" get-method="getBz" set-method="setBz" usage="optional" />
+        <value style="attribute" name="YE" get-method="getYe" set-method="setYe" usage="optional" />
+        <value style="attribute" name="KYYE" get-method="getKyye" set-method="setKyye" usage="optional" />
+        <value style="attribute" name="BEIZ" get-method="getBeiz" set-method="setBeiz" usage="optional" />
+    </mapping>
+</binding>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="main" basedir=".">
+	<property environment="env" />
+	<property name="config-home" value="${basedir}/src/main/config" />
+	<property name="binding-home" value="${config-home}/binding" />
+	<property name="custom-home" value="${config-home}/custom" />
+	<property name="java-source" value="${config-home}/src/main/java" />
+
+	<available file="D:/Program Files/jibx-1.2.6/lib/jibx-run.jar" property="jibx-home" value="D:/Program Files/jibx-1.2.6" />
+	<condition property="jibx-home" value="${env.JIBX_HOME}">
+		<and>
+			<not>
+				<isset property="jibx-home" />
+			</not>
+			<available file="${env.JIBX_HOME}/lib" />
+		</and>
+	</condition>
+
+	<path id="classpath">
+		<pathelement location="${basedir}/target/classes" />
+		<fileset dir="${jibx-home}/lib" includes="*.jar" />
+	</path>
+
+	<target name="clean">
+		<echo message="delete ${basedir}/target/classes/**/JiBX_binding_*.class" />
+		<delete quiet="true">
+			<fileset dir="${basedir}/target/classes" includes="**/JiBX_binding_*.class" />
+		</delete>
+	</target>
+
+	<target name="main" depends="clean">
+		<!-- 注意：手动调整binding文件，一定要注释掉相应的bindgen片段，以免绑定文件被重新生成覆盖。 -->
+		<antcall target="bindgen">
+			<param name="dir" value="" />
+			<param name="prefix" value="" />
+			<param name="clazz" value=""/>
+		</antcall>
+	</target>
+
+	<target name="bindgen">
+		<echo message="Running BindGen tool: ${dir}/binding-${prefix}" />
+		<java classpathref="classpath" fork="true" failonerror="true" classname="org.jibx.binding.generator.BindGen">
+			<sysproperty key="file.encoding" value="UTF-8" />
+			<arg value="-o" />
+			<arg value="-t" />
+			<arg value="${binding-home}/${dir}" />
+			<arg value="-b" />
+			<arg value="binding-${prefix}.xml" />
+			<arg value="-c" />
+			<arg value="${custom-home}/custom.xml" />
+			<arg value="-s" />
+			<arg value="${java-source}" />
+			<arg value="${clazz}" />
+		</java>
+	</target>
+
+	<target name="bind" depends="clean">
+		<echo message="Running JiBX binding compiler" />
+		<taskdef name="bind" classname="org.jibx.binding.ant.CompileTask">
+			<classpath>
+				<fileset dir="${jibx-home}/lib" includes="*.jar" />
+			</classpath>
+		</taskdef>
+		<bind verbose="false" load="true">
+			<classpath refid="classpath" />
+			<bindingfileset dir="${binding-home}">
+				<include name="**/binding-*.xml" />
+			</bindingfileset>
+		</bind>
+	</target>
+
+	<target name="help">
+		<echo message="------    ------------------------------------------------------------------------------------------------" />
+		<echo message="Target    说明" />
+		<echo message="------    ------------------------------------------------------------------------------------------------" />
+		<echo message="clean     删除classes目录中JiBX生成的增强类（JiBX_binding_*.class）。" />
+		<echo message="main      通过antcall调用bingen工具，生成绑定定义文件（binding-*.xml）。" />
+		<echo message="bingen    接收-dir -prefix -clazz三个参数，以[clazz]为主类，生成绑定定义文件（binding-[prefix].xml）到[dir]目录。" />
+		<echo message="bind      执行JiBX binding compiler，生成增强类（JiBX_binding_*.class）。" />
+		<echo message="------    ------------------------------------------------------------------------------------------------" />
+	</target>
+</project>

@@ -1,0 +1,63 @@
+<binding name="binding_control_req" package="com.citic.server.gf.domain.request">
+	<include path="../../../custom/base-binding.xml" />
+	<mapping name="kzxxList" class="com.citic.server.gf.domain.request.ControlRequest">
+		<collection get-method="getKzxxList" set-method="setKzxxList" usage="optional" create-type="java.util.ArrayList">
+			<structure type="com.citic.server.gf.domain.request.ControlRequest_Kzxx" name="kzxx">
+				<value style="attribute" name="BDHM" get-method="getBdhm" set-method="setBdhm" usage="optional" />
+				<value style="attribute" name="CCXH" get-method="getCcxh" set-method="setCcxh" usage="optional" />
+				<value style="attribute" name="KHZH" get-method="getKhzh" set-method="setKhzh" usage="optional" />
+				<value style="attribute" name="JRCPBH" get-method="getJrcpbh" set-method="setJrcpbh" usage="optional" />
+				<value style="attribute" name="LCZH" get-method="getLczh" set-method="setLczh" usage="optional" />
+				<value style="attribute" name="KZNR" get-method="getKznr" set-method="setKznr" usage="optional" />
+				<value style="attribute" name="KZZT" get-method="getKzzt" set-method="setKzzt" usage="optional" />
+				<value style="attribute" name="YE" get-method="getYe" set-method="setYe" usage="optional" />
+				<value style="attribute" name="KYYE" get-method="getKyye" set-method="setKyye" usage="optional" />
+				<value style="attribute" name="CSKSRQ" get-method="getCsksrq" set-method="setCsksrq" usage="optional" />
+				<value style="attribute" name="CSJSRQ" get-method="getCsjsrq" set-method="setCsjsrq" usage="optional" />
+				<value style="attribute" name="DJXE" get-method="getDjxe" set-method="setDjxe" usage="optional" />
+				<value style="attribute" name="SKSE" get-method="getSkse" set-method="setSkse" usage="optional" />
+				<value style="attribute" name="SKJE" get-method="getSkje" set-method="setSkje" usage="optional" />
+				<value style="attribute" name="CESKJE" get-method="getCeskje" set-method="setCeskje" usage="optional" />
+				<value style="attribute" name="WNKZYY" get-method="getWnkzyy" set-method="setWnkzyy" usage="optional" />
+				<value style="attribute" name="BEIZ" get-method="getBeiz" set-method="setBeiz" usage="optional" />
+				<collection name="djxxList" get-method="getDjxxList" set-method="setDjxxList" usage="optional" create-type="java.util.ArrayList">
+					<structure type="com.citic.server.gf.domain.request.ControlRequest_Djxx" name="djxx">
+						<value style="attribute" name="BDHM" get-method="getBdhm" set-method="setBdhm" usage="optional" />
+						<value style="attribute" name="CCXH" get-method="getCcxh" set-method="setCcxh" usage="optional" />
+						<value style="attribute" name="CSXH" get-method="getCsxh" set-method="setCsxh" usage="optional" />
+						<value style="attribute" name="JRCPBH" get-method="getJrcpbh" set-method="setJrcpbh" usage="optional" />
+						<value style="attribute" name="DJJG" get-method="getDjjg" set-method="setDjjg" usage="optional" />
+						<value style="attribute" name="DJWH" get-method="getDjwh" set-method="setDjwh" usage="optional" />
+						<value style="attribute" name="DJJE" get-method="getDjje" set-method="setDjje" usage="optional" />
+						<value style="attribute" name="DJJZRQ" get-method="getDjjzrq" set-method="setDjjzrq" usage="optional" format="toDate10_1" />
+						<value style="attribute" name="BEIZ" get-method="getBeiz" set-method="setBeiz" usage="optional" />
+					</structure>
+				</collection>
+				<collection name="qlxxList" get-method="getQlxxList" set-method="setQlxxList" usage="optional" create-type="java.util.ArrayList">
+					<structure type="com.citic.server.gf.domain.request.ControlRequest_Qlxx" name="qlxx">
+						<value style="attribute" name="BDHM" get-method="getBdhm" set-method="setBdhm" usage="optional" />
+						<value style="attribute" name="CCXH" get-method="getCcxh" set-method="setCcxh" usage="optional" />
+						<value style="attribute" name="XH" get-method="getXh" set-method="setXh" usage="optional" />
+						<value style="attribute" name="JRCPBH" get-method="getJrcpbh" set-method="setJrcpbh" usage="optional" />
+						<value style="attribute" name="QLLX" get-method="getQllx" set-method="setQllx" usage="optional" />
+						<value style="attribute" name="QLR" get-method="getQlr" set-method="setQlr" usage="optional" />
+						<value style="attribute" name="QLJE" get-method="getQlje" set-method="setQlje" usage="optional" />
+						<value style="attribute" name="QLRDZ" get-method="getQlrdz" set-method="setQlrdz" usage="optional" />
+						<value style="attribute" name="QLRLXFS" get-method="getQlrlxfs" set-method="setQlrlxfs" usage="optional" />
+						<value style="attribute" name="BEIZ" get-method="getBeiz" set-method="setBeiz" usage="optional" />
+					</structure>
+				</collection>
+			</structure>
+		</collection>
+		<collection name="hzxxList" get-method="getHzxxList" set-method="setHzxxList" usage="optional" create-type="java.util.ArrayList">
+			<structure type="com.citic.server.gf.domain.request.ControlRequest_Hzxx" name="hzxx">
+				<value style="attribute" name="BDHM" get-method="getBdhm" set-method="setBdhm" usage="optional" />
+				<value style="attribute" name="WJMC" get-method="getWjmc" set-method="setWjmc" usage="optional" />
+				<value style="attribute" name="WJLX" get-method="getWjlx" set-method="setWjlx" usage="optional" />
+				<value style="attribute" name="WSLB" get-method="getWslb" set-method="setWslb" usage="optional" />
+				<value style="attribute" name="WSNR" get-method="getWsnr" set-method="setWsnr" usage="optional" format="base64" />
+				<value style="attribute" name="MD5" get-method="getMd5" set-method="setMd5" usage="optional" />
+			</structure>
+		</collection>
+	</mapping>
+</binding>

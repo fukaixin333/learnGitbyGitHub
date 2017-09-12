@@ -1,0 +1,15 @@
+<binding name="binding_control_hzxxList" package="com.citic.server.gf.domain.request">
+    <include path="../../../custom/base-binding.xml" />
+   <mapping name="hzxxList" class="com.citic.server.gf.domain.request.ControlRequest_HzxxList">
+    <collection get-method="getHzxxList" set-method="setHzxxList" usage="optional" create-type="java.util.ArrayList">
+      <structure type="com.citic.server.gf.domain.request.ControlRequest_Hzxx" name="hzxx">
+           <value style="attribute" name="BDHM" get-method="getBdhm" set-method="setBdhm" usage="optional" />
+                <value style="attribute" name="WJMC" get-method="getWjmc" set-method="setWjmc" usage="optional" />
+                <value style="attribute" name="WJLX" get-method="getWjlx" set-method="setWjlx" usage="optional" />
+                <value style="attribute" name="WSLB" get-method="getWslb" set-method="setWslb" usage="optional" />
+                <value style="attribute" name="WSNR" get-method="getWsnr" set-method="setWsnr" usage="optional" format="base64" />
+                <value style="attribute" name="MD5" get-method="getMd5" set-method="setMd5" usage="optional" />
+      </structure>
+    </collection>
+  </mapping>
+  </binding>

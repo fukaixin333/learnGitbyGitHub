@@ -1,0 +1,34 @@
+<binding name="cbrc_stoppayment_req3" package="com.citic.server.cbrc.domain.request">
+	<include path="../../../custom/base-binding-cbrc.xml" />
+	<mapping class="com.citic.server.cbrc.domain.request.CBRC_StopPaymentRequest" name="FEEDBACKFORM">
+		<value style="attribute" name="QQDBS" get-method="getQqdbs" set-method="setQqdbs" usage="required" format="base64UTF8" />
+		<value style="attribute" name="CKZTLB" get-method="getZtlb" set-method="setZtlb" usage="required" format="base64UTF8" />
+		<value style="attribute" name="SQJGDM" get-method="getSqjgdm" set-method="setSqjgdm" usage="required" format="base64UTF8" />
+		<value style="attribute" name="MBJGDM" get-method="getMbjgdm" set-method="setMbjgdm" usage="required" format="base64UTF8" />
+		<value style="attribute" name="HZSJ" get-method="getHzsj" set-method="setHzsj" usage="required" format="toDateTime14Base64" />
+		<collection get-method="getStopPaymentRecoredList" set-method="setStopPaymentRecoredList" usage="optional" create-type="java.util.ArrayList">
+			<structure type="com.citic.server.cbrc.domain.request.CBRC_StopPaymentRequest_Recored" name="STOPPAYMENTRECORD">
+				<value style="attribute" name="RWLSH" get-method="getRwlsh" set-method="setRwlsh" usage="required" format="base64UTF8" />
+				<value style="attribute" name="ZH" get-method="getZh" set-method="setZh" usage="required" format="base64UTF8" />
+				<value style="attribute" name="ZXJG" get-method="getZxjg" set-method="setZxjg" usage="required" format="base64UTF8" />
+				<value style="attribute" name="SBYY" get-method="getSbyy" set-method="setSbyy" usage="required" format="base64UTF8" />
+				<value style="attribute" name="ZXQSSJ" get-method="getZxqssj" set-method="setZxqssj" usage="required" format="toDateTime14Base64" />
+				<collection get-method="getStopPaymentDetailList" set-method="setStopPaymentDetailList" usage="optional" create-type="java.util.ArrayList">
+					<structure type="com.citic.server.cbrc.domain.request.CBRC_StopPaymentRequest_Detail" name="STOPPAYMENTDETAIL">
+						<value style="attribute" name="RWLSH" get-method="getRwlsh" set-method="setRwlsh" usage="required" format="base64UTF8" />
+						<value style="attribute" name="ZH" get-method="getZh" set-method="setZh" usage="required" format="base64UTF8" />
+						<value style="attribute" name="ZHZZH" get-method="getZhzzh" set-method="setZhzzh" usage="required" format="base64UTF8" />
+						<value style="attribute" name="ZZHXH" get-method="getZzhxh" set-method="setZzhxh" usage="required" format="base64UTF8" />
+						<value style="attribute" name="ZZHYE" get-method="getZzhye" set-method="setZzhye" usage="required" format="noCurrencyBase64" />
+						<value style="attribute" name="ZXJG" get-method="getZxjg" set-method="setZxjg" usage="required" format="base64UTF8" />
+						<value style="attribute" name="ZXJGYY" get-method="getZxjgyy" set-method="setZxjgyy" usage="required" format="base64UTF8" />
+						<value style="attribute" name="ZFKSSJ" get-method="getZfkssj" set-method="setZfkssj" usage="required" format="toDateTime14Base64" />
+						<value style="attribute" name="ZFJSSJ" get-method="getZfjssj" set-method="setZfjssj" usage="required" format="toDateTime14Base64" />
+						<value style="attribute" name="BZ" get-method="getBz" set-method="setBz" usage="required" format="base64UTF8" />
+						<value style="attribute" name="CHBZ" get-method="getChbz" set-method="setChbz" usage="required" format="base64UTF8" />
+					</structure>
+				</collection>
+			</structure>
+		</collection>
+	</mapping>
+</binding>

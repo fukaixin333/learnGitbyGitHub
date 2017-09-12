@@ -1,0 +1,64 @@
+<binding name="binding_gdjcy_Dtcxdj" package="com.citic.server.gdjg.domain.request">
+	<mapping class="com.citic.server.gdjg.domain.request.Gdjg_RequestDtcxdj" name="RESULT">
+		<structure type="com.citic.server.gdjg.domain.Gdjg_Request" name="COMMAND">
+			<value style="attribute" name="TYPE" get-method="getCmdtype" set-method="setCmdtype" usage="optional" />
+			<value style="element" name="USERNAME" get-method="getUsername" set-method="setUsername" usage="optional" />
+			<value style="element" name="PASSWORD" get-method="getPassword" set-method="setPassword" usage="optional" />
+		</structure>
+		<structure name="DATA">
+			<value style="attribute" name="CONTENT" get-method="getContent" set-method="setContent" usage="optional" />
+			<collection get-method="getDyndatas" set-method="setDyndatas" usage="optional" create-type="java.util.ArrayList">
+				<structure type="com.citic.server.gdjg.domain.request.Gdjg_Request_TransCx" name="DYNAMICDATA">
+					<value style="element" name="DOCNO" get-method="getDocno" set-method="setDocno" usage="optional" />
+					<value style="element" name="UNIQUEID" get-method="getUniqueid" set-method="setUniqueid" usage="optional" />
+					<value style="element" name="TRANSNUM" get-method="getTransnum" set-method="setTransnum" usage="optional" />
+					<value style="element" name="ACCNAME" get-method="getAccname" set-method="setAccname" usage="optional" />
+					<value style="element" name="ACCTYPE" get-method="getAcctype" set-method="setAcctype" usage="optional" />
+					<value style="element" name="ACCOUNT" get-method="getAccount" set-method="setAccount" usage="optional" />
+					<value style="element" name="CARDNO" get-method="getCardno" set-method="setCardno" usage="optional" />
+					<value style="element" name="IDTYPE" get-method="getIdtype" set-method="setIdtype" usage="optional" />
+					<value style="element" name="ID" get-method="getId" set-method="setId" usage="optional" />
+					<value style="element" name="EXCHANGETYPE" get-method="getExchangetype" set-method="setExchangetype" usage="optional" />
+					<value style="element" name="TRANSTIME" get-method="getTranstime" set-method="setTranstime" usage="optional" />
+					<value style="element" name="LOANFLAG" get-method="getLoanflag" set-method="setLoanflag" usage="optional" />
+					<value style="element" name="EXPENSE" get-method="getExpense" set-method="setExpense" usage="optional" />
+					<value style="element" name="INCOME" get-method="getIncome" set-method="setIncome" usage="optional" />
+					<value style="element" name="TRANSCURRENCY" get-method="getTranscurrency" set-method="setTranscurrency" usage="optional" />
+					<value style="element" name="BANLANCE" get-method="getBanlance" set-method="setBanlance" usage="optional" />
+					<value style="element" name="CURRENCY" get-method="getCurrency" set-method="setCurrency" usage="optional" />
+					<value style="element" name="CREDIT" get-method="getCredit" set-method="setCredit" usage="optional" />
+					<value style="element" name="TRANSADDR" get-method="getTransaddr" set-method="setTransaddr" usage="optional" />
+					<value style="element" name="TRANSADDRNO" get-method="getTransaddrno" set-method="setTransaddrno" usage="optional" />
+					<value style="element" name="TRANSCOUNTRY" get-method="getTranscountry" set-method="setTranscountry" usage="optional" />
+					<value style="element" name="TRANSREMARK" get-method="getTransremark" set-method="setTransremark" usage="optional" />
+					<value style="element" name="TRANSTEL" get-method="getTranstel" set-method="setTranstel" usage="optional" />
+					<value style="element" name="TRANSCHANNEL" get-method="getTranschannel" set-method="setTranschannel" usage="optional" />
+					<value style="element" name="TRANSTELLER" get-method="getTransteller" set-method="setTransteller" usage="optional" />
+					<value style="element" name="AUTHORIZETELLER" get-method="getAuthorizeteller" set-method="setAuthorizeteller" usage="optional" />
+					<value style="element" name="TRANSOUTLETS" get-method="getTransoutlets" set-method="setTransoutlets" usage="optional" />
+					<value style="element" name="MATCHACCOUNT" get-method="getMatchaccount" set-method="setMatchaccount" usage="optional" />
+					<value style="element" name="MATCHCARD" get-method="getMatchcard" set-method="setMatchcard" usage="optional" />
+					<value style="element" name="MATCHACCNAME" get-method="getMatchaccname" set-method="setMatchaccname" usage="optional" />
+					<value style="element" name="MATCHBANKNO" get-method="getMatchbankno" set-method="setMatchbankno" usage="optional" />
+					<value style="element" name="MATCHBANKNAME" get-method="getMatchbankname" set-method="setMatchbankname" usage="optional" />
+					<value style="element" name="MATCHIDTYPE" get-method="getMatchidtype" set-method="setMatchidtype" usage="optional" />
+					<value style="element" name="MATCHID" get-method="getMatchid" set-method="setMatchid" usage="optional" />
+					<value style="element" name="MATCHADDR" get-method="getMatchaddr" set-method="setMatchaddr" usage="optional" />
+					<value style="element" name="MATCHTEL" get-method="getMatchtel" set-method="setMatchtel" usage="optional" />
+					<value style="element" name="VOUCHERTYPE" get-method="getVouchertype" set-method="setVouchertype" usage="optional" />
+					<value style="element" name="VOUCHER" get-method="getVoucher" set-method="setVoucher" usage="optional" />
+					<value style="element" name="CASHFLAG" get-method="getCashflag" set-method="setCashflag" usage="optional" />
+					<value style="element" name="TERM" get-method="getTerm" set-method="setTerm" usage="optional" />
+					<value style="element" name="TANDF" get-method="getTandf" set-method="setTandf" usage="optional" />
+					<value style="element" name="BUSINESSNAME" get-method="getBusinessname" set-method="setBusinessname" usage="optional" />
+					<value style="element" name="BUSINESSNO" get-method="getBusinessno" set-method="setBusinessno" usage="optional" />
+					<value style="element" name="VALIDITYPERIOD" get-method="getValidityperiod" set-method="setValidityperiod" usage="optional" />
+					<value style="element" name="TRANSTYPE" get-method="getTranstype" set-method="setTranstype" usage="optional" />
+					<value style="element" name="TRANSNO" get-method="getTransno" set-method="setTransno" usage="optional" />
+					<value style="element" name="ANTITRANSFLAG" get-method="getAntitransflag" set-method="setAntitransflag" usage="optional" />
+					<value style="element" name="INVOLVINGFLAG" get-method="getInvolvingflag" set-method="setInvolvingflag" usage="optional" />
+				</structure>
+			</collection>
+		</structure>
+	</mapping>
+</binding>

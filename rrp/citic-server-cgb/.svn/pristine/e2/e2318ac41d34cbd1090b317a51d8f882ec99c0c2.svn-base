@@ -1,0 +1,20 @@
+<binding name="binding_whpsb_grkhzlcx" package="com.citic.server.whpsb.domain.response">
+    <mapping class="com.citic.server.whpsb.domain.response.Whpsb_Response" name="grkhzlcx">
+        <structure get-method="getHeader" set-method="setHeader" usage="optional" name="sjl">
+            <value style="element" name="count" get-method="getCount" set-method="setCount" usage="optional" />
+            <value style="element" name="yhdm" get-method="getYhdm" set-method="setYhdm" usage="optional" />
+            <value style="element" name="czsj" get-method="getCzsj" set-method="setCzsj" usage="optional" />
+        </structure>
+        <collection get-method="getSadxList" set-method="setSadxList" usage="optional" create-type="java.util.ArrayList" name="mxjl">
+            <structure type="com.citic.server.whpsb.domain.Whpsb_SadxBody" name="sadx">
+                <value style="element" name="ah" get-method="getAh" set-method="setAh" usage="optional" />
+                <value style="element" name="cbdw" get-method="getCbdw" set-method="setCbdw" usage="optional" />
+                <value style="element" name="cbr1" get-method="getCbr1" set-method="setCbr1" usage="optional" />
+                <value style="element" name="cbr2" get-method="getCbr2" set-method="setCbr2" usage="optional" />
+                <value style="element" name="zzlx" get-method="getZzlx" set-method="setZzlx" usage="optional" />
+                <value style="element" name="zzhm" get-method="getZzhm" set-method="setZzhm" usage="optional" />
+                <value style="element" name="mc" get-method="getMc" set-method="setMc" usage="optional" />
+            </structure>
+        </collection>
+    </mapping>
+</binding>

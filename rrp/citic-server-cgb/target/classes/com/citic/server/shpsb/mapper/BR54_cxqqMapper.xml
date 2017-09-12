@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.shpsb.mapper.BR54_cxqqMapper">
+	<delete id="delBr54_cxqq" parameterType="String">  
+  		<![CDATA[ delete from br54_cxqq where msgseq = #{_parameter} ]]>
+	</delete>
+
+	<delete id="delBr54_cxqq_mx" parameterType="String">  
+  		<![CDATA[ delete from br54_cxqq_mx where msgseq=#{_parameter} ]]>
+	</delete>
+
+	<delete id="delBr54_cxqq_back" parameterType="String">  
+  		<![CDATA[ delete from br54_cxqq_back where msgseq=#{_parameter} ]]>
+	</delete>
+
+	<insert id="insertBr54_cxqq" parameterType="com.citic.server.shpsb.domain.Br54_cxqq">
+		insert into br54_cxqq(msgseq,yhdm,czsj,count,status,orgkey,qrydt,recipient_p,recipient_time,feedback_p,feedback_time,last_up_dt,packetkey)
+		values(
+		#{msgseq},#{yhdm},#{czsj},#{count},#{status},#{orgkey},#{qrydt},#{recipient_p},#{recipient_time},#{feedback_p},#{feedback_time},#{last_up_dt},#{packetkey}
+		)
+	</insert>
+
+	<insert id="insertBr54_cxqq_mx" parameterType="com.citic.server.shpsb.domain.ShpsbSadx">
+		insert into br54_cxqq_mx(bdhm,ah,msgseq,cbdw,cbr1,cbr2,zzlx,zzhm,mc,party_class_cd,zh,cxkssj,cxjssj,qrydt,orgkey,qrymode,tjlb,jylsh,jyglh)
+		values(
+		#{bdhm},#{ah},#{msgseq},#{cbdw},#{cbr1},#{cbr2},#{zzlx},#{zzhm},#{mc},#{party_class_cd},#{zh},#{cxkssj},#{cxjssj},#{qrydt},#{orgkey},#{qrymode},
+		#{tjlb},#{jylsh},#{jyglh}
+		)
+	</insert>
+
+	<insert id="insertBr54_cxqq_back" parameterType="com.citic.server.shpsb.domain.Br54_cxqq_back">
+		insert into br54_cxqq_back(bdhm,ah,msgseq,cljg,czsbyy,qrydt,orgkey,dealing_p,dealing_time,last_up_dt,msgcheckresult,status )
+		values(
+		#{bdhm},#{ah},#{msgseq},#{cljg},#{czsbyy},#{qrydt},#{orgkey},#{dealing_p},#{dealing_time},#{last_up_dt},#{msgcheckresult},#{status}
+		)
+	</insert>
+
+	<update id="updateBr54_cxqq" parameterType="com.citic.server.shpsb.domain.Br54_cxqq">
+		update br54_cxqq set status=#{status},last_up_dt=#{last_up_dt}
+		where msgseq=#{msgseq}
+	</update>
+
+	<update id="updateBr54_cxqq_back" parameterType="com.citic.server.shpsb.domain.Br54_cxqq_back">
+		update br54_cxqq_back set status=#{status},
+		cljg=#{cljg},
+		<if test="czsbyy != null">
+			czsbyy = #{czsbyy} ,
+		</if>
+		last_up_dt=#{last_up_dt}
+		where bdhm=#{bdhm}
+	</update>
+
+	<insert id="insertBr54_attach" parameterType="com.citic.server.shpsb.domain.Br54_cxqq">
+		insert into br54_attach(packetkey,xh,wjmc,wjlx,wspath,qrydt )
+		select #{packetname},xh,wjmc,wjlx,wspath,#{qrydt}
+		from mc20_ws
+		where bdhm=#{packetkey}
+	</insert>
+	
+	<delete id="delBr54_cxqq_back_acct" parameterType="String">  
+  		<![CDATA[ delete from br54_cxqq_back_acct where bdhm=#{_parameter} ]]>
+	</delete>
+	
+	<delete id="delBr54_cxqq_back_party" parameterType="String">  
+  		<![CDATA[ delete from Br54_cxqq_back_party where bdhm=#{_parameter} ]]>
+	</delete>
+	
+	<delete id="delBr54_cxqq_back_card" parameterType="String">  
+  		<![CDATA[ delete from Br54_cxqq_back_card where bdhm=#{_parameter} ]]>
+	</delete>
+	
+	<delete id="delBr54_cxqq_back_trans" parameterType="String">  
+  		<![CDATA[ delete from Br54_cxqq_back_trans where bdhm=#{_parameter} ]]>
+	</delete>
+	
+	<delete id="delBr54_cxqq_back_ddzh" parameterType="String">  
+  		<![CDATA[ delete from br54_cxqq_back_ddzh where bdhm=#{_parameter} ]]>
+	</delete>
+	
+	<delete id="delBr54_cxqq_back_jyglh" parameterType="String">  
+  		<![CDATA[ delete from br54_cxqq_back_jyglh where bdhm=#{_parameter} ]]>
+	</delete>
+	
+	<delete id="delBr54_cxqq_back_czrz" parameterType="String">  
+  		<![CDATA[ delete from br54_cxqq_back_czrz where bdhm=#{_parameter} ]]>
+	</delete>
+	
+	<delete id="delBr54_cxqq_back_msg" parameterType="String">  
+  		<![CDATA[ delete from Br54_cxqq_back_msg where msgseq=#{_parameter} ]]>
+	</delete>
+	<insert id="insertBr54_cxqq_back_acct" parameterType="com.citic.server.shpsb.domain.request.ShpsbRequestZhxxMx">
+		insert into br54_cxqq_back_acct(bdhm,msgseq,zhxh,zh,ctac,zhlb,zhzt,yhmc,khrq,xhrq,cxsj,hbzl,zhye,kyye,qrydt )
+		values(
+		#{bdhm},#{msgseq},#{zhxh},#{zh},#{ctac},#{zhlb},#{zhzt},#{yhmc},#{khrq},#{xhrq},#{cxsj},#{hbzl},#{zhye},#{kyye},#{qrydt}
+		)
+	</insert>
+	
+	<insert id="insertBr54_cxqq_back_card" parameterType="com.citic.server.shpsb.domain.request.ShpsbRequestZhcyrMx">
+		insert into br54_cxqq_back_card(bdhm,msgseq,ckrxm,zzlx,zzhm,qrydt )
+		values(
+		#{bdhm},#{msgseq},#{ckrxm},#{zzlx},#{zzhm},#{qrydt}
+		)
+	</insert>
+	
+	<insert id="insertBr54_cxqq_back_party" parameterType="com.citic.server.shpsb.domain.request.ShpsbRequestKhzlMx">
+		insert into br54_cxqq_back_party(bdhm,msgseq,zzdz,zzdh,gzdw,dwdz,dwdh,lxdz,lxdh,lxsj,email,khwd,glsj,dbrxm,dbrzzlx,dbrzzh,lxr,shxydm,qrydt
+		)
+		values(
+		#{bdhm},#{msgseq},#{zzdz},#{zzdh},#{gzdw},#{dwdz},#{dwdh},#{lxdz},#{lxdh},#{lxsj},#{email},#{khwd},#{glsj},#{dbrxm},#{dbrzzlx},#{dbrzzh},#{lxr},#{shxydm},#{qrydt}
+		)
+	</insert>
+	
+	<insert id="insertBr54_cxqq_back_trans" parameterType="com.citic.server.shpsb.domain.request.ShpsbRequestJylsMx">
+		insert into
+		br54_cxqq_back_trans(bdhm,msgseq,transseq,ah,zh,jyrq,jysj,dfzh,dfhm,dfmc,bz,jyje,jdbz,jyqd,jywd,ip,mac,beiz,jyye,cph,dfzzlx,dfzzhm,jylsh,qrydt,jyglh )
+		values(
+		#{bdhm},#{msgseq},#{transseq},#{ah},#{zh},#{jyrq},#{jysj},#{dfzh},#{dfhm},#{dfmc},#{bz},#{jyje},#{jdbz},#{jyqd},#{jywd},#{ip},#{mac},#{beiz},#{jyye},#{cph},#{dfzzlx},#{dfzzhm},#{jylsh},#{qrydt},#{jyglh}
+		)
+	</insert>
+	
+	<insert id="insertBr54_cxqq_back_czrz" parameterType="com.citic.server.shpsb.domain.request.ShpsbRequestCzrzMx">
+		insert into br54_cxqq_back_czrz(bdhm,msgseq,ip,mac,czlx,czwd,czkssj,czjssj,lng,lat,qrydt )
+		values(
+		#{bdhm},#{msgseq},#{ip},#{mac},#{czlx},#{czwd},#{czkssj},#{czjssj},#{lng},#{lat},#{qrydt}
+		)
+	</insert>
+	
+	<insert id="insertBr54_cxqq_back_jyglh" parameterType="com.citic.server.shpsb.domain.request.ShpsbRequestJyglhMx">
+		insert into br54_cxqq_back_jyglh(bdhm,msgseq,jyglh,qrydt )
+		values(
+		#{bdhm},#{msgseq},#{jyglh},#{qrydt}
+		)
+	</insert>
+	
+	<insert id="insertBr54_cxqq_back_ddzh" parameterType="com.citic.server.shpsb.domain.request.ShpsbRequestDdzhMx">
+		insert into br54_cxqq_back_ddzh(bdhm,msgseq,ddzh,ddhm,ddkhh,qrydt )
+		values(
+		#{bdhm},#{msgseq},#{ddzh},#{ddhm},#{ddkhh},#{qrydt}
+		)
+	</insert>
+
+	<insert id="insertBr54_cxqq_back_msg" parameterType="com.citic.server.shpsb.domain.Br54_cxqq_back_msg">
+		insert into br54_cxqq_back_msg( xh,msgseq,msg_filename,msg_filepath,create_dt,status )
+		values(
+		#{xh},#{msgseq},#{msg_filename},#{msg_filepath},#{create_dt},#{status}
+		)
+	</insert>
+
+	<select id="selBr54_cxqq" parameterType="String" resultType="com.citic.server.shpsb.domain.Br54_cxqq">
+		select * from br54_cxqq where msgseq=#{_parameter}
+	</select>
+
+	<select id="selBr54_cxqq_mx" parameterType="String" resultType="com.citic.server.shpsb.domain.ShpsbSadx">
+		select * from br54_cxqq_mx where bdhm=#{_parameter}
+	</select>
+
+	<select id="selBr54_cxqq_back" parameterType="String" resultType="com.citic.server.shpsb.domain.Br54_cxqq_back">
+		select * from br54_cxqq_back where bdhm=#{_parameter}
+	</select>
+
+	<select id="isMakeMsg" parameterType="String" resultType="java.lang.Integer">
+		select count(0) from br54_cxqq_back where msgseq =#{_parameter} and status='0'
+	</select>
+
+	<select id="selBr54_cxqq_backList" parameterType="String" resultType="com.citic.server.shpsb.domain.ShpsbSadx">
+		select a.*,b.cljg,b.czsbyy from br54_cxqq_back a,br54_cxqq_mx b
+		where a.msgseq=b.msgseq and a.bdhm=b.bdhm
+		and
+		b.msgseq=#{_parameter}
+	</select>
+
+	<select id="selBr54_cxqq_back_acctList" parameterType="String" resultType="com.citic.server.shpsb.domain.request.ShpsbRequestZhxxMx">
+		select * from br54_cxqq_back_acct where msgseq=#{_parameter}
+	</select>
+
+	<select id="selBr54_cxqq_back_cardList" parameterType="String" resultType="com.citic.server.shpsb.domain.request.ShpsbRequestZhcyrMx">
+		select * from br54_cxqq_back_card where msgseq=#{_parameter}
+	</select>
+	
+	<select id="selBr54_cxqq_back_partyList" parameterType="String" resultType="com.citic.server.shpsb.domain.request.ShpsbRequestKhzlMx">
+		select * from br54_cxqq_back_party where msgseq=#{_parameter}
+	</select>
+	
+	<select id="selBr54_cxqq_back_transList" parameterType="String" resultType="com.citic.server.shpsb.domain.request.ShpsbRequestJylsMx">
+		select * from br54_cxqq_back_trans where msgseq=#{_parameter}
+	</select>
+	
+	<select id="selBr54_cxqq_back_czrzList" parameterType="String" resultType="com.citic.server.shpsb.domain.request.ShpsbRequestCzrzMx">
+		select * from br54_cxqq_back_czrz where msgseq=#{_parameter}
+	</select>
+	
+	<select id="selBr54_cxqq_back_jygnhList" parameterType="String" resultType="com.citic.server.shpsb.domain.request.ShpsbRequestJyglhMx">
+		select * from br54_cxqq_back_jyglh where msgseq=#{_parameter}
+	</select>
+	
+	<select id="selBr54_cxqq_back_ddzhList" parameterType="String" resultType="com.citic.server.shpsb.domain.request.ShpsbRequestDdzhMx">
+		select * from br54_cxqq_back_ddzh where msgseq=#{_parameter}
+	</select>
+
+	<select id="selBr54_cxqq_mxList" parameterType="String" resultType="com.citic.server.shpsb.domain.ShpsbSadx">
+		select * from br54_cxqq_mx where msgseq = #{_parameter}
+	</select>
+</mapper> 

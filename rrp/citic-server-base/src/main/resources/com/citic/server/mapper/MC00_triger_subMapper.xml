@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.mapper.MC00_triger_subMapper">
+
+	<!-- 取出所有，当前有效的触发器的触发条件信息,触发器状态有效，触发器被任务使用并且任务状态有效 -->
+	<select id="getMC00_triger_subList" resultType="MC00_triger_sub">
+		select s.trigerid,s.trigercondid,s.param1,s.param2,s.param3 
+		  from mc00_triger_sub s,mc00_triger t,mc00_task tk
+		  where s.trigerid=t.trigerid and s.trigerid=tk.trigerid and t.flag='1' and tk.flag='1'
+		  order by s.trigerid,s.trigercondid asc
+	</select>
+	
+</mapper>

@@ -1,0 +1,43 @@
+<binding name="binding_result_267540" package="com.citic.server.inner.domain">
+	<include path="../../../custom/base-binding-project.xml" />
+	<mapping name="Document" class="com.citic.server.inner.domain.response.DeferFreezeResult">
+		<structure name="Head">
+			<value style="element" name="To" get-method="getTo" set-method="setTo" usage="optional" />
+			<value style="element" name="Code" get-method="getCode" set-method="setCode" usage="optional" />
+			<value style="element" name="Description" get-method="getDescription" set-method="setDescription" usage="optional" />
+		</structure>
+		<structure name="Body">
+			<value style="element" name="FrozenNumber" get-method="getFrozenNumber" set-method="setFrozenNumber" usage="optional" />
+			<value style="element" name="AccountNumber" get-method="getAccountNumber" set-method="setAccountNumber" usage="optional" />
+			<value style="element" name="FrozenType" get-method="getFrozenType" set-method="setFrozenType" usage="optional" />
+			<value style="element" name="FrozenInsType" get-method="getFrozenInsType" set-method="setFrozenInsType" usage="optional" />
+			<value style="element" name="Currency" get-method="getCurrency" set-method="setCurrency" usage="optional" />
+			<value style="element" name="CashExCode" get-method="getCashExCode" set-method="setCashExCode" usage="optional" />
+			<value style="element" name="FrozenAmount" get-method="getFrozenAmount" set-method="setFrozenAmount" usage="optional" format="precisionOfCent" />
+			<value style="element" name="EffectiveDate" get-method="getEffectiveDate" set-method="setEffectiveDate" usage="optional" format="toDateTime19" />
+			<value style="element" name="ExpiringDate" get-method="getExpiringDate" set-method="setExpiringDate" usage="optional" format="toDateTime19" />
+			<value style="element" name="NewExpiringDate" get-method="getNewExpiringDate" set-method="setNewExpiringDate" usage="optional" format="toDateTime19" />
+			<value style="element" name="DeferBookNumber" get-method="getDeferBookNumber" set-method="setDeferBookNumber" usage="optional" />
+			<value style="element" name="FrozenInsName" get-method="getFrozenInsName" set-method="setFrozenInsName" usage="optional" />
+			<value style="element" name="FrozenReason" get-method="getFrozenReason" set-method="setFrozenReason" usage="optional" />
+			<value style="element" name="Remark" get-method="getRemark" set-method="setRemark" usage="optional" />
+			<value style="element" name="FrozenBranch" get-method="getFrozenBranch" set-method="setFrozenBranch" usage="optional" />
+			<value style="element" name="LawName1" get-method="getLawName1" set-method="setLawName1" usage="optional" />
+			<value style="element" name="LawIDNumber1" get-method="getLawIDNumber1" set-method="setLawIDNumber1" usage="optional" />
+			<value style="element" name="LawName2" get-method="getLawName2" set-method="setLawName2" usage="optional" />
+			<value style="element" name="LawIDNumber2" get-method="getLawIDNumber2" set-method="setLawIDNumber2" usage="optional" />
+			<value style="element" name="AccountType" get-method="getAccountType" set-method="setAccountType" usage="optional" />
+			<value style="element" name="AccountBalance" get-method="getAccountBalance" set-method="setAccountBalance" usage="optional" format="precisionOfCent" />
+			<value style="element" name="AvailableAmount" get-method="getAvailableAmount" set-method="setAvailableAmount" usage="optional" format="precisionOfCent" />
+		</structure>
+		<structure name="Foot">
+			<value style="element" name="TotalPage" get-method="getTotalPage" set-method="setTotalPage" usage="optional" format="toInt" />
+			<value style="element" name="TotalNum" get-method="getTotalNum" set-method="setTotalNum" usage="optional" format="toInt" />
+			<value style="element" name="CurrPage" get-method="getCurrPage" set-method="setCurrPage" usage="optional" format="toInt" />
+			<value style="element" name="CurrPageRow" get-method="getCurrPageRow" set-method="setCurrPageRow" usage="optional" format="toInt" />
+			<value style="element" name="TodRecNum" get-method="getTodRecNum" set-method="setTodRecNum" usage="optional" format="toInt" />
+			<value style="element" name="LastPage" get-method="getLastPage" set-method="setLastPage" usage="optional" />
+			<value style="element" name="ResFlag" get-method="getResFlag" set-method="setResFlag" usage="optional" />
+		</structure>
+	</mapping>
+</binding>

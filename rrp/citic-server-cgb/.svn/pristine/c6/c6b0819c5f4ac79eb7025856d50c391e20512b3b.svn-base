@@ -1,0 +1,53 @@
+<binding name="binding_gdjc_lsdj" package="com.citic.server.gdjc.domain.request">
+    <include path="../../custom/base-binding-project.xml" />
+    <mapping class="com.citic.server.gdjc.domain.request.Gdjc_RequestLsdj" name="RESULT">
+        <structure name="COMMAND">
+            <value style="attribute" name="TYPE" get-method="getCmdtype" set-method="setCmdtype" usage="optional" />
+            <value style="element" name="USERNAME" get-method="getUsername" set-method="setUsername" usage="optional" />
+            <value style="element" name="PASSWORD" get-method="getPassword" set-method="setPassword" usage="optional" />
+        </structure>
+        <structure name="DATA">
+            <value style="attribute" name="CONTENT" get-method="getContent" set-method="setContent" usage="optional" />
+            <value style="element" name="DOCNO" get-method="getDocno" set-method="setDocno" usage="optional" />
+            <collection get-method="getCases" set-method="setCases" usage="optional" create-type="java.util.ArrayList">
+                <structure type="com.citic.server.gdjc.domain.request.Gdjc_RequestLsdj_Case" name="CASE">
+                    <value style="element" name="CASENO" get-method="getCaseno" set-method="setCaseno" usage="optional" />
+                    <collection get-method="getAccs" set-method="setAccs" usage="optional" create-type="java.util.ArrayList">
+                        <structure type="com.citic.server.gdjc.domain.request.Gdjc_RequestLsdj_Acc" name="ACC">
+                            <value style="element" name="UNIQUEID" get-method="getUniqueid" set-method="setUniqueid" usage="optional" />
+                            <collection get-method="getTranslist" set-method="setTranslist" usage="optional" create-type="java.util.ArrayList">
+                                <structure type="com.citic.server.gdjc.domain.request.Gdjc_RequestLsdj_Trans" name="TRANS">
+                                    <value style="element" name="TRANSNUM" get-method="getTransnum" set-method="setTransnum" usage="optional" />
+                                    <value style="element" name="ACCNAME" get-method="getAccname" set-method="setAccname" usage="optional" />
+                                    <value style="element" name="CARDNO" get-method="getCardno" set-method="setCardno" usage="optional" />
+                                    <value style="element" name="ACCTYPE" get-method="getAcctype" set-method="setAcctype" usage="optional" />
+                                    <value style="element" name="ACCOUNT" get-method="getAccount" set-method="setAccount" usage="optional" />
+                                    <value style="element" name="SUBACCOUNT" get-method="getSubaccount" set-method="setSubaccount" usage="optional" />
+                                    <value style="element" name="EXCHANGETYPE" get-method="getExchangetype" set-method="setExchangetype" usage="optional" />
+                                    <value style="element" name="TRANSTIME" get-method="getTranstime" set-method="setTranstime" usage="optional" />
+                                    <value style="element" name="EXPENSE" get-method="getExpense" set-method="setExpense" usage="optional" />
+                                    <value style="element" name="INCOME" get-method="getIncome" set-method="setIncome" usage="optional" />
+                                    <value style="element" name="BANLANCE" get-method="getBanlance" set-method="setBanlance" usage="optional" format="noCurrency" />
+                                    <value style="element" name="CURRENCY" get-method="getCurrency" set-method="setCurrency" usage="optional" />
+                                    <value style="element" name="TRANSTYPE" get-method="getTranstype" set-method="setTranstype" usage="optional" />
+                                    <value style="element" name="TRANSADDR" get-method="getTransaddr" set-method="setTransaddr" usage="optional" />
+                                    <value style="element" name="TRANSADDRNO" get-method="getTransaddrno" set-method="setTransaddrno" usage="optional" />
+                                    <value style="element" name="TRANSCOUNTRY" get-method="getTranscountry" set-method="setTranscountry" usage="optional" />
+                                    <value style="element" name="TRANSREMARK" get-method="getTransremark" set-method="setTransremark" usage="optional" />
+                                    <value style="element" name="TRANSTEL" get-method="getTranstel" set-method="setTranstel" usage="optional" />
+                                    <value style="element" name="TRANSCHANNEL" get-method="getTranschannel" set-method="setTranschannel" usage="optional" />
+                                    <value style="element" name="TRANSTELLE" get-method="getTranstelle" set-method="setTranstelle" usage="optional" />
+                                    <value style="element" name="TRANSTERMIP" get-method="getTranstermip" set-method="setTranstermip" usage="optional" />
+                                    <value style="element" name="MATCHACCOUNT" get-method="getMatchaccount" set-method="setMatchaccount" usage="optional" />
+                                    <value style="element" name="MATCHACCNAME" get-method="getMatchaccname" set-method="setMatchaccname" usage="optional" />
+                                    <value style="element" name="MATCHBANKNO" get-method="getMatchbankno" set-method="setMatchbankno" usage="optional" />
+                                    <value style="element" name="MATCHBANKNAME" get-method="getMatchbankname" set-method="setMatchbankname" usage="optional" />
+                                </structure>
+                            </collection>
+                        </structure>
+                    </collection>
+                </structure>
+            </collection>
+        </structure>
+    </mapping>
+</binding>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Repository and Service layers -->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="  
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd         
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd             
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<import resource="application-context.xml" />
+	<import resource="tools-config.xml" />
+	<import resource="datasource-busi-config.xml" />
+	<import resource="datasource-meta-config.xml" />
+
+	<context:component-scan base-package="com.citic" />
+	<tx:annotation-driven proxy-target-class="false" />
+
+	<beans profile="DEV">
+		<context:property-placeholder location="classpath:properties/application-dev.properties" ignore-resource-not-found="false" />
+	</beans>
+	<beans profile="SIT">
+		<context:property-placeholder location="classpath:properties/application-sit.properties" ignore-resource-not-found="false" />
+	</beans>
+	<beans profile="UAT">
+		<context:property-placeholder location="classpath:properties/application-uat.properties" ignore-resource-not-found="false" />
+	</beans>
+	<beans profile="PRO">
+		<context:property-placeholder location="classpath:properties/application-pro.properties" ignore-resource-not-found="false" />
+	</beans>
+</beans>
+	

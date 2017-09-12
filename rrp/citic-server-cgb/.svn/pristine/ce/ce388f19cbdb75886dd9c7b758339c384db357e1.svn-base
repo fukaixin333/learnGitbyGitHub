@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.dx.mapper.Br20_md_info_cgbMapper">
+
+
+	<select id="getWhiteList" parameterType="String" resultType="com.citic.server.dx.domain.Br20_md_info">
+		select *
+		from br20_md_data
+		where md_flag ='2'
+	</select>
+
+	<select id="getDealFileName" parameterType="com.citic.server.dx.domain.Br20_md_info" resultType="String">
+		select distinct file_name
+		from br20_md_accept
+		<where>
+			<if test="flag != null and flag != ''">
+				and flag in (${flag})
+			</if>
+			<if test="md_type != null and md_type != ''">
+				and md_type=#{md_type}
+			</if>
+			<if test="file_type != null and file_type != ''">
+				and file_type=#{file_type}
+			</if>
+			<if test="accept_time != null and accept_time != ''">
+				and accept_time like #{accept_time}||'%'
+			</if>
+		</where>
+	</select>
+
+	<select id="getTaskInfo" resultType="com.citic.server.dx.domain.Br20_md_info">
+		select *
+		from br20_md_task
+		order by file_type desc
+	</select>
+
+	<update id="updateMd_flagByOperate_flag" parameterType="com.citic.server.dx.domain.Br20_md_info">
+		update br20_md_data
+		<set>
+			<if test="md_flag != null and md_flag != ''">
+				md_flag=#{md_flag},
+			</if>
+			<if test="last_update_time != null and last_update_time != ''">
+				last_update_time=#{last_update_time},
+			</if>
+			<if test="last_update_user != null and last_update_user != ''">
+				last_update_user=#{last_update_user}
+			</if>
+		</set>
+		where md_type=#{md_type} and md_value=#{md_value} and
+		p_name=#{p_name}
+	</update>
+
+	<insert id="insertBr20_md_data_log" parameterType="com.citic.server.dx.domain.Br20_md_info">
+		insert into
+		br20_md_data_log(
+		file_code,md_code,md_type,md_kind,cardtype,md_value,p_name,md_source,case_type,operate_flag,send_flag,accept_time,bank_id,police,police_phone,police_check_dt,open_card_dt,start_dt,end_dt,remark
+		,interface_type,send_type,credit_send_flag,credit_send_time,credit_status,credit_sbyy,credit_failed_num,is_inner
+		) values(
+		#{file_code},#{md_code},#{md_type},#{md_kind},#{cardtype},#{md_value},#{p_name},#{md_source},#{case_type},#{operate_flag},#{send_flag},#{accept_time},#{bank_id},#{police},#{police_phone},#{police_check_dt},#{open_card_dt},#{start_dt},#{end_dt},#{remark}
+		,#{interface_type},#{send_type},#{credit_send_flag},#{credit_send_time},#{credit_status},#{credit_sbyy},#{credit_failed_num},#{is_inner}
+		)
+	</insert>
+
+	<insert id="insertBr20_md_data" parameterType="com.citic.server.dx.domain.Br20_md_info">
+		insert into
+		br20_md_data(
+		md_code,md_type,md_kind,cardtype,md_value,p_name,md_source,case_type,md_flag,last_update_time,last_update_user,bank_id,police,police_phone,police_check_dt,open_card_dt,start_dt,end_dt,remark
+		)
+		values(
+		#{md_code},#{md_type},#{md_kind},#{cardtype},#{md_value},#{p_name},#{md_source},#{case_type},#{md_flag},#{last_update_time},#{last_update_user},#{bank_id},#{police},#{police_phone},#{police_check_dt},#{open_card_dt},#{start_dt},#{end_dt},#{remark}
+		)
+	</insert>
+
+	<insert id="insertBr20_md_accept" parameterType="com.citic.server.dx.domain.Br20_md_info">
+		insert into
+		br20_md_accept(
+		file_code,file_name,accept_time,md_type,file_type,md_source,flag
+		)
+		values(
+		#{file_code},#{file_name},#{accept_time},#{md_type},#{file_type},#{md_source},#{flag}
+		)
+	</insert>
+
+	<update id="updateFlagByDo" parameterType="String">
+		update br20_md_accept
+		set flag = '3'
+		where file_code=#{_parameter}
+	</update>
+
+	<update id="updateFlagByFileName" parameterType="String">
+		update
+		br20_md_accept
+		set flag = '3'
+		where file_name=#{_parameter} and flag
+		!='2'
+	</update>
+
+	<update id="updateFlagByFail" parameterType="String">
+		update
+		br20_md_accept
+		set flag = '2'
+		where file_name=#{_parameter}
+	</update>
+
+	<delete id="deleteBr20_md_data_log" parameterType="String">  
+  <![CDATA[ delete from br20_md_data_log where md_type=#{_parameter}]]>
+	</delete>
+
+	<delete id="deleteBr20_md_dataByVo" parameterType="String">  
+  <![CDATA[ delete from br20_md_data where md_flag !='2' and md_type=#{_parameter} ]]>
+	</delete>
+
+	<select id="getIncrementSendData" parameterType="String" resultType="com.citic.server.dx.domain.Br20_md_info">
+		select *
+		from br20_md_data_log
+		where send_flag =
+		#{_parameter}
+		order by accept_time
+	</select>
+
+	<select id="getAllSendData" resultType="com.citic.server.dx.domain.Br20_md_info">
+		select *
+		from br20_md_data
+		where md_flag ='1'
+		<!-- <if test="md_type != null and md_type != ''"> md_type=#{md_type} </if> -->
+	</select>
+
+	<insert id="insertBr20_md_send" parameterType="com.citic.server.dx.domain.Br20_md_info">
+		insert into
+		br20_md_send(
+		file_code,file_name,syscode,send_time,md_type,file_type,flag
+		) values(
+		#{file_code},#{file_name},#{syscode},#{send_time},#{md_type},#{file_type},#{flag}
+		)
+	</insert>
+
+	<update id="updateBr_md_taskByVo" parameterType="com.citic.server.dx.domain.Br20_md_info">
+		update
+		br20_md_task
+		set last_time=#{last_time},next_time=#{next_time}
+		where
+		syscode=#{syscode} and file_type=#{file_type}
+	</update>
+
+	<update id="updateSend_flagBykeys" parameterType="com.citic.server.dx.domain.Br20_md_info">
+		update
+		br20_md_data_log
+		set send_flag = '1',send_time =#{send_time}
+		where send_flag = #{send_flag}
+	</update>
+
+	<update id="updateSend_flagByTime" parameterType="com.citic.server.dx.domain.Br20_md_info">
+		update
+		br20_md_data_log
+		set send_flag = #{send_flag},send_time =#{send_time}
+		where accept_time &lt;= #{accept_time} and
+		send_flag = '0'
+	</update>
+
+	<update id="updateSend_flagByMiddle" parameterType="String">
+		update
+		br20_md_data_log
+		set send_flag = #{_parameter}
+		where send_flag = '0'
+	</update>
+
+	<select id="getAllLoadFlag" resultType="String">
+		select vals
+		from bb13_sys_para
+		where code = 'all_load_flag'
+	</select>
+
+	<select id="getMaxFileName" parameterType="com.citic.server.dx.domain.Br20_md_info" resultType="String">
+		select max(file_name)
+		from br20_md_accept
+		<where>
+			<if test="md_type != null and md_type != ''">
+				and md_type=#{md_type}
+			</if>
+			<if test="file_type != null and file_type != ''">
+				and file_type=#{file_type}
+			</if>
+		</where>
+	</select>
+
+	<select id="getMaxSendFileName" resultType="String">
+		select max(file_name)
+		from br20_md_send
+	</select>
+
+	<delete id="deleteBr20_md_dataByKey" parameterType="com.citic.server.dx.domain.Br20_md_info">  
+  <![CDATA[ delete from br20_md_data 
+  where md_value=#{md_value}
+  and md_type=#{md_type} 
+  and p_name=#{p_name}
+  and case_type=#{case_type} ]]>
+	</delete>
+
+	<select id="getInBankDataByCredit" resultType="com.citic.server.dx.domain.Br20_md_info">
+		select
+		file_code,md_code,md_type,md_kind,cardtype,md_value,p_name,md_source,case_type,operate_flag,send_flag,accept_time,bank_id,police,police_phone,police_check_dt,open_card_dt,start_dt,end_dt,remark
+		,interface_type,send_type,credit_send_flag,credit_send_time,credit_status,credit_sbyy,credit_failed_num,is_inner
+		from br20_md_data_log
+		where interface_type = '2' and send_flag='0'
+	</select>
+	<insert id="insertBr20_md_data_logByBatch" parameterType="java.util.List">
+		insert into
+		br20_md_data_log(
+		file_code,md_code,md_type,md_kind,cardtype,md_value,p_name,md_source,case_type,operate_flag,send_flag,accept_time,bank_id,police,police_phone,police_check_dt,open_card_dt,start_dt,end_dt,remark
+		,interface_type,send_type,credit_send_flag,credit_send_time,credit_status,credit_sbyy,credit_failed_num,is_inner
+		)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.file_code},#{item.md_code},#{item.md_type},#{item.md_kind},#{item.cardtype},#{item.md_value},#{item.p_name},#{item.md_source},#{item.case_type},#{item.operate_flag},#{item.send_flag},#{item.accept_time},#{item.bank_id},#{item.police},#{item.police_phone},#{item.police_check_dt},#{item.open_card_dt},#{item.start_dt},#{item.end_dt},#{item.remark}
+			,#{item.interface_type},#{item.send_type},#{item.credit_send_flag},#{item.credit_send_time},#{item.credit_status},#{item.credit_sbyy},#{item.credit_failed_num},#{item.is_inner}
+			)
+		</foreach>
+	</insert>
+
+	<insert id="insertBr20_md_dataByBatch" parameterType="java.util.List">
+		insert into
+		br20_md_data(
+		md_code,md_type,md_kind,cardtype,md_value,p_name,md_source,case_type,md_flag,last_update_time,last_update_user,bank_id,police,police_phone,police_check_dt,open_card_dt,start_dt,end_dt,remark
+		)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.md_code},#{item.md_type},#{item.md_kind},#{item.cardtype},#{item.md_value},#{item.p_name},#{item.md_source},#{item.case_type},#{item.md_flag},#{item.last_update_time},#{item.last_update_user},#{item.bank_id},#{item.police},#{item.police_phone},#{item.police_check_dt},#{item.open_card_dt},#{item.start_dt},#{item.end_dt},#{item.remark}
+			)
+		</foreach>
+	</insert>
+
+	<update id="updateSend_flagByMiddleCore" parameterType="String" timeout="240">
+		update
+		(select * from BR20_MD_DATA_LOG where send_flag = '0' and send_type in ('0','1') FETCH FIRST ${_parameter} ROWS ONLY)
+		set send_flag
+		= '9'
+	</update>
+
+	<select id="getIncrementSendDataCore" resultType="com.citic.server.dx.domain.Br20_md_info">
+		select *
+		from br20_md_data_log
+		where send_flag = '9' and send_type in ('0','1')
+		order by md_type,police_check_dt
+	</select>
+
+	<update id="updateBr20_md_dataByMergeOne" parameterType="com.citic.server.dx.domain.Br20_md_info">
+		MERGE
+		INTO
+		BR20_MD_DATA T
+		USING
+		(
+		SELECT
+		#{md_code} AS MD_CODE ,
+		#{md_type} AS MD_TYPE ,
+		#{md_kind} AS MD_KIND ,
+		#{cardtype} AS CARDTYPE ,
+		#{md_value} AS MD_VALUE ,
+		#{p_name} AS P_NAME ,
+		#{md_source} AS MD_SOURCE ,
+		#{case_type} AS CASE_TYPE ,
+		#{md_flag} AS MD_FLAG ,
+		#{last_update_time} AS LAST_UPDATE_TIME ,
+		#{last_update_user} AS LAST_UPDATE_USER ,
+		#{bank_id} AS BANK_ID ,
+		#{police} AS POLICE ,
+		#{police_phone} AS POLICE_PHONE ,
+		#{police_check_dt} AS POLICE_CHECK_DT ,
+		#{open_card_dt} AS OPEN_CARD_DT ,
+		#{start_dt} AS START_DT ,
+		#{end_dt} AS END_DT ,
+		#{remark} AS REMARK
+		FROM
+		MP01_DUAL
+		) AS S
+		ON
+		(
+		T.CARDTYPE = S.CARDTYPE
+		AND T.MD_VALUE = S.MD_VALUE
+		AND T.P_NAME = S.P_NAME )
+		WHEN MATCHED
+		THEN
+		UPDATE
+		SET
+		T.MD_TYPE =S.MD_TYPE ,
+		T.MD_KIND =S.MD_KIND ,
+		T.CARDTYPE =S.CARDTYPE ,
+		T.MD_VALUE
+		=S.MD_VALUE ,
+		T.P_NAME =S.P_NAME ,
+		T.MD_SOURCE =S.MD_SOURCE ,
+		T.CASE_TYPE =S.CASE_TYPE ,
+		T.MD_FLAG =S.MD_FLAG ,
+		T.LAST_UPDATE_TIME =S.LAST_UPDATE_TIME ,
+		T.LAST_UPDATE_USER =S.LAST_UPDATE_USER ,
+		T.BANK_ID
+		=S.BANK_ID ,
+		T.POLICE =S.POLICE ,
+		T.POLICE_PHONE =S.POLICE_PHONE ,
+		T.POLICE_CHECK_DT =S.POLICE_CHECK_DT ,
+		T.OPEN_CARD_DT =S.OPEN_CARD_DT ,
+		T.START_DT =S.START_DT ,
+		T.END_DT =S.END_DT ,
+		T.REMARK =S.REMARK
+		WHEN NOT MATCHED
+		THEN
+		INSERT
+		(
+		T.MD_CODE ,
+		T.MD_TYPE ,
+		T.MD_KIND ,
+		T.CARDTYPE ,
+		T.MD_VALUE ,
+		T.P_NAME ,
+		T.MD_SOURCE ,
+		T.CASE_TYPE ,
+		T.MD_FLAG ,
+		T.LAST_UPDATE_TIME ,
+		T.LAST_UPDATE_USER ,
+		T.BANK_ID ,
+		T.POLICE ,
+		T.POLICE_PHONE ,
+		T.POLICE_CHECK_DT ,
+		T.OPEN_CARD_DT ,
+		T.START_DT ,
+		T.END_DT ,
+		T.REMARK
+		)
+		VALUES
+		(
+		S.MD_CODE ,
+		S.MD_TYPE ,
+		S.MD_KIND ,
+		S.CARDTYPE ,
+		S.MD_VALUE ,
+		S.P_NAME ,
+		S.MD_SOURCE ,
+		S.CASE_TYPE ,
+		S.MD_FLAG ,
+		S.LAST_UPDATE_TIME ,
+		S.LAST_UPDATE_USER ,
+		S.BANK_ID ,
+		S.POLICE ,
+		S.POLICE_PHONE ,
+		S.POLICE_CHECK_DT ,
+		S.OPEN_CARD_DT ,
+		S.START_DT ,
+		S.END_DT ,
+		S.REMARK
+		)
+	</update>
+	<select id="getInBankDataByCore" resultType="com.citic.server.dx.domain.Br20_md_info">
+		select
+		file_code,md_code,md_type,md_kind,cardtype,md_value,p_name,md_source,case_type,operate_flag,send_flag,accept_time,bank_id,police,police_phone,police_check_dt,open_card_dt,start_dt,end_dt,remark
+		,interface_type,send_type,credit_send_flag,credit_send_time,credit_status,credit_sbyy,credit_failed_num,is_inner
+		from br20_md_data_log
+		where interface_type = '1' and credit_send_flag='0'
+		order by
+		credit_failed_num
+	</select>
+	<update id="updateSend_flagByMiddleCredit" parameterType="String">
+		update
+		(select * from BR20_MD_DATA_LOG where credit_send_flag = '0' and send_type in ('0','2') FETCH FIRST ${_parameter} ROWS ONLY)
+		set credit_send_flag = '9'
+	</update>
+	<select id="getIncrementSendDataCredit" resultType="com.citic.server.dx.domain.Br20_md_info">
+		select
+		file_code,md_code,md_type,md_kind,cardtype,md_value,p_name,md_source,case_type,operate_flag,send_flag,accept_time,bank_id,police,police_phone,police_check_dt,open_card_dt,start_dt,end_dt,remark
+		,interface_type,send_type,credit_send_flag,credit_send_time,credit_status,credit_sbyy,credit_failed_num,is_inner
+		from br20_md_data_log
+		where credit_send_flag = '9' and send_type in ('0','2')
+		order by
+		md_type,police_check_dt
+	</select>
+
+	<update id="updateCredit_send_flagBykeys" parameterType="com.citic.server.dx.domain.Br20_md_info">
+		update br20_md_data_log
+		set credit_send_flag = '1',credit_send_time =#{credit_send_time},credit_status='Y'
+		where credit_send_flag =
+		#{credit_send_flag}
+	</update>
+
+	<update id="updateCredit_send_flagByID" parameterType="com.citic.server.dx.domain.Br20_md_info">
+		update br20_md_data_log
+		set credit_failed_num = #{credit_failed_num}+1,credit_sbyy=#{credit_sbyy},credit_status='N'
+		<if test="credit_send_flag != null and credit_send_flag == '0'.toString()">
+			,credit_send_flag = '0'
+		</if>
+		where file_code = #{file_code} and md_code =#{md_code}
+	</update>
+
+	<select id="selectLockStatusByCredit" resultType="String">
+		select vals
+		from bb13_sys_para
+		where code = 'cgb_credit_lock'
+	</select>
+	<update id="updateLockStatusByCredit" parameterType="String">
+		update bb13_sys_para
+		set vals = '0'
+		where code = 'cgb_credit_lock'
+	</update>
+	<update id="updateInterface_typeByID" parameterType="com.citic.server.dx.domain.Br20_md_info">
+		update br20_md_data_log
+		set interface_type = #{interface_type}
+		where file_code = #{file_code} and md_code =#{md_code}
+	</update>
+	<select id="selectTop_sizeByCore" resultType="String">
+		select vals
+		from bb13_sys_para
+		where code = 'cgb_top_size_core'
+	</select>
+	<select id="selectTop_sizeByCredit" resultType="String">
+		select vals
+		from bb13_sys_para
+		where code = 'cgb_top_size_credit'
+	</select>
+
+	<delete id="deleteBr20_md_dataByKeys" parameterType="com.citic.server.dx.domain.Br20_md_info">  
+       <![CDATA[ delete from br20_md_data where cardtype=#{cardtype} and md_value=#{md_value} and p_name=#{p_name} ]]>
+	</delete>
+
+	<delete id="deleteBr20_md_dataByBatch" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" open="BEGIN" close=";END" separator=";">
+			delete from br20_md_data
+			where md_value=#{item.md_value}
+			and md_type=#{item.md_type}
+			and p_name=#{item.p_name}
+			and case_type=#{item.case_type}
+		</foreach>
+	</delete>
+
+	<delete id="deleteBr20_md_dataByUnique" parameterType="com.citic.server.dx.domain.Br20_md_info" timeout="240">  
+       <![CDATA[ 
+       delete from (
+        select md_type,md_value,p_name,case_type, ROW_NUMBER() over(partition BY md_value,md_type,p_name,case_type ORDER BY police_check_dt desc) as ROW_NUM FROM BR20_MD_DATA
+       ) WHERE ROW_NUM>1
+       ]]>
+	</delete>
+	<insert id="insertBr20_md_dataByNewAndBatch" parameterType="com.citic.server.dx.domain.Br20_md_info" timeout="600">
+		insert into
+		br20_md_data(md_code,md_type,md_kind,cardtype,md_value,p_name,md_source,case_type,bank_id,police,police_phone,police_check_dt,open_card_dt,start_dt,end_dt,remark,md_flag,last_update_time)
+		 select md_code,md_type,md_kind,cardtype,md_value,p_name,md_source,case_type,bank_id,police,police_phone,police_check_dt,open_card_dt,start_dt,end_dt,remark,'1' as md_flag,#{accept_time} as last_update_time
+		 from (
+		    select md_code,md_type,md_kind,cardtype,md_value,p_name,md_source,case_type,bank_id,police,police_phone,police_check_dt,open_card_dt,start_dt,end_dt,remark,operate_flag, row_number() over(partition by
+		         md_value,md_type,p_name,case_type order by police_check_dt desc) as row_num
+		    from br20_md_data_log t1
+		    where file_code= #{file_code}
+		      and not exists (
+                  select '1' from br20_md_data t2 
+                  where t2.md_value = t1.md_value and t2.md_type = t1.md_type and t2.p_name= t1.p_name and t2.case_type=t1.case_type and t2.md_flag='2'
+               )
+		 ) t 
+		 where t.row_num = 1 and t.operate_flag='+'
+	</insert>
+	<delete id="deleteBr20_md_dataByFlagAndBatch" parameterType="String" timeout="600">
+	  delete from br20_md_data t1
+	  where exists (
+	       select '1' from br20_md_data_log t2
+	       where t2.md_value = t1.md_value and t2.md_type = t1.md_type and t2.p_name= t1.p_name and t2.case_type=t1.case_type 
+	             and t2.file_code= #{_parameter}
+	       )
+	  and t1.md_flag !='2'
+</delete>
+</mapper>
+
+

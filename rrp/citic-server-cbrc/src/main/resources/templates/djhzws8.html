@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title>HTML 2 PDF</title>
+	<style type="text/css">
+		@page {
+			size: a4;
+			margin-top: 37mm;
+			margin-left: 28mm;
+		}
+
+		html, body {
+			width: 100%;
+			height: 100%;
+			margin: 0 auto;
+		}
+
+		body {
+			margin: 0px auto;
+		    font-family: "Times New Roman", "serif";
+		    font-size: 10.5pt;
+		    color: black;
+		}
+
+		u {
+			word-wrap: break-word;
+		}
+
+		u span {
+			padding: 0pt 8pt;
+		}
+
+		p {
+			line-height: 30pt;
+		}
+
+		p.title {
+			margin: 0pt auto;
+			text-align: center;
+			font-family: FZXiaoBiaoSong-B05S;
+			font-size: 22pt;
+		}
+
+		p.title.little {
+			font-size: 16pt;
+		}
+
+		p.title.letter {
+			letter-spacing: -.4pt;
+		}
+
+		p.normal {
+			margin: 0pt auto;
+			font-family: FangSong;
+			font-size: 16pt;
+		}
+
+		p.normal.center {
+			text-align: center;
+		}
+
+		p.normal.indent {
+			text-indent: 32pt;
+		}
+
+		pre {
+			word-wrap: normal;
+		}
+
+		div.box {
+			margin: 0 auto;
+			max-width: 156mm;
+			min-height: 225mm;
+		}
+
+		div.outer {
+			margin: 0 auto;
+			padding: 1px 1px;
+			border: 3pt solid black;
+		}
+
+		div.inner {
+			min-height: 221.8mm;
+			margin: 0 auto;
+			border: 1pt solid black;
+		}
+
+		div.content {
+			margin: 0 auto;
+			padding: 0pt 8pt;
+			overflow-y: hidden;
+		}
+
+		div.footer {
+			position: relative;
+			text-align: right;
+			page-break-after: avoid; /* 避免在元素后插入分页符 */
+		}
+
+		img {
+			position: absolute;
+			top: 0;
+			right: 48pt;
+			width: 42mm;
+			height: 42mm;
+		}
+
+		#footer_date {
+			padding-right: 48pt;
+		}
+	</style>
+</head>
+<body>
+<div class="box">
+	<div class="outer">
+		<div class="inner">
+			<div class="content">
+				<p class="title little"><span>&nbsp;</span></p>
+				<p class="title little letter">深 圳 市 公 安 局</p>
+				<p class="title">协助冻结<span style="font-family: 'Arial'">/</span>解除冻结财产</p>
+				<p class="title">通知书</p>
+				<p class="title little">（回 执）</p>
+				<p class="title little"><span>&nbsp;</span></p>
+				<p class="normal center">冻结/解冻财字〔$QQDBS〕号</p>
+				<p class="normal center"><span>&nbsp;</span></p>
+				<p class="normal"><u>$SQJGDM</u>：</p>
+				#foreach($record in $RECORDLIST)
+					#if($QQCSLX == "05")
+						#if($record.zxjg == "0")
+							#if($record.djfs == "02")
+								<!-- 账户冻结（成功） -->
+								<p class="normal indent">
+									根据你局通知，犯罪嫌疑人<u><span>$record.djzhhz</span></u>在<u><span>$MBJGDM</span></u>的账号<u><span>$record.zh</span></u>
+									已冻结，冻结金额为<u><span>#if($record.sdje == '') - #else $record.sdje #end</span></u>元。
+								</p>
+							#elseif($record.djfs == "01")
+								<!-- 金额冻结（成功） -->
+								<p class="normal indent">
+									根据你局通知，犯罪嫌疑人<u><span>$record.djzhhz</span></u>在<u><span>$MBJGDM</span></u>的账号<u><span>$record.zh</span></u>
+									已冻结，申请冻结金额为<u><span>#if($record.sqdjxe == '') - #else $record.sqdjxe #end</span></u>元，
+									实际冻结金额为<u><span>#if($record.sdje == '') - #else $record.sdje #end</span></u>元，
+									账号可用余额为<u><span>#if($record.zhkyye == '') - #else $record.zhkyye #end</span></u>元。
+								</p>
+							#end
+						#elseif($record.zxjg == "1")
+							<!-- 账户/金额冻结（失败） -->
+							<p class="normal indent">
+								根据你局通知，犯罪嫌疑人<u><span>$record.Djzhhz</span></u>在<u><span>$MBJGDM</span></u>的账号<u><span>$record.zh</span></u>
+								由于<u><span>$record.wndjyy</span></u>原因，冻结失败。
+							</p>
+						#end
+					#elseif($QQCSLX == "07")
+						#if($record.zxjg == "0")
+							#if($record.djfs == "02")
+								<!-- 解除冻结（成功） -->
+								<p class="normal indent">
+									根据你局通知，犯罪嫌疑人<u><span>$record.djzhhz</span></u>在<u><span>$MBJGDM</span></u>的账号<u><span>$record.zh</span></u>
+									已解冻，解冻金额为<u><span>#if($record.sqdjxe == '') - #else $record.sqdjxe #end</span></u>元。
+								</p>
+							#elseif($record.djfs == "01")
+								<!-- 限额解冻（成功） -->
+								<p class="normal indent">
+									根据你局通知，犯罪嫌疑人<u><span>$record.djzhhz</span></u>在<u><span>$MBJGDM</span></u>的账号<u><span>$record.zh</span></u>
+									已解冻，申请解冻金额为<u><span>#if($record.sqdjxe == '') - #else $record.sqdjxe #end</span></u>元，
+									实际解冻金额为<u><span>#if($record.sdje == '') - #else $record.sdje #end</span></u>元，
+									账号可用余额为<u><span>#if($record.zhkyye == '') - #else $record.zhkyye #end</span></u>元。
+								</p>
+							#end
+						#elseif($record.zxjg == "1")
+							<!-- 账户/金额解冻（失败） -->
+							<p class="normal indent">
+								根据你局通知，犯罪嫌疑人<u><span>$record.djzhhz</span></u>在<u><span>$MBJGDM</span></u>的账号<u><span>$record.zh</span></u>
+								由于<u><span>$record.wndjyy</span></u>原因，解冻失败。
+							</p>
+						#end
+					#elseif($QQCSLX == "06")
+						#if($record.zxjg == "0")
+							#if($record.djfs == "02")
+								<!-- 继续冻结（成功） -->
+								<p class="normal indent">
+									根据你局通知，犯罪嫌疑人<u><span>$record.djzhhz</span></u>在<u><span>$MBJGDM</span></u>的账号<u><span>$record.zh</span></u>
+									已续冻，续冻金额为<u><span>#if($record.sqdjxe == '') - #else $record.sqdjxe #end</span></u>元。
+								</p>
+							#elseif($record.djfs == "01")
+								<!-- 限额续冻（成功） -->
+								<p class="normal indent">
+									根据你局通知，犯罪嫌疑人<u><span>$record.djzhhz</span></u>在<u><span>$MBJGDM</span></u>的账号<u><span>$record.zh</span></u>
+									已续冻，申请续冻金额为<u><span>#if($record.sqdjxe == '') - #else $record.sqdjxe #end</span></u>元，
+									实际续冻金额为<u><span>#if($record.sdje == '') - #else $record.sdje #end</span></u>元，
+									账号可用余额为<u><span>#if($record.zhkyye == '') - #else $record.zhkyye #end</span></u>元。
+								</p>
+							#end
+						#elseif($record.zxjg == "1")
+							<!-- 账户/金额解冻（失败） -->
+							<p class="normal indent">
+								根据你局通知，犯罪嫌疑人<u><span>$record.djzhhz</span></u>在<u><span>$MBJGDM</span></u>的账号<u><span>$record.zh</span></u>
+								由于<u><span>$record.wndjyy</span></u>原因，续冻失败。
+							</p>
+						#end
+					#end
+				#end
+				<p class="normal indent">此复。</p>
+			</div>
+			<div class="footer">
+				<img src="seal.png" />
+				<p class="normal"><span>&nbsp;</span></p>
+				<p class="normal"><span>&nbsp;</span></p>
+				<p id="footer_date" class="normal">$DATETIME</p>
+				<p class="normal"><span>&nbsp;</span></p>
+				<p class="normal"><span>&nbsp;</span></p>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.net.mapper.MM31_kzqqMapper">
+
+	<select id="getBr31_kzqqVo" parameterType="string" resultType="com.citic.server.gf.domain.response.ControlResponse_Kzqq">
+		select * from br31_kzqq where bdhm=#{bdhm}
+	</select>
+
+	<select id="getBr31_kzqq_hzxxVo" parameterType="string" resultType="com.citic.server.gf.domain.request.ControlRequest_Hzxx">
+		select * from br31_kzqq_hzws where bdhm=#{bdhm}
+	</select>
+
+	<select id="getMM31_kzzh" parameterType="String" resultType="com.citic.server.gf.domain.response.ControlResponse_Kzzh">
+		SELECT 
+			a.*, b.fymc, b.cbr, b.gzzbh, b.gwzbh, b.ah, b.ckh, b.dsrzjhm,b.xm,b.zjlx
+		FROM 
+			BR31_KZZH a
+		LEFT JOIN 
+			BR31_KZQQ b
+		ON 
+			a.bdhm = b.bdhm 
+		WHERE 
+			a.bdhm = #{bdhm} AND a.ccxh = #{ccxh}
+	</select>
+
+	<select id="getMM31_kzcl_info" parameterType="String" resultType="com.citic.server.gf.domain.Br31_kzcl_info">
+		SELECT * FROM BR31_KZCL_INFO WHERE BDHM = #{bdhm} AND CCXH = #{ccxh}
+	</select>
+
+	<update id="updateBr31_kzcl_info" parameterType="com.citic.server.gf.domain.request.ControlRequest_Kzxx">
+		update br31_kzcl_info
+		<set>
+			<if test="ye != null  and ye != '' ">
+				ye=#{ye},
+			</if>
+			<if test="kyye != null  and kyye != '' ">
+				kyye=#{kyye},
+			</if>
+			<if test="csksrq != null  and csksrq != '' ">
+				csksrq=#{csksrq},
+			</if>
+			<if test="csjsrq != null  and csjsrq != '' ">
+				csjsrq=#{csjsrq},
+			</if>
+			<if test="djxe != null  and djxe != '' ">
+				djxe=#{djxe},
+			</if>
+			<if test="skje != null  and skje != '' ">
+				skje=#{skje},
+			</if>
+			<if test="ceskje != null  and ceskje != '' ">
+				ceskje=#{ceskje},
+			</if>
+			<if test="wnkzyy != null  and wnkzyy != '' ">
+				wnkzyy=#{wnkzyy},
+			</if>
+			<if test="kzzt != null  and kzzt != '' ">
+				kzzt=#{kzzt},
+			</if>
+			<if test="status_cd != null  and status_cd != '' ">
+				status_cd=#{status_cd},
+			</if>
+			<if test="hxappid != null  and hxappid != '' ">
+				hxappid=#{hxappid}
+			</if>
+		</set>
+		where bdhm=#{bdhm} and ccxh=#{ccxh}
+	</update>
+
+	<delete id="delBr31_kzqq" parameterType="string">
+		<![CDATA[ delete from br31_kzqq  where bdhm=#{bdhm} ]]>
+	</delete>
+
+	<delete id="delBr31_kzzh" parameterType="string">
+		<![CDATA[ delete from br31_kzzh  where bdhm=#{bdhm} ]]>
+	</delete>
+
+	<delete id="delBr31_Hzws" parameterType="string">
+		<![CDATA[ delete from br31_kzqq_hzws  where bdhm=#{bdhm} ]]>
+	</delete>
+
+	<delete id="delBr31_Ws" parameterType="string">
+		<![CDATA[ delete from br31_ws  where bdhm=#{bdhm} ]]>
+	</delete>
+
+	<delete id="delBr31_Gzz" parameterType="string">
+		<![CDATA[ delete from br31_gzz  where bdhm=#{bdhm} ]]>
+	</delete>
+
+	<insert id="insertBr31_kzqq" parameterType="com.citic.server.gf.domain.response.ControlResponse_Kzqq">
+		insert into
+		br31_kzqq(bdhm,lb,xz,xm,zjlx,dsrzjhm,fymc,fydm,cbr,yhdh,ah,gzzbh,gwzbh,ckh,lxfs,beiz,status,orgkey,msg_type_cd,packetkey,qrydt,recipient_time)
+		values(
+		#{bdhm},#{lb,jdbcType=VARCHAR},#{xz,jdbcType=VARCHAR},
+		#{xm,jdbcType=VARCHAR},#{zjlx,jdbcType=VARCHAR},#{dsrzjhm,jdbcType=VARCHAR},
+		#{fymc,jdbcType=VARCHAR},#{fydm,jdbcType=VARCHAR},#{cbr,jdbcType=VARCHAR},
+		#{yhdh,jdbcType=VARCHAR},#{ah,jdbcType=VARCHAR},
+		#{gzzbh,jdbcType=VARCHAR},#{gwzbh,jdbcType=VARCHAR},#{ckh,jdbcType=VARCHAR},
+		#{lxfs,jdbcType=VARCHAR},#{beiz,jdbcType=VARCHAR},
+		#{status},#{orgkey,jdbcType=VARCHAR},
+		#{msg_type_cd},#{packetkey},#{qrydt},#{recipient_time}
+		)
+	</insert>
+
+	<insert id="insertBr31_kzzh" parameterType="com.citic.server.gf.domain.response.ControlResponse_Kzzh">
+		insert into br31_kzzh(
+		bdhm,ccxh,kzlx,kzcs,khzh,glzhhm,cclb,khwd,khwddm,zcmc,zclx,cpxszl,dqh,jrcpbh,lczh,zjhkzh,jldw,kznr,ksrq,jsrq,bz,se,je,sfjh,ckwh,zxkzhhm,zxkzhkhh,zxkzhkhhhh,zxkzhzh,zxkzhlx,ydjah,ydjdh,orgkey,qrydt
+		)
+		values(
+		#{bdhm,jdbcType=VARCHAR},#{ccxh,jdbcType=VARCHAR},#{kzlx,jdbcType=VARCHAR},#{kzcs,jdbcType=VARCHAR},#{khzh,jdbcType=VARCHAR},
+        #{glzhhm,jdbcType=VARCHAR},#{cclb,jdbcType=VARCHAR},#{khwd,jdbcType=VARCHAR},#{khwddm,jdbcType=VARCHAR},#{zcmc,jdbcType=VARCHAR},#{zclx,jdbcType=VARCHAR},
+        #{cpxszl,jdbcType=VARCHAR},#{dqh,jdbcType=VARCHAR},#{jrcpbh,jdbcType=VARCHAR},#{lczh,jdbcType=VARCHAR},#{zjhkzh,jdbcType=VARCHAR},#{jldw,jdbcType=VARCHAR},
+        #{kznr,jdbcType=VARCHAR},#{ksrq,jdbcType=VARCHAR},#{jsrq,jdbcType=VARCHAR},#{bz,jdbcType=VARCHAR},#{se,jdbcType=VARCHAR},#{je,jdbcType=VARCHAR},#{sfjh,jdbcType=VARCHAR},#{ckwh,jdbcType=VARCHAR},#{zxkzhhm,jdbcType=VARCHAR},
+		#{zxkzhkhh,jdbcType=VARCHAR},#{zxkzhkhhhh,jdbcType=VARCHAR},#{zxkzhzh,jdbcType=VARCHAR},#{zxkzhlx,jdbcType=VARCHAR},#{ydjah,jdbcType=VARCHAR},#{ydjdh,jdbcType=VARCHAR},#{orgkey,jdbcType=VARCHAR},#{qrydt,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<insert id="insertBr31_kzcl_info" parameterType="com.citic.server.gf.domain.response.ControlResponse_Kzzh">
+		insert into br31_kzcl_info(
+		bdhm,ccxh,kzlx,kzcs,khzh,glzhhm,khwddm,kznr,djxe,skse,qrydt,orgkey,status_cd,msgcheckresult
+		) values(
+		#{bdhm},#{ccxh},#{kzlx},#{kzcs},#{khzh},#{glzhhm},#{khwddm},#{kznr},#{je},#{se},#{qrydt},#{orgkey},#{status_cd},#{msgcheckresult}
+		)
+	</insert>
+	
+	<insert id="insertBr31_ws" parameterType="string">
+		insert into br31_ws(bdhm,xh,wjmc,wjlx,wslb,md5,wspath)
+			select distinct bdhm,xh,wjmc,wjlx,wslb,md5,wspath
+			from mc20_ws b
+			where bdhm = #{bdhm} and tasktype = #{tasktype}
+	</insert>
+
+	<insert id="insertBr31_kzqq_gzz" parameterType="com.citic.server.gf.domain.response.CertificateResponse_ZjInfo">
+		insert into br31_gzz(bdhm,xh,zjmc,gzzbm,gzzwjgs,gzzpath,gwzbm,gwzwjgs,gwzpath)
+			select distinct bdhm,xh,zjmc,gzzbm,gzzwjgs,gzzpath,gwzbm,gwzwjgs,gwzpath
+			from mc20_gzz b
+			where bdhm = #{bdhm} and tasktype = #{tasktype}
+	</insert>
+
+	<select id="getBr31_kzcl_infoList" parameterType="string" resultType="com.citic.server.gf.domain.request.ControlRequest_Kzxx">
+		select * from br31_kzcl_info where bdhm=#{bdhm}
+	</select>
+
+	<select id="getBr31_yxq_infoList" parameterType="com.citic.server.gf.domain.request.ControlRequest_Kzxx" resultType="com.citic.server.gf.domain.request.ControlRequest_Qlxx">
+		select bdhm,ccxh,xh,qllx,qlr,qlje,qlrdz,qlrlxfs,beiz
+		from br31_yxq_info where bdhm=#{bdhm} and ccxh=#{ccxh}
+	</select>
+
+	<select id="getBr31_zxdj_infoList" parameterType="com.citic.server.gf.domain.request.ControlRequest_Kzxx" resultType="com.citic.server.gf.domain.request.ControlRequest_Djxx">
+		select bdhm,ccxh,csxh,djjg,djwh,djje,djjzrq,beiz
+		from br31_zxdj_info where
+		bdhm=#{bdhm} and ccxh=#{ccxh}
+	</select>
+	
+	<select id="queryMc20_gzzByBdhm" parameterType="String" resultType="com.citic.server.gf.domain.MC20_GZZ">
+		select *from mc20_gzz where bdhm = #{bdhm}
+	</select>
+
+	<update id="updateBr31_kzqq" parameterType="com.citic.server.gf.domain.response.ControlResponse_Kzqq">
+		update br31_kzqq
+		<set>
+			<if test="status != null">
+				status=#{status}
+			</if>
+		</set>
+		where bdhm=#{bdhm}
+	</update>
+	
+	<update id="updateBr31_kzqqStatus" parameterType="String">
+		UPDATE BR31_KZQQ SET STATUS = #{status} WHERE BDHM = #{bdhm}
+	</update>
+
+	<select id="getHzxxList" parameterType="String" resultType="com.citic.server.gf.domain.request.ControlRequest_Hzxx">
+		select t1.bdhm,t1.wjmc,t1.wjlx,t2.wslb,t1.upwjpath,t2.md5 from br31_kzqq_hzws t1,br31_ws t2
+		where t1.bdhm = t2.bdhm and t1.xh = t2.xh and t1.bdhm=#{bdhm}
+	</select>
+
+	<select id="isKPacketCount" parameterType="string" resultType="java.lang.Integer">
+		select count(1) from br31_kzqq where packetkey =#{packetkey} and status not in ('6','8','9')
+	</select>
+
+
+	<select id="getBr31_kzcl_infonoCount" parameterType="string" resultType="java.lang.Integer">
+		select count(1) from br31_kzcl_info where bdhm =#{bdhm} and status_cd in('0','1','2')
+	</select>
+	
+	<select id="getHxAppid" parameterType="com.citic.server.gf.domain.response.ControlResponse_Kzzh" resultType="com.citic.server.gf.domain.request.ControlRequest_Kzxx">
+		SELECT * from BR31_KZCL_INFO WHERE BDHM = #{ydjdh} AND KHZH = #{khzh}
+	</select>
+	
+	<delete id="delBr31_kzcl_info" parameterType="string">
+		<![CDATA[ delete from Br31_kzcl_info  where bdhm=#{bdhm} ]]>
+	</delete>
+	<delete id="delBr31_yxq_info" parameterType="com.citic.server.gf.domain.Br31_kzcl_info">
+		<![CDATA[ delete from Br31_yxq_info  where bdhm=#{bdhm}  and ccxh=#{ccxh}]]>
+	</delete>
+	<delete id="delBr31_zxdj_info" parameterType="com.citic.server.gf.domain.Br31_kzcl_info">
+		<![CDATA[ delete from Br31_zxdj_info where bdhm=#{bdhm} and ccxh=#{ccxh} ]]>
+	</delete>
+
+	<insert id="insertBr31_yxq_info" parameterType="com.citic.server.gf.domain.request.QueryRequest_Qlxx">
+		insert into BR31_YXQ_INFO(
+		bdhm,ccxh,xh,jrcpbh,khzh,glzhhm,khwddm,yxscqlx,qllx,qlr,qlje,qlrdz,qlrlxfs
+		) values(
+		#{bdhm,jdbcType=VARCHAR},#{ccxh,jdbcType=VARCHAR},#{xh,jdbcType=VARCHAR},#{jrcpbh,jdbcType=VARCHAR},
+		#{khzh,jdbcType=VARCHAR},#{glzhhm,jdbcType=VARCHAR},
+		#{khwddm,jdbcType=VARCHAR},#{yxscqlx,jdbcType=VARCHAR},
+		#{qllx,jdbcType=VARCHAR},#{qlr,jdbcType=VARCHAR},#{qlje,jdbcType=VARCHAR},#{qlrdz,jdbcType=VARCHAR},
+		#{qlrlxfs,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertBr31_zxdj_info" parameterType="com.citic.server.gf.domain.request.QueryRequest_Djxx">
+		INSERT INTO 
+			BR31_ZXDJ_INFO (BDHM,CCXH,CSXH,JRCPBH,KHZH,GLZHHM,KHWDDM,DJJG,DJWH,DJJE,DJJZRQ,BEIZ,QRYDT) 
+		VALUES (#{bdhm,jdbcType=VARCHAR},#{ccxh,jdbcType=VARCHAR},#{csxh,jdbcType=VARCHAR},#{jrcpbh,jdbcType=VARCHAR},
+			#{khzh,jdbcType=VARCHAR},#{glzhhm,jdbcType=VARCHAR}, #{khwddm,jdbcType=VARCHAR},#{djjg,jdbcType=VARCHAR},
+			#{djwh,jdbcType=VARCHAR},#{djje,jdbcType=VARCHAR}, #{djjzrq,jdbcType=VARCHAR}, #{beiz,jdbcType=VARCHAR},
+			#{qrydt,jdbcType=VARCHAR})
+	</insert>
+	<delete id="delBr32_msg" parameterType="com.citic.server.gf.domain.Br32_msg">
+		<![CDATA[ delete from br32_msg where bdhm=#{_parameter} ]]>
+	</delete>
+	<insert id="insertBr32_msg" parameterType="com.citic.server.gf.domain.Br32_msg">
+		insert into br32_msg (msgkey, bdhm, msg_type_cd, packetkey, organkey_r, senddate, msg_filename, msg_filepath, status_cd, create_dt,qrydt)
+		values (#{msgkey}, #{bdhm}, #{msg_type_cd}, #{packetkey},
+		#{organkey_r}, #{senddate}, #{msg_filename}, #{msg_filepath}, #{status_cd}, #{create_dt}, #{qrydt})
+	</insert>
+
+	<select id="selectBr31_kzcl_DetailByBdhm" parameterType="string" resultType="com.citic.server.gf.domain.Br31_kzcl_info">
+		select a.bdhm,a.xm,a.fymc,a.zjlx,a.dsrzjhm,b.ccxh,b.djxe,b.skje,b.ceskje,b.wnkzyy,b.csksrq,b.csjsrq,b.kyye,b.kzzt,b.khzh,b.glzhhm,
+		a.ckh,c.ckwh,c.kzcs,c.kzlx,c.cclb,c.zcmc,c.zclx,c.jldw,c.kznr,c.bz,c.je
+		from br31_kzqq a,br31_kzcl_info b,br31_kzzh c
+		where a.bdhm=b.bdhm and b.bdhm=c.bdhm and b.ccxh=c.ccxh
+		and a.bdhm = #{_parameter}
+	</select>
+	<select id="selectBr31_yxq_DetailByBdhm" parameterType="com.citic.server.gf.domain.Br31_kzcl_info" resultType="com.citic.server.gf.domain.Br31_yxq_info">
+		select a.bdhm,a.xm,a.zjlx,a.dsrzjhm,c.*,b.kzcs,b.kzlx
+		from br31_kzqq a,br31_yxq_info c,br31_kzcl_info b
+		where a.bdhm=b.bdhm and b.bdhm=c.bdhm and b.ccxh=c.ccxh
+		and a.bdhm = #{bdhm}
+		<if test="ccxh != null  and ccxh != '' ">
+			and b.ccxh=#{ccxh}
+		</if>
+	</select>
+
+	<insert id="insertBr31_kzqq_hzws" parameterType="com.citic.server.gf.domain.request.ControlRequest_Hzxx">
+		insert into br31_kzqq_hzws(bdhm,xh,kzcs,kzlx,wjmc,wjlx,wjpath,qrydt,djrq
+		) values(
+		#{bdhm},#{xh},#{kzcs},#{kzlx},#{wjmc},#{wjlx},#{wjpath},#{qrydt},#{djrq}
+		)
+	</insert>
+
+	<select id="getBr31_organ_inner_acct" parameterType="string" resultType="com.citic.server.gf.domain.response.ControlResponse_Kzzh">
+		select * from br31_organ_inner_acct where organkey=#{_parameter}
+	</select>
+
+</mapper>
+
+

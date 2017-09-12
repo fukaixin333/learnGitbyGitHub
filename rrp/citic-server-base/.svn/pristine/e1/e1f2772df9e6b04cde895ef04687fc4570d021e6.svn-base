@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.mapper.MC00_flagtable_colsMapper">
+	<select id="getMC00_flagtable_colsList" resultType="MC00_flagtable_cols">
+		select dsid,tablename,colname,is_date,is_status
+		from MC00_flagtable_cols 
+	</select>
+</mapper>
+
+

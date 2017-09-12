@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cache="http://www.springframework.org/schema/cache"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+    <!-- enables scanning for @Cacheable annotation -->
+    <cache:annotation-driven cache-manager="cacheManager" proxy-target-class="false" />
+
+    <bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:cache/ehcache.xml" />
+    </bean>
+
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+        <property name="cacheManager" ref="ehcache" />
+    </bean>
+
+    <bean id="serverThreadPoolTaskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <!-- 核心线程数，默认为1 -->
+        <property name="corePoolSize" value="5" />
+        <!-- 最大线程数，默认为Integer.MAX_VALUE -->
+        <property name="maxPoolSize" value="2000" />
+        <!-- 队列最大长度，一般需要设置值>=notifyScheduledMainExecutor.maxNum；默认为Integer.MAX_VALUE -->
+        <property name="queueCapacity" value="100" />
+        <!-- 线程池维护线程所允许的空闲时间，默认为600s -->
+        <property name="keepAliveSeconds" value="30000" />
+        <!-- 线程池对拒绝任务（无线程可用）的处理策略，目前只支持AbortPolicy、CallerRunsPolicy；默认为后者 -->
+        <property name="rejectedExecutionHandler">
+            <!-- AbortPolicy:直接抛出java.util.concurrent.RejectedExecutionException异常 -->
+            <!-- CallerRunsPolicy:主线程直接执行该任务，执行完之后尝试添加下一个任务到线程池中，可以有效降低向线程池内添加任务的速度 -->
+            <!-- DiscardOldestPolicy:抛弃旧的任务、暂不支持；会导致被丢弃的任务无法再次被执行 -->
+            <!-- DiscardPolicy:抛弃当前任务、暂不支持；会导致被丢弃的任务无法再次被执行 -->
+            <bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
+        </property>
+    </bean>
+
+    <bean id="ftpserverThreadPoolTaskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <!-- 核心线程数，默认为1 -->
+        <property name="corePoolSize" value="3" />
+        <!-- 最大线程数，默认为Integer.MAX_VALUE -->
+        <property name="maxPoolSize" value="10" />
+        <!-- 队列最大长度，一般需要设置值>=notifyScheduledMainExecutor.maxNum；默认为Integer.MAX_VALUE -->
+        <property name="queueCapacity" value="100" />
+        <!-- 线程池维护线程所允许的空闲时间，默认为600s -->
+        <property name="keepAliveSeconds" value="30000" />
+        <!-- 线程池对拒绝任务（无线程可用）的处理策略，目前只支持AbortPolicy、CallerRunsPolicy；默认为后者 -->
+        <property name="rejectedExecutionHandler">
+            <!-- AbortPolicy:直接抛出java.util.concurrent.RejectedExecutionException异常 -->
+            <!-- CallerRunsPolicy:主线程直接执行该任务，执行完之后尝试添加下一个任务到线程池中，可以有效降低向线程池内添加任务的速度 -->
+            <!-- DiscardOldestPolicy:抛弃旧的任务、暂不支持；会导致被丢弃的任务无法再次被执行 -->
+            <!-- DiscardPolicy:抛弃当前任务、暂不支持；会导致被丢弃的任务无法再次被执行 -->
+            <bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
+        </property>
+    </bean>
+
+    <bean id="applicationCFG" class="com.citic.server.ApplicationCFG">
+        <!-- 服务器标识 如果是taskserver，启动时后面需要填写具体的serverID，例如：taskserver01 -->
+        <!-- 默认 mainserver taskserver labserver -->
+        <property name="server_name_mainserver" value="mainserver" />
+        <property name="server_name_taskserver" value="taskserver" />
+        <property name="server_name_labserver" value="labserver" />
+        <property name="server_name_rtserver" value="rtserver" />
+
+        <!-- 允许服务器并行扫描数据源准备情况的时间范围（天）），默认3天 -->
+        <property name="server_scan_ds_datatime_length" value="1" />
+        <!-- 服务器循环计算时间间隔，默认为60（秒） -->
+        <property name="server_scan_timespace" value="180" />
+        <!-- 数据文件在服务器临时保存时间（天），默认为3天 -->
+        <property name="datafile_backup_days" value="90" />
+        <!-- 计算服务后台缓存server名称，需要与tools-config.xml配置文件一致，默认为serverCache -->
+        <property name="server_cachename" value="serverCache" />
+        <!-- 判断数据源准备情况的任务的任务编码，默认为：TK_DS101 -->
+        <property name="taskid_ds_property" value="TK_DS101" />
+        <!-- 从数据源进行数据抽取的任务的任务编码，默认为：TK_ETL101 -->
+        <property name="taskid_getdata_tolocal" value="TK_ETL101" />
+
+        <!-- 临时库JdbcTemplate 名字 -->
+        <property name="jdbctemplate_ods" value="jdbcTemplate" />
+        <!-- 管理库JdbcTemplate 名字 -->
+        <property name="jdbctemplate_manager" value="metaJdbcTemplate" />
+        <!-- 业务库JdbcTemplate 名字 -->
+        <property name="jdbctemplate_business" value="jdbcTemplate" />
+        <!-- 历史库JdbcTemplate 名字 -->
+        <property name="jdbctemplate_history" value="jdbcTemplate" />
+        <!-- 外部数据源JdbcTemplate 用jdbctemplate_business + "_" + 数据源编码 -->
+
+        <!-- 计算过程的SQL语句是否保留1-保留，0-不保留：各自保存在各自的日志表中 默认值：0 -->
+        <property name="save_cal_sqllog" value="1" />
+        <!-- 大SQL需要拆分保存，拆分大小（需小于数据库字段大小），默认值：2000 -->
+        <property name="save_cal_bigsql_split" value="2000" />
+
+        <!-- 事件计算用的全局临时表 在哪里创建： 1-db2V9.7之前的版本需要在JAVA中创建 【value=java】 2-db2V9.7之后的版本，以及Oracle数据库都要在数据库初始化时创建 【value=db】 -->
+        <property name="global_temp_table_created" value="db" />
+        <!-- 调用数据库全局临时表的 前缀，例如：session.表名 -->
+        <property name="global_temp_table_prestr" value="session" />
+
+        <!-- 实验室模型计算，最大时间跨度（天），默认值：30天 -->
+        <property name="lab_calmodel_maxdate_length" value="30" />
+        
+        <!-- 数据加载脚本中（SQL/LOAD）用户名和密码信息,在程序执行时替换进脚本-->
+        <!-- 程序脚本中用户名和密码的标志位  uafp/uafp@uafpdb -->
+        <property name="back_dataload_flag_username" value="$username$" />
+        <property name="back_dataload_flag_password" value="$password$" />
+        <property name="back_dataload_flag_dbname" value="$dbname$" />
+        <!-- 数据库真实的用户名密码 ,密码可以用base64编码加密避免明文（如果密码带==即认为编码过） -->
+        <property name="back_dataload_database_username" value="uafp" />
+        <property name="back_dataload_database_password" value="dWFmcA==" />
+        <property name="back_dataload_database_dbname" value="uafpdb" />
+        
+        
+    </bean>
+</beans>

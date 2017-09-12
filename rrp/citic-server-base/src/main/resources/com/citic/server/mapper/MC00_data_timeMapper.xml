@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.mapper.MC00_data_timeMapper">
+
+
+	<select id="getDatatimeForMaxDt"  resultType="String">
+		select max(datatime) from mc00_data_time where flag='1'
+	</select>
+	
+	<select id="getDatatimeForScan"  resultType="String">
+		select datatime from mc00_data_time where flag='0' order by datatime desc
+	</select>
+	
+	<select id="getDatatimeForMinDt"  resultType="String">
+		select min(datatime) as datatime from mc00_data_time where flag='1'
+	</select>
+	
+	<insert id="insertMC00_data_time">
+		insert into MC00_data_time(
+			datatime,flag
+		)
+		values(
+		#{datatime},#{flag}
+		)
+	</insert>
+
+	<update id="modifyMC00_data_time">
+		update MC00_data_time set
+			flag=#{flag}
+		where datatime=#{datatime}
+	</update>
+
+</mapper>
+
+

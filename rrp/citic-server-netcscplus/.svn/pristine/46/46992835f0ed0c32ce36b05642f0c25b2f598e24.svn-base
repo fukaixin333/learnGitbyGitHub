@@ -1,0 +1,19 @@
+<binding name="binding_certificate_res" package="com.citic.server.gf.domain.response">
+    <format label="base64" type="byte[]" serializer="com.citic.server.runtime.Utility.encodeMIMEBase64" deserializer="com.citic.server.runtime.Utility.decodeMIMEBase64" />
+    <mapping name="zjinfoList" class="com.citic.server.gf.domain.response.CertificateResponse">
+        <value style="attribute" name="errorMsg" get-method="getErrorMsg" set-method="setErrorMsg" usage="optional" />
+        <collection get-method="getZjInfoList" set-method="setZjInfoList" usage="optional" create-type="java.util.ArrayList">
+            <structure type="com.citic.server.gf.domain.response.CertificateResponse_ZjInfo" name="zjinfo">
+                <value style="attribute" name="BDHM" get-method="getBdhm" set-method="setBdhm" usage="optional" />
+                <value style="attribute" name="XH" get-method="getXh" set-method="setXh" usage="optional" />
+                <value style="attribute" name="ZJMC" get-method="getZjmc" set-method="setZjmc" usage="optional" />
+                <value style="attribute" name="GZZBM" get-method="getGzzbm" set-method="setGzzbm" usage="optional" />
+                <value style="attribute" name="GZZWJGS" get-method="getGzzwjgs" set-method="setGzzwjgs" usage="optional" />
+                <value style="attribute" name="GZZ" get-method="getGzz" set-method="setGzz" usage="optional" format="base64" />
+                <value style="attribute" name="GWZBM" get-method="getGwzbm" set-method="setGwzbm" usage="optional" />
+                <value style="attribute" name="GWZWJGS" get-method="getGwzwjgs" set-method="setGwzwjgs" usage="optional" />
+                <value style="attribute" name="GWZ" get-method="getGwz" set-method="setGwz" usage="optional" format="base64" />
+            </structure>
+        </collection>
+    </mapping>
+</binding>

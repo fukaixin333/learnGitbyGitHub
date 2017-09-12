@@ -1,0 +1,14 @@
+<binding name="binding_control_qlxx" package="com.citic.server.gf.domain.request">
+	<mapping name="qlxx" class="com.citic.server.gf.domain.request.ControlRequest_Qlxx">
+		<value style="attribute" name="BDHM" get-method="getBdhm" set-method="setBdhm" usage="optional" />
+		<value style="attribute" name="CCXH" get-method="getCcxh" set-method="setCcxh" usage="optional" />
+		<value style="attribute" name="XH" get-method="getXh" set-method="setXh" usage="optional" />
+		<value style="attribute" name="JRCPBH" get-method="getJrcpbh" set-method="setJrcpbh" usage="optional" />
+		<value style="attribute" name="QLLX" get-method="getQllx" set-method="setQllx" usage="optional" />
+		<value style="attribute" name="QLR" get-method="getQlr" set-method="setQlr" usage="optional" />
+		<value style="attribute" name="QLJE" get-method="getQlje" set-method="setQlje" usage="optional" />
+		<value style="attribute" name="QLRDZ" get-method="getQlrdz" set-method="setQlrdz" usage="optional" />
+		<value style="attribute" name="QLRLXFS" get-method="getQlrlxfs" set-method="setQlrlxfs" usage="optional" />
+		<value style="attribute" name="BEIZ" get-method="getBeiz" set-method="setBeiz" usage="optional" />
+	</mapping>
+</binding>

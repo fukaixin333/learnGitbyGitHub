@@ -1,0 +1,66 @@
+<binding name="binding_gdjcy_Ckdjkz" package="com.citic.server.gdjg.domain.response">
+	<mapping class="com.citic.server.gdjg.domain.response.Gdjg_ResponseCkdjkz" name="RESPONSE">
+		<structure name="COMMAND">
+			<value style="attribute" name="TYPE" get-method="getCmdtype" set-method="setCmdtype" usage="optional" />
+			<value style="element" name="STATUS" get-method="getCmdstatus" set-method="setCmdstatus" usage="optional" />
+			<value style="element" name="MESSAGE" get-method="getCmdmessage" set-method="setCmdmessage" usage="optional" />
+		</structure>
+		<structure name="DATA">
+			<value style="attribute" name="TYPE" get-method="getDatatype" set-method="setDatatype" usage="optional" />
+			<value style="attribute" name="CONTENT" get-method="getContent" set-method="setContent" usage="optional" />
+			<value style="element" name="MESSAGE" get-method="getErrmessage" set-method="setErrmessage" usage="optional" />
+			<value style="element" name="DOCNO" get-method="getDocno" set-method="setDocno" usage="optional" />
+			<collection get-method="getCases" set-method="setCases" usage="optional" create-type="java.util.ArrayList">
+				<structure type="com.citic.server.gdjg.domain.response.Gdjg_Response_CaseCx" name="CASE">
+					<value style="element" name="CASENO" get-method="getCaseno" set-method="setCaseno" usage="optional" />
+					<value style="element" name="EXEUNIT" get-method="getExeunit" set-method="setExeunit" usage="optional" />
+					<value style="element" name="APPLYORG" get-method="getApplyorg" set-method="setApplyorg" usage="optional" />
+					<value style="element" name="TARGETORG" get-method="getTargetorg" set-method="setTargetorg" usage="optional" />
+					<value style="element" name="CASETYPE" get-method="getCasetype" set-method="setCasetype" usage="optional" />
+					<value style="element" name="REMARK" get-method="getRemark" set-method="setRemark" usage="optional" />
+					<value style="element" name="SENDTIME" get-method="getSendtime" set-method="setSendtime" usage="optional" />
+					<collection get-method="getPolicemans" set-method="setPolicemans" usage="optional" create-type="java.util.ArrayList">
+						<structure type="com.citic.server.gdjg.domain.response.Gdjg_Response_PolicemanCx" name="POLICEMAN">
+							<value style="element" name="EXENAME" get-method="getExename" set-method="setExename" usage="optional" />
+							<value style="element" name="POLICECERT" get-method="getPolicecert" set-method="setPolicecert" usage="optional" />
+							<value style="element" name="POLICETEL" get-method="getPolicetel" set-method="setPolicetel" usage="optional" />
+						</structure>
+					</collection>
+					<collection get-method="getRespondents" set-method="setRespondents" usage="optional" create-type="java.util.ArrayList">
+						<structure type="com.citic.server.gdjg.domain.response.Gdjg_Response_RespondentCx" name="RESPONDENT">
+							<value style="element" name="UNIQUEID" get-method="getUniqueid" set-method="setUniqueid" usage="optional" />
+							<value style="element" name="TYPE" get-method="getType" set-method="setType" usage="optional" />
+							<value style="element" name="NAME" get-method="getName" set-method="setName" usage="optional" />
+							<value style="element" name="IDTYPE" get-method="getIdtype" set-method="setIdtype" usage="optional" />
+							<value style="element" name="ID" get-method="getId" set-method="setId" usage="optional" />
+							<collection get-method="getBanks" set-method="setBanks" usage="optional" create-type="java.util.ArrayList">
+								<structure type="com.citic.server.gdjg.domain.response.Gdjg_Response_BankCx" name="BANK">
+									<value style="element" name="BANKCODE" get-method="getBankcode" set-method="setBankcode" usage="optional" />
+									<value style="element" name="BANKNAME" get-method="getBankname" set-method="setBankname" usage="optional" />
+									<collection get-method="getAccs" set-method="setAccs" usage="optional" create-type="java.util.ArrayList">
+										<structure type="com.citic.server.gdjg.domain.response.Gdjg_Response_AccCx" name="ACC">
+											<value style="element" name="FROSEQ" get-method="getFroseq" set-method="setFroseq" usage="optional" />
+											<value style="element" name="OLDFROSEQ" get-method="getOldfroseq" set-method="setOldfroseq" usage="optional" />
+											<value style="element" name="ACCOUNT" get-method="getAccount" set-method="setAccount" usage="optional" />
+											<value style="element" name="CURRENCY" get-method="getCurrency" set-method="setCurrency" usage="optional" />
+											<value style="element" name="EXCHANGETYPE" get-method="getExchangetype" set-method="setExchangetype" usage="optional" />
+											<value style="element" name="FROTYPE" get-method="getFrotype" set-method="setFrotype" usage="optional" />
+											<value style="element" name="FROMODE" get-method="getFromode" set-method="setFromode" usage="optional" />
+											<value style="element" name="FROBANLANCE" get-method="getFrobanlance" set-method="setFrobanlance" usage="optional" />
+											<value style="element" name="FREEZEAPPDATE" get-method="getFreezeappdate" set-method="setFreezeappdate" usage="optional" />
+											<value style="element" name="FROSTARTDATE" get-method="getFrostartdate" set-method="setFrostartdate" usage="optional" />
+											<value style="element" name="FROENDDATE" get-method="getFroenddate" set-method="setFroenddate" usage="optional" />
+											<value style="element" name="NOTIFYDOC" get-method="getNotifydoc" set-method="setNotifydoc" usage="optional" />
+											<value style="element" name="DOCNUM" get-method="getDocnum" set-method="setDocnum" usage="optional" />
+											<value style="element" name="ISTRANSEE" get-method="getIstransee" set-method="setIstransee" usage="optional" />
+										</structure>
+									</collection>
+								</structure>
+							</collection>
+						</structure>
+					</collection>
+				</structure>
+			</collection>
+		</structure>
+	</mapping>
+</binding>

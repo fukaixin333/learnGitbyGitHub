@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.mapper.MC01_task_statusMapper">
+    
+    <select id="getMC01_task_statusListForFinished" resultType="MC01_task_status" parameterType="String">
+		select mtaskkey,modelkey,modeltype,taskid,subtaskid,datatime,taskname,taskseq,flag,calbegin_dt,calend_dt,taskcmd,serverid
+ 		from mc01_task_status t1
+ 		where mtaskkey=#{mtaskkey} 
+ 		order by datatime,taskseq asc
+	</select>
+                
+	<select id="getMC01_task_statusListForCal" resultType="MC01_task_status" parameterType="String">
+		select mtaskkey,modelkey,modeltype,taskid,subtaskid,t1.datatime,taskname,taskseq,t1.flag,calbegin_dt,calend_dt,taskcmd,serverid
+ 		from mc01_task_status t1,mc00_data_time t2
+ 		where t1.datatime=t2.datatime and mtaskkey=#{mtaskkey} and t1.flag='2' and t2.flag='1' 
+ 		order by datatime,taskseq asc
+	</select>
+	
+	<update id="modifyMC01_task_status" parameterType="MC01_task_status">
+		update MC01_task_status set flag=#{flag},serverid=#{serverid},calbegin_dt=#{calbegin_dt},calend_dt=#{calend_dt}
+		where mtaskkey=#{mtaskkey} and modelkey=#{modelkey} and datatime=#{datatime} and taskid=#{taskid} and subtaskid=#{subtaskid}
+	</update>
+	
+	<insert id="insertMC01_task_status" parameterType="MC01_task_status">
+		insert into MC01_task_status(
+			mtaskkey,modelkey,taskid,subtaskid,datatime,taskname,serverid,taskseq,flag,calbegin_dt,calend_dt,taskcmd,modeltype
+		)
+		values(
+			#{mtaskkey},#{modelkey},#{taskid},#{subtaskid},#{datatime},#{taskname},#{serverid},#{taskseq},#{flag},#{calbegin_dt},#{calend_dt},#{taskcmd},#{modeltype}
+		)
+	</insert>
+	
+	<delete id="deleteMC01_task_status" parameterType="String">
+		<![CDATA[ 
+		delete from MC01_task_status where mtaskkey=#{mtaskkey}
+		 ]]>
+	</delete>
+	
+</mapper>
+
+

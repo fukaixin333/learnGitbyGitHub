@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.net.mapper.BR25_kzqqMapper">
+
+
+
+	<delete id="delBr25_kzqq_dj" parameterType="string">
+		<![CDATA[ delete from br25_frozen  where transserialnumber=#{transserialnumber} ]]>
+	</delete>
+
+	<delete id="delBr25_kzqq_zf" parameterType="string">
+		<![CDATA[ delete from br25_stop  where transserialnumber=#{transserialnumber} ]]>
+	</delete>
+
+	<delete id="delKzResBw_zf" parameterType="string">
+		<![CDATA[ delete from br25_stop_back  where transserialnumber=#{transserialnumber} ]]>
+	</delete>
+
+	<delete id="delKzResBw_dj" parameterType="string">
+		<![CDATA[ delete from br25_frozen_back  where transserialnumber=#{transserialnumber} ]]>
+	</delete>
+
+	<delete id="delBr25_Attach" parameterType="String">  
+        <![CDATA[ delete from br25_frozen_attach where transserialnumber=#{transserialnumber} ]]>
+	</delete>
+
+
+
+	<insert id="insertBr25_kzqq_zf" parameterType="com.citic.server.dx.domain.Br25_StopPay">
+		insert into
+		br25_stop(
+		txcode,messagefrom,transserialnumber,applicationid,applicationtype,originalapplicationid,casenumber,casetype,emergencylevel,transferoutbankid,transferoutbankname,transferoutaccountname,transferoutaccountnumber,currency,transferamount,transfertime,bankid,bankname,accounttype,accountname,accountnumber,reason,remark,starttime,expiretime,applicationtime,applicationorgid,applicationorgname,
+		operatoridtype,operatoridnumber,operatorname,operatorphonenumber,investigatoridtype,investigatoridnumber,investigatorname,create_dt,status_cd,qrydt,orgkey,last_up_dt,recipient_time
+		) values(
+		#{txCode,jdbcType=VARCHAR},#{messageFrom,jdbcType=VARCHAR},#{transSerialNumber,jdbcType=VARCHAR},#{applicationID,jdbcType=VARCHAR},#{applicationType,jdbcType=VARCHAR},#{originalApplicationID,jdbcType=VARCHAR},#{caseNumber,jdbcType=VARCHAR},#{caseType,jdbcType=VARCHAR},#{emergencyLevel,jdbcType=VARCHAR},#{transferOutBankID,jdbcType=VARCHAR},#{transferOutBankName,jdbcType=VARCHAR},#{transferOutAccountName,jdbcType=VARCHAR},#{transferOutAccountNumber,jdbcType=VARCHAR},
+		#{currency,jdbcType=VARCHAR},#{transferAmount,jdbcType=VARCHAR},#{transferTime,jdbcType=VARCHAR},#{bankID,jdbcType=VARCHAR},#{bankName,jdbcType=VARCHAR},#{accountType,jdbcType=VARCHAR},#{accountName,jdbcType=VARCHAR},#{accountNumber,jdbcType=VARCHAR},#{reason,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR},
+		#{startTime,jdbcType=VARCHAR},#{expireTime,jdbcType=VARCHAR},#{applicationTime,jdbcType=VARCHAR},#{applicationOrgID,jdbcType=VARCHAR},#{applicationOrgName,jdbcType=VARCHAR},#{operatorIDType,jdbcType=VARCHAR},#{operatorIDNumber,jdbcType=VARCHAR},#{operatorName,jdbcType=VARCHAR},
+		#{operatorPhoneNumber,jdbcType=VARCHAR},#{investigatorIDType,jdbcType=VARCHAR},#{investigatorIDNumber,jdbcType=VARCHAR},#{investigatorName,jdbcType=VARCHAR},#{create_dt,jdbcType=VARCHAR},#{status_cd,jdbcType=VARCHAR},#{qrydt,jdbcType=VARCHAR},#{orgkey,jdbcType=VARCHAR},#{last_up_dt},#{recipient_time}
+		)
+	</insert>
+
+	<insert id="insertBr25_kzqq_dj" parameterType="com.citic.server.dx.domain.Br25_Freeze">
+		insert into
+		br25_frozen(
+		txcode,messagefrom,transserialnumber,applicationid,applicationtype,originalapplicationid,casenumber,casetype,reason,remark,emergencylevel,bankid,
+		bankname,accounttype,accountname,accountnumber,idtype,idnumber,freezetype,balance,currency,FreezeStartTime,ExpireTime,applicationtime,
+		applicationorgid,applicationorgname,operatoridtype,operatoridnumber,operatorname,operatorphonenumber,investigatoridtype,investigatoridnumber,investigatorname,create_dt,status_cd,qrydt,orgkey,last_up_dt,recipient_time
+		) values(
+		#{txcode},#{messagefrom},#{transserialnumber},#{applicationid},#{applicationType,jdbcType=VARCHAR},#{originalApplicationID},#{casenumber,jdbcType=VARCHAR},#{casetype,jdbcType=VARCHAR},#{reason,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR},#{emergencylevel,jdbcType=VARCHAR},#{bankid,jdbcType=VARCHAR},#{bankname,jdbcType=VARCHAR},#{accounttype,jdbcType=VARCHAR},#{accountname,jdbcType=VARCHAR},#{accountnumber,jdbcType=VARCHAR},#{idtype,jdbcType=VARCHAR},#{idnumber,jdbcType=VARCHAR},#{freezetype,jdbcType=VARCHAR},#{balance,jdbcType=VARCHAR},#{currency,jdbcType=VARCHAR},#{freezestarttime,jdbcType=VARCHAR},#{expiretime,jdbcType=VARCHAR},#{applicationtime,jdbcType=VARCHAR},#{applicationorgid,jdbcType=VARCHAR},#{applicationorgname,jdbcType=VARCHAR},#{operatoridtype,jdbcType=VARCHAR},#{operatoridnumber,jdbcType=VARCHAR},#{operatorname,jdbcType=VARCHAR},#{operatorphonenumber,jdbcType=VARCHAR},#{investigatoridtype,jdbcType=VARCHAR},#{investigatoridnumber,jdbcType=VARCHAR},#{investigatorname,jdbcType=VARCHAR},
+		#{create_dt,jdbcType=VARCHAR},#{status_cd},#{qrydt},#{orgkey},#{last_up_dt},#{recipient_time}
+		)
+	</insert>
+
+	<update id="updateBr25_kzqq_dj_status" parameterType="com.citic.server.dx.domain.Br25_Freeze_back">
+		update br25_frozen_back set status_cd=#{status_cd}
+				<if test="feedback_dt != null  and  feedback_dt != '' ">
+				,feedback_dt=#{feedback_dt}
+			</if>
+		where transserialnumber=#{transserialnumber}
+
+	</update>
+	
+		<update id="updateBr25_frozen_dj_status" parameterType="com.citic.server.dx.domain.Br25_Freeze_back">
+		update br25_frozen set status_cd=#{status_cd}
+		where transserialnumber=#{transserialnumber}
+
+	</update>
+
+	<select id="getBr25_stopByID" parameterType="String"
+		resultType="com.citic.server.dx.domain.Br25_StopPay">
+		select *
+		from br25_stop
+		where
+		transserialnumber=#{transserialnumber}
+	</select>
+	<select id="getBr25_stopBackByID" parameterType="com.citic.server.dx.domain.Br25_StopPay_back"
+		resultType="com.citic.server.dx.domain.Br25_StopPay_back">
+		select *
+		from br25_stop_back
+		<where>
+			<if test="transSerialNumber!=null  and transSerialNumber!=''">
+				and transserialnumber=#{transSerialNumber}
+			</if>
+			<if test="applicationID!=null  and applicationID!=''">
+				and applicationid=#{applicationID}
+			</if>
+			<if test="toorg!=null and toorg!=''">
+				and toorg=#{toorg}
+			</if>
+		</where>
+	</select>
+
+	<insert id="insertBr25_stop_back" parameterType="com.citic.server.dx.domain.Br25_StopPay_back">
+		insert into
+		br25_stop_back(
+		modeid,toorg,txcode,transserialnumber,applicationid,result,accounttype,accountnumber,cardnumber,accountbalance,starttime,endtime,failurecause,feedbackremark,feedbackorgname,
+		operatorname,operatorphonenumber,feedback_dt,status_cd,hxappid,qrydt,orgkey,last_up_dt,msgcheckresult,currency
+		) values(
+		#{mode,jdbcType=VARCHAR},
+		#{toorg,jdbcType=VARCHAR},#{txCode,jdbcType=VARCHAR},#{transSerialNumber,jdbcType=VARCHAR},#{applicationID,jdbcType=VARCHAR},#{result,jdbcType=VARCHAR},#{accountType,jdbcType=VARCHAR},#{accountNumber,jdbcType=VARCHAR},#{cardNumber,jdbcType=VARCHAR},#{accountBalance,jdbcType=VARCHAR},#{startTime,jdbcType=VARCHAR},#{endTime,jdbcType=VARCHAR},#{failureCause,jdbcType=VARCHAR},#{feedbackRemark,jdbcType=VARCHAR},#{feedbackOrgName,jdbcType=VARCHAR},#{operatorName,jdbcType=VARCHAR},#{operatorPhoneNumber,jdbcType=VARCHAR},#{feedback_dt,jdbcType=VARCHAR}
+		,#{status_cd,jdbcType=VARCHAR},#{hxappid,jdbcType=VARCHAR} ,#{qrydt,jdbcType=VARCHAR} ,#{orgkey,jdbcType=VARCHAR},#{last_up_dt,jdbcType=VARCHAR},#{msgcheckresult,jdbcType=VARCHAR},#{currency,jdbcType=VARCHAR} )
+
+	</insert>
+
+
+	<update id="updateBr25_kzqq_zf_status" parameterType="com.citic.server.dx.domain.Br25_StopPay_back">
+		update br25_stop_back set status_cd=#{status_cd}
+		<if test="feedback_dt != null  and  feedback_dt != '' ">
+				,feedback_dt=#{feedback_dt}
+			</if>
+		where transserialnumber=#{transSerialNumber}
+
+	</update>
+	
+	<update id="updateBr25_stop_zf_status" parameterType="com.citic.server.dx.domain.Br25_StopPay_back">
+		update br25_stop set status_cd=#{status_cd}
+		where transserialnumber=#{transSerialNumber}
+
+	</update>
+	
+
+	<insert id="insertBr25_frozen_attach" parameterType="com.citic.server.dx.domain.Bg_Q_Attach">
+		insert into
+		br25_frozen_attach(
+		fileno,transserialnumber,filename,filepath,create_dt
+		) values(
+		#{fileno},#{transserialnumber},#{filename},#{filepath},#{create_dt}
+		)
+	</insert>
+
+	<select id="getBr25_frozenByID" parameterType="String"
+		resultType="com.citic.server.dx.domain.Br25_Freeze">
+		select *
+		from br25_frozen
+		where
+		transserialnumber=#{transserialnumber}
+	</select>
+	<select id="getBr25_frozenBackByID" parameterType="com.citic.server.dx.domain.Br25_Freeze_back"
+		resultType="com.citic.server.dx.domain.Br25_Freeze_back">
+		select *
+		from br25_frozen_back
+		<where>
+			<if test="transserialnumber!=null  and transserialnumber!=''">
+				and transserialnumber=#{transserialnumber}
+			</if>
+			<if test="applicationid!=null  and applicationid!=''">
+				and applicationid=#{applicationid}
+			</if>
+			<if test="toorg!=null and toorg!=''">
+				and toorg=#{toorg}
+			</if>
+		</where>
+
+	</select>
+
+
+	<insert id="insertBr25_frozen_back" parameterType="com.citic.server.dx.domain.Br25_Freeze_back">
+		insert into br25_frozen_back(
+		modeid,toorg,txcode,transserialnumber,applicationid,result,hxappid,freezeType,accounttype,accountnumber,cardnumber,appliedbalance,frozedbalance,currency,accountbalance,starttime,endtime,withdrawaltime,
+		failurecause,formerapplicationdepartment,formerfrozencurrency,formerfrozenbalance,formerfrozenexpiretime,accountavaiablebalance,feedbackremark,feedbackorgname,operatorname,operatorphonenumber,feedback_dt,unfreezebalance,status_cd,
+		qrydt,orgkey,last_up_dt,msgcheckresult
+		) values(
+		#{mode,jdbcType=VARCHAR},
+		#{to,jdbcType=VARCHAR},#{txcode,jdbcType=VARCHAR},#{transserialnumber,jdbcType=VARCHAR},#{applicationid,jdbcType=VARCHAR},#{result,jdbcType=VARCHAR},#{hxappid,jdbcType=VARCHAR},#{freezeType,jdbcType=VARCHAR},#{accounttype,jdbcType=VARCHAR},#{accountnumber,jdbcType=VARCHAR},
+		#{cardnumber,jdbcType=VARCHAR},#{appliedbalance,jdbcType=VARCHAR},#{frozedbalance,jdbcType=VARCHAR},#{currency,jdbcType=VARCHAR},#{accountbalance,jdbcType=VARCHAR},
+		#{starttime,jdbcType=VARCHAR},#{endtime,jdbcType=VARCHAR},#{withdrawaltime,jdbcType=VARCHAR},#{failurecause,jdbcType=VARCHAR},
+		#{formerapplicationdepartment,jdbcType=VARCHAR},#{formerfrozencurrency,jdbcType=VARCHAR},#{formerfrozenbalance,jdbcType=VARCHAR},#{formerfrozenexpiretime,jdbcType=VARCHAR},#{accountavaiablebalance,jdbcType=VARCHAR},#{feedbackremark,jdbcType=VARCHAR},#{feedbackorgname,jdbcType=VARCHAR},#{operatorname,jdbcType=VARCHAR},
+		#{operatorphonenumber,jdbcType=VARCHAR},#{feedback_dt,jdbcType=VARCHAR},#{unfreezebalance,jdbcType=VARCHAR},#{status_cd,jdbcType=VARCHAR},#{qrydt,jdbcType=VARCHAR},#{orgkey,jdbcType=VARCHAR},#{last_up_dt},#{msgcheckresult}
+
+		)
+	</insert>
+	<select id="getBr22_StopPayByID" parameterType="String"
+		resultType="com.citic.server.dx.domain.Br22_StopPay">
+		select *
+		from br22_stop
+		where applicationid=#{_parameter}
+	</select>
+
+
+</mapper>
+
+

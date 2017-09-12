@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- serializer: 对应marshall由Java对象生成XML文档 -->
+<!-- deserializer: 对应unmarshall根据XML文档创建Java对象 -->
+<binding>
+    <!-- 字符串base64编码转换，基于UTF-8字符集 -->
+    <format label="base64" type="byte[]" serializer="com.citic.server.runtime.Utility.encodeMIMEBase64" deserializer="com.citic.server.runtime.Utility.decodeMIMEBase64" />
+
+    <!-- 字符串base64编码转换，基于GBK字符集 -->
+    <format label="base64GBK" type="java.lang.String" serializer="com.citic.server.runtime.Utility.encodeGBKMIMEBase64" deserializer="com.citic.server.runtime.Utility.decodeGBKMIMEBase64" />
+
+    <!-- 字符串base64编码转换（连续两次），基于GBK字符编码 -->
+    <format label="doubleBase64GBK" type="byte[]" serializer="com.citic.server.runtime.UtilityExt.doubleEncodeGBKMIMEBase64" deserializer="com.citic.server.runtime.UtilityExt.doubleDecodeGBKMIMEBase64" />
+
+    <!-- trim -->
+    <format label="trim" type="java.lang.String" serializer="com.citic.server.runtime.Utility.trim" deserializer="com.citic.server.runtime.Utility.trim" />
+
+    <!-- 字符串保留原有值，即不做转换 -->
+    <format label="none" type="java.lang.String" serializer="com.citic.server.runtime.Utility.toString" deserializer="com.citic.server.runtime.Utility.toString" />
+
+    <!-- 字符串为null、""、空格时，转换成[-] -->
+    <format label="noBlank" type="java.lang.String" serializer="com.citic.server.runtime.Utility.noBlankString" deserializer="com.citic.server.runtime.Utility.noBlankString" />
+    <format label="noBlankValidate" type="java.lang.String" serializer="com.citic.server.runtime.Utility.validateBlank" deserializer="com.citic.server.runtime.Utility.validateBlank" />
+
+    <!-- 金额为null、""、空格时，转换成[0.00] -->
+    <format label="noCurrency" type="java.lang.String" serializer="com.citic.server.runtime.Utility.noBlankCurrency" deserializer="com.citic.server.runtime.Utility.noBlankCurrency" />
+
+    <!-- 金额为null、""、空格时，转换成[0.00]且Base64编码 -->
+    <format label="toBalanceBase64" type="java.lang.String" serializer="com.citic.server.runtime.Utility.toBalanceBase64" deserializer="com.citic.server.runtime.Utility.decodeUTF8MIMEBase64"/>
+
+    <format label="noCurrencyValidate" type="java.lang.String" serializer="com.citic.server.runtime.Utility.validateCurrency" deserializer="com.citic.server.runtime.Utility.validateCurrency" />
+
+    <!-- 时间格式转换成[yyyMMdd] -->
+    <format label="toDate8" type="java.lang.String" serializer="com.citic.server.runtime.Utility.toDate8" deserializer="com.citic.server.runtime.Utility.toDate8" />
+
+    <!-- 时间格式转换成[yyy/MM/dd] -->
+    <format label="toDate10_1" type="java.lang.String" serializer="com.citic.server.runtime.Utility.toDate10_1" deserializer="com.citic.server.runtime.Utility.toDate10_1" />
+	<!-- 时间格式转换成[yyy/MM/dd]且Base64编码 -->
+    <format label="toDate10VBase64" type="java.lang.String" serializer="com.citic.server.runtime.Utility.toDate10VBase64" deserializer="com.citic.server.runtime.Utility.base64ToDate10" />
+
+    <!-- 时间格式转换成[yyy-MM-dd] -->
+    <format label="toDate10" type="java.lang.String" serializer="com.citic.server.runtime.Utility.toDate10" deserializer="com.citic.server.runtime.Utility.toDate10" />
+    
+    <!-- 时间格式转换成[yyy-MM-dd]且Base64编码 -->
+    <format label="toDate10Base64" type="java.lang.String" serializer="com.citic.server.runtime.Utility.toDate10Base64" deserializer="com.citic.server.runtime.Utility.base64ToDate10" />
+    
+    <!-- 时间格式转换成[yyyyMMddHHmmss] -->
+    <format label="toDateTime14" type="java.lang.String" serializer="com.citic.server.runtime.Utility.toDateTime14" deserializer="com.citic.server.runtime.Utility.toDateTime14" />
+
+    <!-- 时间格式转换成[yyyy-MM-dd HH:mm:ss] -->
+    <format label="toDateTime19" type="java.lang.String" serializer="com.citic.server.runtime.Utility.toDateTime19" deserializer="com.citic.server.runtime.Utility.toDateTime19" />
+    <format label="toDateTime19Validate" type="java.lang.String" serializer="com.citic.server.runtime.Utility.validateDateTimeTo19" deserializer="com.citic.server.runtime.Utility.validateDateTimeTo19" />
+
+    <!-- 时间格式转换成[yyyy/MM/dd HH:mm:ss] -->
+    <format label="toDateTime19_1" type="java.lang.String" serializer="com.citic.server.runtime.Utility.toDateTime19_1" deserializer="com.citic.server.runtime.Utility.toDateTime19_1" />
+    
+    <!-- 时间格式转换成[yyyy/MM/dd HH:mm:ss]且Base64编码 -->
+    <format label="toDateTime19VBase64" type="java.lang.String" serializer="com.citic.server.runtime.Utility.toDateTime19VBase64" deserializer="com.citic.server.runtime.Utility.base64ToDateTime19V" />
+
+    <!-- 整数金额除以100，并精确到分（如果是小数，则不做处理） -->
+    <format label="precisionOfCent" type="java.lang.String" serializer="com.citic.server.runtime.Utility.precisionOfCent" deserializer="com.citic.server.runtime.Utility.precisionOfCent" />
+
+    <!-- 金额精确到分，并乘以100转换成整数 -->
+    <format label="noCent" type="java.lang.String" serializer="com.citic.server.runtime.Utility.noCent" deserializer="com.citic.server.runtime.Utility.noCent" />
+    
+    <format label="decimalPoint2" type="java.lang.String" serializer="com.citic.server.runtime.Utility.decimalPoint2" deserializer="com.citic.server.runtime.Utility.decimalPoint2" />
+</binding>

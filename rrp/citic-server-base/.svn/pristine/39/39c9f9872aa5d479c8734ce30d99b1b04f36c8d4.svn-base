@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.citic.server.mapper.MC00_task_statusMapper">
+
+	
+	<!-- 使用动态SQL -->
+	<!-- timeout: 抛出异常之前，驱动程序等待数据库返回请求结果的秒数 -->
+	<!-- fetchSize:每次批量返回的结果行数 -->
+	<!-- resultSetType FORWARD_ONLY，SCROLL_SENSITIVE 或 SCROLL_INSENSITIVE ，默认依赖驱动 -->
+	<!-- ${realname} 静态参数 -->
+	<select id="getMC00_task_statusList" parameterType="MC00_task_status"
+		resultType="MC00_task_status">
+		select
+		  taskid,subtaskid,serverid,datatime,freq,trigerid,dsid,taskname,tgroupid,begintime,endtime,usetime,calstatus,taskcmd
+		from MC00_task_status where 1>0
+			<if test="taskid.length()  > 0 ">
+				and taskid = #{taskid}
+			</if>
+			<if test="subtaskid.length()  > 0 ">
+				and subtaskid = #{subtaskid}
+			</if>
+			<if test="datatime.length()  > 0 ">
+				and datatime = #{datatime}
+			</if>
+			<if test="tgroupid.length()  > 0 ">
+				and tgroupid = #{tgroupid}
+			</if>
+			<if test="freq.length()  > 0 ">
+				and freq = #{freq}
+			</if>
+			<if test="dsid.length()  > 0 ">
+				and dsid = #{dsid}
+			</if>
+			<if test="calstatus.length()  > 0 ">
+				and calstatus = #{calstatus}
+			</if>
+	</select>
+	
+		<select id="getMC00_task_statusListForAllTask" parameterType="MC00_task_status"
+		resultType="MC00_task_status">
+		select
+		  t1.taskid,t1.subtaskid,t1.serverid,t1.datatime,t1.freq,t1.trigerid,t1.dsid,t1.taskname
+		  ,t1.tgroupid,t2.begintime,t2.endtime,t2.usetime,t2.calstatus,t1.taskcmd
+		
+		  from MC00_task_fact t1 left join MC00_task_status t2 
+   		  on t1.taskid=t2.taskid and t1.subtaskid=t2.subtaskid 
+   		   and t1.freq=t2.freq and t1.datatime=t2.datatime and t1.dsid=t2.dsid and t1.trigerid=t2.trigerid
+		  where 1>0		
+			<if test="taskid.length()  > 0 ">
+				and t1.taskid = #{taskid}
+			</if>
+			<if test="subtaskid.length()  > 0 ">
+				and t1.subtaskid = #{subtaskid}
+			</if>
+			<if test="datatime.length()  > 0 ">
+				and t1.datatime = #{datatime}
+			</if>
+			<if test="tgroupid.length()  > 0 ">
+				and t1.tgroupid = #{tgroupid}
+			</if>
+			<if test="freq.length()  > 0 ">
+				and t1.freq = #{freq}
+			</if>
+			<if test="dsid.length()  > 0 ">
+				and t1.dsid = #{dsid}
+			</if>
+			<if test="calstatus.length()  > 0 ">
+				and t2.calstatus = #{calstatus}
+			</if>
+	</select>
+	
+	
+	<select id="getMC00_task_statusListForNotSet" parameterType="MC00_task_status"
+		resultType="MC00_task_status">
+		select
+		  t.taskid from mc00_task t where t.flag='1' and t.taskid not in 
+		  	(select distinct s.taskid from mc00_task_status s where s.datatime=#{datatime})
+	</select>
+
+	<select id="getMC00_task_statusSameFreqListForNotSet" parameterType="MC00_task_status"
+		resultType="MC00_task_status">
+		select
+		  t.taskid from mc00_task t where t.flag='1' and t.taskid not in 
+		  	(select distinct s.taskid from mc00_task_status s where s.freq=t.freq and s.datatime=#{datatime} and s.freq=#{freq})
+	</select>
+
+	<select id="getMC00_task_statusListSameGrouForNotSet" parameterType="MC00_task_status"
+		resultType="MC00_task_status">
+		select
+		  t.taskid from mc00_task t where t.flag='1' and t.taskid not in 
+		  	(select distinct s.taskid from mc00_task_status s where s.tgroupid=t.tgroupid and s.datatime=#{datatime} and s.tgroupid=#{tgroupid})
+	</select>
+	
+	<select id="getMC00_task_statusListGroupbytaskid"  parameterType="String"
+		resultType="MC00_task_status">
+		select taskid,calstatus from mc00_task_status where datatime=#{datatime} group by taskid,calstatus
+	</select>
+	
+
+	<insert id="insertMC00_task_status" parameterType="MC00_task_status">
+		insert into MC00_task_status(
+			taskid,subtaskid,datatime,serverid,freq,trigerid,dsid,taskname,tgroupid,begintime,endtime,usetime,calstatus,taskcmd
+		)
+		values(
+			#{taskid},#{subtaskid},#{datatime},#{serverid},#{freq},#{trigerid},#{dsid},#{taskname},#{tgroupid},#{begintime},#{endtime},#{usetime},#{calstatus},#{taskcmd}
+		)
+	</insert>
+
+	<delete id="deleteMC00_task_status" parameterType="MC00_task_status">
+		<![CDATA[ delete from MC00_task_status 
+		
+		where taskid=#{taskid} and subtaskid=#{subtaskid} and datatime=#{datatime}
+		
+		 ]]>
+	</delete>
+	<delete id="resetMC00_task_status" parameterType="string">
+	<![CDATA[
+		delete from MC00_task_status 
+		where serverid = #{serverid} and calstatus<>'1'
+	]]>
+	</delete>
+	<delete id="resetAllMC00_task_status">
+	<![CDATA[
+		delete from MC00_task_status 
+		where calstatus<>'1'
+	]]>
+	</delete>
+	
+	<select id="getMC00_task_statusCount" parameterType="string" resultType="java.lang.Integer" >
+		select count(1) from MC00_task_status t1 where t1.datatime=#{datatime}
+	</select>
+	
+</mapper>
+
+

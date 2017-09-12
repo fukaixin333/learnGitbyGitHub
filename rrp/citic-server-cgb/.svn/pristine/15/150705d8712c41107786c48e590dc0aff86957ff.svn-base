@@ -1,0 +1,23 @@
+<binding name="binding_result_265561" package="com.citic.server.inner.domain">
+    <include path="../../../custom/base-binding-project.xml" />
+    <mapping name="Document" class="com.citic.server.inner.domain.OwnershipInfo">
+        <structure name="Head">
+            <value style="element" name="To" get-method="getTo" set-method="setTo" usage="optional" />
+            <value style="element" name="Code" get-method="getCode" set-method="setCode" usage="optional" />
+            <value style="element" name="Description" get-method="getDescription" set-method="setDescription" usage="optional" />
+        </structure>
+        <structure name="Body">
+            <value style="element" name="MarginType" get-method="getMarginType" set-method="setMarginType" usage="optional" />
+            <value style="element" name="PledgeType" get-method="getPledgeType" set-method="setPledgeType" usage="optional" />
+        </structure>
+        <structure name="Foot">
+            <value style="element" name="TotalPage" get-method="getTotalPage" set-method="setTotalPage" usage="optional" format="toInt" />
+            <value style="element" name="TotalNum" get-method="getTotalNum" set-method="setTotalNum" usage="optional" format="toInt" />
+            <value style="element" name="CurrPage" get-method="getCurrPage" set-method="setCurrPage" usage="optional" format="toInt" />
+            <value style="element" name="CurrPageRow" get-method="getCurrPageRow" set-method="setCurrPageRow" usage="optional" format="toInt" />
+            <value style="element" name="TodRecNum" get-method="getTodRecNum" set-method="setTodRecNum" usage="optional" format="toInt" />
+            <value style="element" name="LastPage" get-method="getLastPage" set-method="setLastPage" usage="optional" />
+            <value style="element" name="ResFlag" get-method="getResFlag" set-method="setResFlag" usage="optional" />
+        </structure>
+    </mapping>
+</binding>

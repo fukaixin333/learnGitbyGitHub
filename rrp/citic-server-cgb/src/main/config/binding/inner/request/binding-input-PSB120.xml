@@ -1,0 +1,71 @@
+<binding name="binding_input_PSB120" package="com.citic.server.inner.domain.request">
+    <mapping name="Document" class="com.citic.server.inner.domain.request.InputPSB120">
+        <structure name="Head">
+            <value style="element" name="To" get-method="getTo" set-method="setTo" usage="optional" />
+            <value style="element" name="Code" get-method="getCode" set-method="setCode" usage="optional" />
+            <value style="element" name="Description" get-method="getDescription" set-method="setDescription" usage="optional" />
+            <value style="element" name="SenderSN" get-method="getSenderSN" set-method="setSenderSN" usage="optional" />
+            <value style="element" name="SenderDate" get-method="getSenderDate" set-method="setSenderDate" usage="optional" />
+            <value style="element" name="SenderTime" get-method="getSenderTime" set-method="setSenderTime" usage="optional" />
+            <value style="element" name="TransSerialNumber" get-method="getTransSerialNumber" set-method="setTransSerialNumber" usage="optional" />
+        </structure>
+        <structure name="Body">
+            <value style="element" name="TradeType" get-method="getTradeType" set-method="setTradeType" usage="optional" />
+            <value style="element" name="CurrentPartition" get-method="getCurrentPartition" set-method="setCurrentPartition" usage="optional" />
+            <value style="element" name="SystemId" get-method="getSystemId" set-method="setSystemId" usage="optional" />
+            <value style="element" name="Urgent" get-method="getUrgent" set-method="setUrgent" usage="optional" />
+            <value style="element" name="AddDataFlag" get-method="getAddDataFlag" set-method="setAddDataFlag" usage="optional" />
+            <value style="element" name="AddAttachFlag" get-method="getAddAttachFlag" set-method="setAddAttachFlag" usage="optional" />
+            <value style="element" name="SerialNum" get-method="getSerialNum" set-method="setSerialNum" usage="optional" />
+            <value style="element" name="TransBranch" get-method="getTransBranch" set-method="setTransBranch" usage="optional" />
+            <value style="element" name="AccountBranch" get-method="getAccountBranch" set-method="setAccountBranch" usage="optional" />
+            <value style="element" name="UserId" get-method="getUserId" set-method="setUserId" usage="optional" />
+            <value style="element" name="CheckUserId" get-method="getCheckUserId" set-method="setCheckUserId" usage="optional" />
+            <value style="element" name="FeeMode" get-method="getFeeMode" set-method="setFeeMode" usage="optional" />
+            <value style="element" name="FeeCal" get-method="getFeeCal" set-method="setFeeCal" usage="optional" />
+            <value style="element" name="FeeAmount" get-method="getFeeAmount" set-method="setFeeAmount" usage="optional" />
+            <value style="element" name="InfoBackFlag" get-method="getInfoBackFlag" set-method="setInfoBackFlag" usage="optional" />
+            <value style="element" name="ReceiptFlag" get-method="getReceiptFlag" set-method="setReceiptFlag" usage="optional" />
+            <value style="element" name="ExternalSystem" get-method="getExternalSystem" set-method="setExternalSystem" usage="optional" />
+            <value style="element" name="ReceiptDate" get-method="getReceiptDate" set-method="setReceiptDate" usage="optional" />
+            <value style="element" name="DeductFlag" get-method="getDeductFlag" set-method="setDeductFlag" usage="optional" />
+            <value style="element" name="Remark" get-method="getRemark" set-method="setRemark" usage="optional" />
+            <value style="element" name="BusinessNum" get-method="getBusinessNum" set-method="setBusinessNum" usage="optional" />
+            <value style="element" name="SenrBankCode" get-method="getSenrBankCode" set-method="setSenrBankCode" usage="optional" />
+            <value style="element" name="RecrBankCode" get-method="getRecrBankCode" set-method="setRecrBankCode" usage="optional" />
+            <value style="element" name="EntrustDate" get-method="getEntrustDate" set-method="setEntrustDate" usage="optional" />
+            <value style="element" name="TransSerialNum" get-method="getTransSerialNum" set-method="setTransSerialNum" usage="optional" />
+            <value style="element" name="Amount" get-method="getAmount" set-method="setAmount" usage="optional" />
+            <value style="element" name="DebitBankCode" get-method="getDebitBankCode" set-method="setDebitBankCode" usage="optional" />
+            <value style="element" name="DebitAccount" get-method="getDebitAccount" set-method="setDebitAccount" usage="optional" />
+            <value style="element" name="DebitName" get-method="getDebitName" set-method="setDebitName" usage="optional" />
+            <value style="element" name="DebitAddress" get-method="getDebitAddress" set-method="setDebitAddress" usage="optional" />
+            <value style="element" name="CreditBankCode" get-method="getCreditBankCode" set-method="setCreditBankCode" usage="optional" />
+            <value style="element" name="CreditAccount" get-method="getCreditAccount" set-method="setCreditAccount" usage="optional" />
+            <value style="element" name="CreditName" get-method="getCreditName" set-method="setCreditName" usage="optional" />
+            <value style="element" name="CreditAddress" get-method="getCreditAddress" set-method="setCreditAddress" usage="optional" />
+            <value style="element" name="RealTransAccount" get-method="getRealTransAccount" set-method="setRealTransAccount" usage="optional" />
+            <value style="element" name="RealTransName" get-method="getRealTransName" set-method="setRealTransName" usage="optional" />
+            <value style="element" name="BusiType" get-method="getBusiType" set-method="setBusiType" usage="optional" />
+            <value style="element" name="Remark1" get-method="getRemark1" set-method="setRemark1" usage="optional" />
+            <value style="element" name="VerifyPwdType" get-method="getVerifyPwdType" set-method="setVerifyPwdType" usage="optional" />
+            <value style="element" name="Password" get-method="getPassword" set-method="setPassword" usage="optional" />
+            <value style="element" name="NoteType" get-method="getNoteType" set-method="setNoteType" usage="optional" />
+            <value style="element" name="NotePrefix" get-method="getNotePrefix" set-method="setNotePrefix" usage="optional" />
+            <value style="element" name="NoteNum" get-method="getNoteNum" set-method="setNoteNum" usage="optional" />
+            <value style="element" name="CreditFlag" get-method="getCreditFlag" set-method="setCreditFlag" usage="optional" />
+            <value style="element" name="CreditNumber" get-method="getCreditNumber" set-method="setCreditNumber" usage="optional" />
+            <value style="element" name="Remark2" get-method="getRemark2" set-method="setRemark2" usage="optional" />
+            <value style="element" name="FeeFlag" get-method="getFeeFlag" set-method="setFeeFlag" usage="optional" />
+            <value style="element" name="FeeAccount" get-method="getFeeAccount" set-method="setFeeAccount" usage="optional" />
+            <value style="element" name="FreeBrFlag" get-method="getFreeBrFlag" set-method="setFreeBrFlag" usage="optional" />
+            <value style="element" name="FreeBranch" get-method="getFreeBranch" set-method="setFreeBranch" usage="optional" />
+        </structure>
+        <structure name="Foot">
+            <value style="element" name="PageRow" get-method="getPageRow" set-method="setPageRow" usage="optional" />
+            <value style="element" name="PageNum" get-method="getPageNum" set-method="setPageNum" usage="optional" />
+            <value style="element" name="TotalNum" get-method="getTotalNum" set-method="setTotalNum" usage="optional" />
+            <value style="element" name="TodRecNum" get-method="getTodRecNum" set-method="setTodRecNum" usage="optional" />
+        </structure>
+    </mapping>
+</binding>

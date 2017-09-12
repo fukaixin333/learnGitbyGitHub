@@ -1,0 +1,27 @@
+<binding name="binding_100308" package="com.citic.server.dx.domain.request">
+    <include path="../../custom/base-binding.xml" />
+    <mapping name="Request" class="com.citic.server.dx.domain.request.QueryRequest100308">
+        <structure name="Head">
+            <value style="element" name="Mode" get-method="getMode" set-method="setMode" usage="optional" />
+            <value style="element" name="To" get-method="getTo" set-method="setTo" usage="optional" />
+            <value style="element" name="TxCode" get-method="getTxCode" set-method="setTxCode" usage="optional" />
+            <value style="element" name="TransSerialNumber" get-method="getTransSerialNumber" set-method="setTransSerialNumber" usage="optional" />
+        </structure>
+        <structure name="Body">
+            <value style="element" name="ApplicationID" get-method="getApplicationID" set-method="setApplicationID" usage="optional" />
+            <value style="element" name="Result" get-method="getResult" set-method="setResult" usage="optional" />
+            <value style="element" name="CaseNumber" get-method="getCaseNumber" set-method="setCaseNumber" usage="optional" />
+            <value style="element" name="ApplicationOrgID" get-method="getApplicationOrgID" set-method="setApplicationOrgID" usage="optional" />
+            <value style="element" name="ApplicationOrgName" get-method="getApplicationOrgName" set-method="setApplicationOrgName" usage="optional" />
+            <value style="element" name="ApplicationTime" get-method="getApplicationTime" set-method="setApplicationTime" usage="optional" format="toDateTime14" />
+            <value style="element" name="OperatorName" get-method="getOperatorName" set-method="setOperatorName" usage="optional" />
+            <value style="element" name="OperatorPhoneNumber" get-method="getOperatorPhoneNumber" set-method="setOperatorPhoneNumber" usage="optional" />
+            <value style="element" name="BankID" get-method="getBankID" set-method="setBankID" usage="optional" />
+            <value style="element" name="BankName" get-method="getBankName" set-method="setBankName" usage="optional" format="noBlank" />
+            <value style="element" name="AccountName" get-method="getAccountName" set-method="setAccountName" usage="optional" format="noBlank" />
+            <value style="element" name="CardNumber" get-method="getCardNumber" set-method="setCardNumber" usage="optional" />
+            <value style="element" name="WithdrawalRemark" get-method="getWithdrawalRemark" set-method="setWithdrawalRemark" usage="optional" />
+            <value style="element" name="FeedbackRemark" get-method="getFeedbackRemark" set-method="setFeedbackRemark" usage="optional" />
+        </structure>
+    </mapping>
+</binding>

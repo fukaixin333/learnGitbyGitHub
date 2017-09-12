@@ -1,0 +1,42 @@
+<binding name="binding_whpsb_grkhzlfk" package="com.citic.server.whpsb.domain.request">
+    <mapping class="com.citic.server.whpsb.domain.request.Whpsb_RequestKhzl" name="grkhzlfk">
+        <structure get-method="getHeader" set-method="setHeader" usage="optional" name="sjl">
+            <value style="element" name="count" get-method="getCount" set-method="setCount" usage="optional" />
+            <value style="element" name="yhdm" get-method="getYhdm" set-method="setYhdm" usage="optional" />
+            <value style="element" name="czsj" get-method="getCzsj" set-method="setCzsj" usage="optional" />
+        </structure>
+        <collection get-method="getSadxList" set-method="setSadxList" usage="optional" create-type="java.util.ArrayList" name="mxjl">
+            <structure type="com.citic.server.whpsb.domain.request.Whpsb_RequestKhzl_Sadx" name="sadx">
+                <structure get-method="getSadxBody" set-method="setSadxBody" usage="optional">
+                    <value style="element" name="ah" get-method="getAh" set-method="setAh" usage="optional" />
+                    <value style="element" name="cbdw" get-method="getCbdw" set-method="setCbdw" usage="optional" />
+                    <value style="element" name="cbr1" get-method="getCbr1" set-method="setCbr1" usage="optional" />
+                    <value style="element" name="cbr2" get-method="getCbr2" set-method="setCbr2" usage="optional" />
+                    <value style="element" name="zzlx" get-method="getZzlx" set-method="setZzlx" usage="optional" />
+                    <value style="element" name="zzhm" get-method="getZzhm" set-method="setZzhm" usage="optional" />
+                    <value style="element" name="mc" get-method="getMc" set-method="setMc" usage="optional" />
+                    <value style="element" name="cljg" get-method="getCljg" set-method="setCljg" usage="optional" />
+                    <value style="element" name="sbyy" get-method="getSbyy" set-method="setSbyy" usage="optional" />
+                </structure>
+                <structure get-method="getDetail" set-method="setDetail" usage="optional" name="khzl">
+                    <value style="element" name="zzdz" get-method="getDz" set-method="setDz" usage="optional" />
+                    <value style="element" name="zzdh" get-method="getDh" set-method="setDh" usage="optional" />
+                    <value style="element" name="gzdw" get-method="getGzdw" set-method="setGzdw" usage="optional" />
+                    <value style="element" name="dwdz" get-method="getDwdz" set-method="setDwdz" usage="optional" />
+                    <value style="element" name="dwdh" get-method="getDwdh" set-method="setDwdh" usage="optional" />
+                    <value style="element" name="lxdz" get-method="getLxdz" set-method="setLxdz" usage="optional" />
+                    <value style="element" name="lxdh" get-method="getLxdh" set-method="setLxdh" usage="optional" />
+                    <value style="element" name="lxsj" get-method="getLxsj" set-method="setLxsj" usage="optional" />
+                    <value style="element" name="email" get-method="getEmail" set-method="setEmail" usage="optional" />
+                    <value style="element" name="khwd" get-method="getKhwd" set-method="setKhwd" usage="optional" />
+                    <value style="element" name="khwddm" get-method="getKhwddm" set-method="setKhwddm" usage="optional" />
+                    <value style="element" name="yzbm" get-method="getYzbm" set-method="setYzbm" usage="optional" />
+                    <value style="element" name="txdz" get-method="getTxdz" set-method="setTxdz" usage="optional" />
+                    <value style="element" name="dbrxm" get-method="getDbrxm" set-method="setDbrxm" usage="optional" />
+                    <value style="element" name="dbrzzlx" get-method="getDbrzzlx" set-method="setDbrzzlx" usage="optional" />
+                    <value style="element" name="dbrzzh" get-method="getDbrzzh" set-method="setDbrzzh" usage="optional" />
+                </structure>
+            </structure>
+        </collection>
+    </mapping>
+</binding>

@@ -1,0 +1,29 @@
+<binding name="binding_gdjcy_Jjzfdj" package="com.citic.server.gdjg.domain.request">
+	<include path="../../../custom/base-binding-project.xml" />
+	<mapping class="com.citic.server.gdjg.domain.request.Gdjg_RequestJjzfdj" name="RESULT">
+		<structure type="com.citic.server.gdjg.domain.Gdjg_Request" name="COMMAND">
+			<value style="attribute" name="TYPE" get-method="getCmdtype" set-method="setCmdtype" usage="optional" />
+			<value style="element" name="USERNAME" get-method="getUsername" set-method="setUsername" usage="optional" />
+			<value style="element" name="PASSWORD" get-method="getPassword" set-method="setPassword" usage="optional" />
+		</structure>
+		<structure name="DATA">
+			<value style="attribute" name="CONTENT" get-method="getContent" set-method="setContent" usage="optional" />
+			<value style="element" name="DOCNO" get-method="getDocno" set-method="setDocno" usage="optional" />
+			<collection get-method="getCases" set-method="setCases" usage="optional" create-type="java.util.ArrayList">
+				<structure type="com.citic.server.gdjg.domain.request.Gdjg_Request_CaseCx" name="CASE">
+					<value style="element" name="CASENO" get-method="getCaseno" set-method="setCaseno" usage="optional" />
+					<collection get-method="getAccs" set-method="setAccs" usage="optional" create-type="java.util.ArrayList">
+						<structure type="com.citic.server.gdjg.domain.request.Gdjg_Request_AccCx" name="ACC">
+						    <value style="element" name="UNIQUEID" get-method="getUniqueid" set-method="setUniqueid" usage="optional" />
+							<value style="element" name="ACCOUNT" get-method="getAccount" set-method="setAccount" usage="optional" />
+							<value style="element" name="CARDNO" get-method="getCardno" set-method="setCardno" usage="optional" />
+							<value style="element" name="EXERESULT" get-method="getExeresult" set-method="setExeresult" usage="optional" />
+							<value style="element" name="STARTDATE" get-method="getStartdate" set-method="setStartdate" usage="optional" />
+							<value style="element" name="MEMO" get-method="getMemo" set-method="setMemo" usage="optional" />
+						</structure>
+					</collection>
+				</structure>
+			</collection>
+		</structure>
+	</mapping>
+</binding>

@@ -1,0 +1,11 @@
+<binding name="binding_control_hzxx" package="com.citic.server.gf.domain.request">
+    <format label="base64" type="byte[]" serializer="com.citic.server.runtime.Utility.encodeMIMEBase64" deserializer="com.citic.server.runtime.Utility.decodeMIMEBase64" />
+    <mapping name="hzxx" class="com.citic.server.gf.domain.request.ControlRequest_Hzxx">
+        <value style="attribute" name="BDHM" get-method="getBdhm" set-method="setBdhm" usage="optional" />
+        <value style="attribute" name="WJMC" get-method="getWjmc" set-method="setWjmc" usage="optional" />
+        <value style="attribute" name="WJLX" get-method="getWjlx" set-method="setWjlx" usage="optional" />
+        <value style="attribute" name="WSLB" get-method="getWslb" set-method="setWslb" usage="optional" />
+        <value style="attribute" name="WSNR" get-method="getWsnr" set-method="setWsnr" usage="optional" format="base64" />
+        <value style="attribute" name="MD5" get-method="getMd5" set-method="setMd5" usage="optional" />
+    </mapping>
+</binding>

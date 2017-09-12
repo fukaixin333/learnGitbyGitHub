@@ -1,0 +1,20 @@
+<binding name="binding_query_jrxx" package="com.citic.server.gf.domain.request">
+    <format label="nocurrency" type="java.lang.String" serializer="com.citic.server.runtime.Utility.noBlankCurrency" />
+    <mapping name="jrxx" class="com.citic.server.gf.domain.request.QueryRequest_Jrxx">
+        <value style="attribute" name="BDHM" get-method="getBdhm" set-method="setBdhm" usage="optional" />
+        <value style="attribute" name="CCXH" get-method="getCcxh" set-method="setCcxh" usage="optional" />
+        <value style="attribute" name="ZCXH" get-method="getZcxh" set-method="setZcxh" usage="optional" />
+        <value style="attribute" name="ZCMC" get-method="getZcmc" set-method="setZcmc" usage="optional" />
+        <value style="attribute" name="ZCLX" get-method="getZclx" set-method="setZclx" usage="optional" />
+        <value style="attribute" name="ZCGLR" get-method="getZcglr" set-method="setZcglr" usage="optional" />
+        <value style="attribute" name="ZCKFJY" get-method="getZckfjy" set-method="setZckfjy" usage="optional" />
+        <value style="attribute" name="ZCJYXZ" get-method="getZcjyxz" set-method="setZcjyxz" usage="optional" />
+        <value style="attribute" name="XZXCRQ" get-method="getXzxcrq" set-method="setXzxcrq" usage="optional" />
+        <value style="attribute" name="JLDW" get-method="getJldw" set-method="setJldw" usage="optional" />
+        <value style="attribute" name="BZ" get-method="getBz" set-method="setBz" usage="optional" />
+        <value style="attribute" name="ZCDWJG" get-method="getZcdwjg" set-method="setZcdwjg" usage="optional" />
+        <value style="attribute" name="SE" get-method="getSe" set-method="setSe" usage="optional" format="nocurrency" />
+        <value style="attribute" name="KYSE" get-method="getKyse" set-method="setKyse" usage="optional" format="nocurrency" />
+        <value style="attribute" name="BEIZ" get-method="getBeiz" set-method="setBeiz" usage="optional" />
+    </mapping>
+</binding>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Repository and Service layers -->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="  
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd             
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<bean id="springContextHolder" class="com.citic.server.SpringContextHolder" lazy-init="false" />
+	<bean id="application" class="com.citic.server.Application" lazy-init="false" />
+
+	<bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
+		<property name="slowSqlMillis" value="${citic.datasource.slow-sql-millis:10000}" />
+		<property name="logSlowSql" value="${citic.datasource.log-slow-sql:true}" />
+		<property name="mergeSql" value="${citic.datasource.merge-sql:true}" />
+	</bean>
+
+	<!-- 序列服务：业务流水号 -->
+	<bean id="outerApplicationID" class="com.citic.server.service.time.SequenceService">
+		<property name="dataSource" ref="busiDs" /> <!-- -->
+		<property name="sname" value="ApplicationID" /> <!-- -->
+		<property name="step" value="20" /> <!-- -->
+		<property name="expression" value="{#32}" /> <!-- -->
+	</bean>
+
+	<!-- 序列服务：传输报文流水号 -->
+	<bean id="outerTransSerialNumber" class="com.citic.server.service.time.SequenceService">
+		<property name="dataSource" ref="busiDs" /> <!-- -->
+		<property name="sname" value="TransSerialNumber" /> <!-- -->
+		<property name="step" value="20" /> <!-- -->
+		<property name="expression" value="{#28}" /> <!-- -->
+	</bean>
+
+	<!-- 序列服务：内联与核心通讯时的业务流水号 -->
+	<bean id="innerTransSerialNumber" class="com.citic.server.service.time.SequenceService">
+		<property name="dataSource" ref="busiDs" /> <!-- -->
+		<property name="sname" value="InnerTransSerialNumber" /> <!-- -->
+		<property name="step" value="100" /> <!-- -->
+		<property name="expression" value="AFPS{yyyyMMdd}{#20}" /> <!-- -->
+	</bean>
+
+	<!-- 序列服务：高法请求文件命名序列 -->
+	<bean id="gfTransSerialId" class="com.citic.server.service.time.SequenceService">
+		<property name="dataSource" ref="busiDs" /> <!-- -->
+		<property name="sname" value="GfTransSerialId" /> <!-- -->
+		<property name="step" value="50" /> <!-- -->
+		<property name="expression" value="{yyyyMMdd}{#10}" /> <!-- -->
+	</bean>
+</beans>
+	

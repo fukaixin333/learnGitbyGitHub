@@ -1,0 +1,11 @@
+<binding name="binding_response" package="com.citic.server.dx.domain.response">
+    <mapping name="Response" class="com.citic.server.dx.domain.Response">
+        <structure name="Head">
+            <value style="element" name="ResponseXML" get-method="getResponseXML" set-method="setResponseXML" usage="optional" />
+            <value style="element" name="Code" get-method="getCode" set-method="setCode" usage="optional" />
+            <value style="element" name="TransSerialNumber" get-method="getTransSerialNumber" set-method="setTransSerialNumber" usage="optional" />
+            <value style="element" name="Description" get-method="getDescription" set-method="setDescription" usage="optional" />
+            <value style="element" name="ApplicationId" get-method="getApplicationId" set-method="setApplicationId" usage="optional" />
+        </structure>
+    </mapping>
+</binding>

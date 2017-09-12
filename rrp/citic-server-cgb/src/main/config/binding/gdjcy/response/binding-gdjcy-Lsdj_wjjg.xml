@@ -1,0 +1,20 @@
+<binding name="binding_gdjcy_Lsdj_wjjg" package="com.citic.server.gdjg.domain.response">
+	<mapping class="com.citic.server.gdjg.domain.response.Gdjg_ResponseLsdj_wjjg" name="RESPONSE">
+		<structure name="COMMAND">
+			<value style="element" name="STATUS" get-method="getCmdstatus" set-method="setCmdstatus" usage="optional" />
+			<value style="element" name="MESSAGE" get-method="getCmdmessage" set-method="setCmdmessage" usage="optional" />
+		</structure>
+		<structure name="DATA">
+			<value style="attribute" name="TYPE" get-method="getDatatype" set-method="setDatatype" usage="optional" />
+			<value style="attribute" name="CONTENT" get-method="getContent" set-method="setContent" usage="optional" />
+			<collection get-method="getZipfileinfo" set-method="setZipfileinfo" usage="optional" create-type="java.util.ArrayList">
+				<structure type="com.citic.server.gdjg.domain.response.Gdjg_ResponseLsdj_wjjg_zipfileinfo" name="ZIPINFO">
+					<value style="element" name="ZIPFILEID" get-method="getZipfileid" set-method="setZipfileid" usage="optional" />
+					<value style="element" name="DOCNO" get-method="getDocno" set-method="setDocno" usage="optional" />
+					<value style="element" name="RESULTSTATUS" get-method="getResultstatus" set-method="setResultstatus" usage="optional" />
+					<value style="element" name="RESULTINFO" get-method="getResultinfo" set-method="setResultinfo" usage="optional" />
+				</structure>
+			</collection>
+		</structure>
+	</mapping>
+</binding>

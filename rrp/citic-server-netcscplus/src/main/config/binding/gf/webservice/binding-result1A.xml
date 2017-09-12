@@ -1,0 +1,22 @@
+<binding name="binding_result1A" package="com.citic.server.gf.domain">
+    <include path="../../../custom/base-binding.xml" />
+    <mapping name="result" class="com.citic.server.gf.domain.Result">
+        <value style="attribute" name="errorMsg" get-method="getErrorMsg" set-method="setErrorMsg" usage="optional" format="base64GBK" />
+        <value style="attribute" name="errMsg" get-method="getErrMsg" set-method="setErrMsg" usage="optional" format="base64GBK" />
+        <collection name="cxjglist" get-method="getCxJgList" set-method="setCxJgList" usage="optional" create-type="java.util.ArrayList">
+            <structure type="com.citic.server.gf.domain.Result_Jg" name="jg">
+                <structure map-as="resultJg" />
+            </structure>
+        </collection>
+        <collection name="htjglist" get-method="getHtJgList" set-method="setHtJgList" usage="optional" create-type="java.util.ArrayList">
+            <structure type="com.citic.server.gf.domain.Result_Jg" name="jg">
+                <structure map-as="resultJg" />
+            </structure>
+        </collection>
+    </mapping>
+    <mapping abstract="true" type-name="resultJg" class="com.citic.server.gf.domain.Result_Jg">
+        <value style="attribute" name="bdhm" get-method="getBdhm" set-method="setBdhm" usage="optional" format="base64GBK" />
+        <value style="attribute" name="result" get-method="getResult" set-method="setResult" usage="optional" format="base64GBK" />
+        <value style="attribute" name="msg" get-method="getMsg" set-method="setMsg" usage="optional" format="base64GBK" />
+    </mapping>
+</binding>
